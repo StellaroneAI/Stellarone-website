@@ -1,0 +1,13 @@
+# Ignore common dev files
+.git
+.gitignore
+.vscode
+.DS_Store
+*.log
+.env
+.env.*
+coverage
+
+# Avoid uploading node_modules and archived scaffold folders
+node_modules
+stellarone-scaffold/node_modules
