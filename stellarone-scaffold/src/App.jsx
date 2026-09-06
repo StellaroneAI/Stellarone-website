@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from "react";
+<button onClick={() => setPage("Home")} className="sh-nav-brand">
+  <img
+    src="/logo.svg"
+    alt="StellarOne Health"
+    className="h-10 w-auto"
+  />
+</button>import React, { useState, useEffect } from "react";
 import {
   Menu, X, ArrowRight, ArrowUpRight, Stethoscope, Activity, Cpu,
   ShieldCheck, FileCheck2, BarChart3, MessageSquare, Mail, MapPin,
@@ -30,6 +36,69 @@ const TOKENS = `
     font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
     color: var(--ink);
     background: var(--paper);
+    min-height: 100vh;
+    overflow-x: hidden;
+    letter-spacing: 0;
+  }
+  .sh-root button,
+  .sh-root input,
+  .sh-root textarea { font: inherit; }
+  .sh-root button { cursor: pointer; }
+  .sh-nav-shell {
+    box-shadow: 0 1px 0 rgba(16,27,45,0.05), 0 12px 32px -28px rgba(16,27,45,0.35);
+  }
+  .sh-nav-shell > div:first-child { min-height: 72px; }
+  .sh-nav-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .sh-brand-name {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    white-space: nowrap;
+  }
+  .sh-brand-health {
+    display: inline-block;
+    padding: 0.28em 0.52em 0.24em;
+    border: 1px solid rgba(31,138,130,0.28);
+    border-radius: 999px;
+    background: rgba(31,138,130,0.1);
+    color: var(--teal-deep);
+    font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.42em;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .sh-nav-brand::before {
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 999px;
+    background: var(--teal);
+    box-shadow: 0 0 0 5px rgba(31,138,130,0.12);
+  }
+  .sh-hero-copy { max-width: 38rem; }
+  .sh-hero-title,
+  .sh-section-heading { text-wrap: balance; }
+  .sh-card {
+    border-radius: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .sh-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(31,138,130,0.34);
+    box-shadow: 0 16px 32px -20px rgba(16,27,45,0.4);
+  }
+  .sh-stat { min-height: 5.5rem; }
+  @media (max-width: 767px) {
+    .sh-nav-shell > div:first-child { min-height: 64px; }
+    .sh-hero-title { font-size: clamp(2.45rem, 12vw, 4rem); }
+    .sh-stat { min-height: 0; }
   }
   .sh-serif { font-family: 'Newsreader', Georgia, serif; }
   .sh-nav-shell {
@@ -126,8 +195,10 @@ function Nav({ page, setPage, mobileOpen, setMobileOpen }) {
   return (
     <header className="sh-nav-shell sticky top-0 z-40" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <button onClick={() => setPage("Home")} className="sh-serif text-xl tracking-tight" style={{ color: "var(--ink)" }}>
-          StellarOne <span style={{ color: "var(--teal)" }}>Health</span>
+        <button onClick={() => setPage("Home")} className="sh-nav-brand sh-serif text-xl tracking-tight" style={{ color: "var(--ink)" }}>
+          <span className="sh-brand-name">
+            StellarOne <span className="sh-brand-health">Health</span>
+          </span>
         </button>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {NAV_ITEMS.map((item) => (
@@ -197,11 +268,11 @@ function Hero({ setPage }) {
     <section className="relative overflow-hidden" style={{ background: "var(--ink)", color: "var(--paper)" }}>
       <DotGrid light />
       <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-24 grid md:grid-cols-2 gap-12 items-center">
-        <div>
+        <div className="sh-hero-copy">
           <p className="text-sm mb-5 flex items-center gap-2" style={{ color: "#9FB3BE" }}>
             <Sparkles size={15} style={{ color: "var(--teal)" }} /> Healthcare technology &amp; services
           </p>
-          <h1 className="sh-serif text-4xl md:text-6xl leading-[1.08] mb-7 tracking-tight">
+          <h1 className="sh-hero-title sh-serif text-4xl md:text-6xl leading-[1.08] mb-7 tracking-tight">
             Where patient care, operations, and automation meet.
           </h1>
           <p className="text-base leading-relaxed mb-9 max-w-md" style={{ color: "#B9C4CC" }}>
@@ -248,7 +319,7 @@ function PillarsSection() {
   return (
     <section className="relative border-t" style={{ borderColor: "var(--line)" }}>
       <div className="max-w-6xl mx-auto px-6 py-20">
-        <h2 className="sh-serif text-3xl mb-12 max-w-lg">Three worlds, one connective layer</h2>
+        <h2 className="sh-section-heading sh-serif text-3xl mb-12 max-w-lg">Three worlds, one connective layer</h2>
         <div className="grid md:grid-cols-3 gap-x-10 gap-y-12">
           {PILLARS.map((p) => (
             <div key={p.title} className="relative">
@@ -274,7 +345,7 @@ function ProductsSection({ setPage }) {
       <div className="max-w-6xl mx-auto px-6 py-20">
         <h2 className="sh-serif text-3xl mb-12">What we build</h2>
         <div className="grid md:grid-cols-2 gap-10">
-          <div className="sh-card relative overflow-hidden">
+          <div className="sh-card relative overflow-hidden h-full">
             <div style={{ height: "4px", background: "var(--teal)" }} />
             <div className="p-8">
               <div className="flex items-center gap-2.5 mb-4">
@@ -302,7 +373,7 @@ function ProductsSection({ setPage }) {
               </button>
             </div>
           </div>
-          <div className="sh-card relative overflow-hidden">
+          <div className="sh-card relative overflow-hidden h-full">
             <div style={{ height: "4px", background: "var(--amber)" }} />
             <div className="p-8">
               <div className="flex items-center gap-2.5 mb-4">
@@ -355,7 +426,9 @@ function Footer({ setPage }) {
     <footer style={{ borderTop: "1px solid var(--line)", background: "var(--paper-dim)" }}>
       <div className="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-10 text-sm">
         <div>
-          <p className="sh-serif text-xl mb-2">StellarOne <span style={{ color: "var(--teal)" }}>Health</span></p>
+          <p className="sh-serif text-xl mb-2">
+            <span className="sh-brand-name">StellarOne <span className="sh-brand-health">Health</span></span>
+          </p>
           <p style={{ color: "var(--steel)" }}>Healthcare technology & services, based in India, serving healthcare organizations across the United States.</p>
         </div>
         <div>
@@ -424,7 +497,7 @@ function AboutPage() {
             { label: "Product lines", value: "Stellar.AI & EasyMed" },
             { label: "Focus", value: "Healthcare AI & RCM" },
           ].map((f) => (
-            <div key={f.label} style={{ borderTop: "2px solid var(--ink)", paddingTop: "0.75rem" }}>
+            <div key={f.label} className="sh-stat" style={{ borderTop: "2px solid var(--ink)", paddingTop: "0.75rem" }}>
               <p style={{ color: "var(--steel)" }} className="mb-1">{f.label}</p>
               <p className="font-medium sh-serif text-base">{f.value}</p>
             </div>
@@ -528,7 +601,7 @@ function ContactPage() {
           </div>
           <div className="flex items-center gap-3">
             <Phone size={16} style={{ color: "var(--teal)" }} />
-            <span>+91 00000 00000</span>
+            <span>+919180328119</span>
           </div>
           <div className="flex items-center gap-3">
             <MapPin size={16} style={{ color: "var(--teal)" }} />
