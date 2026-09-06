@@ -1,0 +1,11 @@
+# dependencies
+node_modules
+stellarone-scaffold/node_modules
+# env
+.env
+.env.*
+# editor
+.vscode
+.DS_Store
+# logs
+*.log
