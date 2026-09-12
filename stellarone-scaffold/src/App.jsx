@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Activity,
   ArrowRight,
@@ -555,7 +555,6 @@ function Hero({ setPage }) {
                   src={IMAGES.heroSecondary}
                   alt="Doctor using telehealth technology"
                   className="h-56"
-                  loading="eager"
                 />
               </div>
               <div className="sh-dark-card rounded-[28px] p-6">
@@ -1025,20 +1024,21 @@ export default function StellarOneSite() {
   const [page, setPage] = useState("Home");
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  useEffect(() => {
+  const navigateTo = (nextPage) => {
     setMobileOpen(false);
+    setPage(nextPage);
     window.scrollTo?.(0, 0);
-  }, [page]);
+  };
 
   return (
     <div className="sh-root">
       <FontImport />
-      <Nav page={page} setPage={setPage} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
-      {page === "Home" ? <HomePage setPage={setPage} /> : null}
+      <Nav page={page} setPage={navigateTo} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+      {page === "Home" ? <HomePage setPage={navigateTo} /> : null}
       {page === "About" ? <AboutPage /> : null}
       {page === "Services" ? <ServicesPage /> : null}
       {page === "Contact" ? <ContactPage /> : null}
-      <Footer setPage={setPage} />
+      <Footer setPage={navigateTo} />
     </div>
   );
 }
