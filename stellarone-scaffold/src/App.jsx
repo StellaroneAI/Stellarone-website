@@ -1,10 +1,4 @@
-<button onClick={() => setPage("Home")} className="sh-nav-brand">
-  <img
-    src="/logo.svg"
-    alt="StellarOne Health"
-    className="h-10 w-auto"
-  />
-</button>import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Menu, X, ArrowRight, ArrowUpRight, Stethoscope, Activity, Cpu,
   ShieldCheck, FileCheck2, BarChart3, MessageSquare, Mail, MapPin,
