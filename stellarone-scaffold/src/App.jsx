@@ -15,16 +15,17 @@ import {
 
 const TOKENS = `
   :root {
-    --ink: #0E1826;
-    --ink-soft: #2B394D;
+    --ink: #0A1628;
+    --ink-soft: #223852;
     --ink-hair: rgba(243,245,241,0.14);
-    --paper: #F3F5F1;
-    --paper-dim: #E6E9E3;
-    --steel: #5C6B73;
-    --teal: #1F8A82;
-    --teal-deep: #146059;
+    --paper: #F7F9FC;
+    --paper-dim: #EEF2F8;
+    --steel: #5A6C82;
+    --teal: #1D8F87;
+    --teal-deep: #146762;
     --amber: #C97F2E;
-    --line: rgba(16,27,45,0.12);
+    --line: rgba(11, 35, 62, 0.12);
+    --line-strong: rgba(11, 35, 62, 0.2);
   }
   .sh-root {
     font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
@@ -79,8 +80,18 @@ const TOKENS = `
   .sh-hero-copy { max-width: 38rem; }
   .sh-hero-title,
   .sh-section-heading { text-wrap: balance; }
+  .sh-section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
   .sh-card {
-    border-radius: 6px;
+    border-radius: 12px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
   .sh-card:hover {
@@ -103,28 +114,28 @@ const TOKENS = `
   .sh-btn-primary {
     background: var(--ink);
     color: var(--paper);
-    border-radius: 2px;
+    border-radius: 10px;
     transition: background 0.2s ease, transform 0.15s ease;
   }
   .sh-btn-primary:hover { background: var(--teal-deep); transform: translateY(-1px); }
   .sh-btn-on-dark {
     background: var(--teal);
     color: var(--ink);
-    border-radius: 2px;
+    border-radius: 10px;
     transition: background 0.2s ease, transform 0.15s ease;
   }
   .sh-btn-on-dark:hover { background: #29a89f; transform: translateY(-1px); }
   .sh-btn-ghost {
     border: 1px solid var(--line);
     color: var(--ink);
-    border-radius: 2px;
+    border-radius: 10px;
     transition: border-color 0.2s ease, background 0.2s ease;
   }
   .sh-btn-ghost:hover { border-color: var(--ink); background: rgba(16,27,45,0.03); }
   .sh-btn-ghost-dark {
     border: 1px solid var(--ink-hair);
     color: var(--paper);
-    border-radius: 2px;
+    border-radius: 10px;
     transition: border-color 0.2s ease, background 0.2s ease;
   }
   .sh-btn-ghost-dark:hover { border-color: rgba(243,245,241,0.4); background: rgba(243,245,241,0.05); }
@@ -148,7 +159,7 @@ const TOKENS = `
   .sh-field {
     border: 1px solid var(--line);
     background: white;
-    border-radius: 2px;
+    border-radius: 10px;
   }
   .sh-field:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
   .sh-card {
@@ -157,6 +168,33 @@ const TOKENS = `
     box-shadow: 0 1px 2px rgba(16,27,45,0.04), 0 12px 24px -18px rgba(16,27,45,0.25);
   }
   .sh-watermark { opacity: 0.06; pointer-events: none; }
+  .sh-kpi {
+    border: 1px solid rgba(169,192,216,0.34);
+    border-radius: 12px;
+    background: rgba(10,22,40,0.42);
+  }
+  .sh-trust-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  @media (min-width: 768px) {
+    .sh-trust-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .sh-chip {
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    padding: 0.5rem 0.85rem;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: white;
+    text-align: center;
+    font-weight: 600;
+  }
 `;
 
 function FontImport() {
@@ -257,21 +295,27 @@ function OrbitGraphic() {
   );
 }
 
+const HOME_HIGHLIGHTS = [
+  { label: "Patient Access", value: "Connected" },
+  { label: "RCM Workflows", value: "Automated" },
+  { label: "Care Delivery", value: "Multilingual" },
+];
+
 function Hero({ setPage }) {
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--ink)", color: "var(--paper)" }}>
       <DotGrid light />
       <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-24 grid md:grid-cols-2 gap-12 items-center">
         <div className="sh-hero-copy">
-          <p className="text-sm mb-5 flex items-center gap-2" style={{ color: "#9FB3BE" }}>
+          <p className="text-sm mb-5 flex items-center gap-2" style={{ color: "#A9C0D8" }}>
             <Sparkles size={15} style={{ color: "var(--teal)" }} /> Healthcare technology &amp; services
           </p>
           <h1 className="sh-hero-title sh-serif text-4xl md:text-6xl leading-[1.08] mb-7 tracking-tight">
-            Where patient care, operations, and automation meet.
+            Enterprise-grade AI infrastructure for healthcare organizations.
           </h1>
-          <p className="text-base leading-relaxed mb-9 max-w-md" style={{ color: "#B9C4CC" }}>
-            StellarOne Health Technologies builds the AI and infrastructure connecting how patients
-            are treated, how healthcare organizations run, and how intelligent systems support both.
+          <p className="text-base leading-relaxed mb-9 max-w-xl" style={{ color: "#C4D1DE" }}>
+            StellarOne Health Technologies helps provider and revenue teams modernize patient access,
+            coding, and care workflows with secure automation built for operational reliability.
           </p>
           <div className="flex flex-wrap gap-3">
             <button onClick={() => setPage("Services")} className="sh-btn-on-dark px-5 py-3 text-sm flex items-center gap-2 font-medium">
@@ -281,8 +325,40 @@ function Hero({ setPage }) {
               Our story
             </button>
           </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-10 text-center">
+            {HOME_HIGHLIGHTS.map((kpi) => (
+              <div key={kpi.label} className="sh-kpi px-3 py-3">
+                <p className="text-xl sh-serif">{kpi.value}</p>
+                <p className="text-[11px] uppercase tracking-[0.09em]" style={{ color: "#A9C0D8" }}>{kpi.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
         <OrbitGraphic />
+      </div>
+    </section>
+  );
+}
+
+function TrustSection() {
+  return (
+    <section className="border-y" style={{ borderColor: "var(--line)", background: "white" }}>
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-8 md:items-end md:justify-between mb-8">
+          <div>
+            <p className="sh-section-eyebrow mb-3">Enterprise readiness</p>
+            <h2 className="sh-section-heading sh-serif text-3xl leading-tight max-w-2xl">Built for dependable operations and accountable AI adoption.</h2>
+          </div>
+          <div className="text-sm flex items-center gap-2 md:justify-end" style={{ color: "var(--ink-soft)" }}>
+            <ShieldCheck size={17} style={{ color: "var(--teal)" }} />
+            Supports compliance-focused healthcare workflows
+          </div>
+        </div>
+        <div className="sh-trust-grid">
+          {["Revenue Cycle Operations", "Patient Access Teams", "Clinical Support", "AI Governance"].map((item) => (
+            <div key={item} className="sh-chip">{item}</div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -337,6 +413,7 @@ function ProductsSection({ setPage }) {
   return (
     <section style={{ background: "var(--paper-dim)" }}>
       <div className="max-w-6xl mx-auto px-6 py-20">
+        <p className="sh-section-eyebrow mb-4">Platform modules</p>
         <h2 className="sh-serif text-3xl mb-12">What we build</h2>
         <div className="grid md:grid-cols-2 gap-10">
           <div className="sh-card relative overflow-hidden h-full">
@@ -406,7 +483,7 @@ function CTASection({ setPage }) {
     <section className="relative overflow-hidden" style={{ background: "var(--ink)", color: "var(--paper)" }}>
       <DotGrid light />
       <div className="relative max-w-6xl mx-auto px-6 py-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-        <h2 className="sh-serif text-3xl max-w-md leading-tight">Let's build what's next in healthcare technology.</h2>
+        <h2 className="sh-serif text-3xl max-w-xl leading-tight">Ready to modernize care delivery and revenue workflows with enterprise-grade automation?</h2>
         <button onClick={() => setPage("Contact")} className="sh-btn-on-dark px-5 py-3 text-sm flex items-center gap-2 flex-shrink-0 font-medium">
           Get in touch <ArrowRight size={15} />
         </button>
@@ -418,12 +495,12 @@ function CTASection({ setPage }) {
 function Footer({ setPage }) {
   return (
     <footer style={{ borderTop: "1px solid var(--line)", background: "var(--paper-dim)" }}>
-      <div className="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-10 text-sm">
+      <div className="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10 text-sm">
         <div>
           <p className="sh-serif text-xl mb-2">
             <span className="sh-brand-name">StellarOne <span className="sh-brand-health">Health</span></span>
           </p>
-          <p style={{ color: "var(--steel)" }}>Healthcare technology & services, based in India, serving healthcare organizations across the United States.</p>
+          <p style={{ color: "var(--steel)" }}>Healthcare technology company serving provider organizations across the United States.</p>
         </div>
         <div>
           <p className="font-medium mb-3" style={{ color: "var(--ink)" }}>Site</p>
@@ -440,6 +517,14 @@ function Footer({ setPage }) {
             <span>EasyMed</span>
           </div>
         </div>
+        <div>
+          <p className="font-medium mb-3" style={{ color: "var(--ink)" }}>Contact</p>
+          <div className="flex flex-col gap-2" style={{ color: "var(--ink-soft)" }}>
+            <a href="mailto:hello@stellaronehealth.com" className="hover:underline underline-offset-2">hello@stellaronehealth.com</a>
+            <a href="tel:+919180328119" className="hover:underline underline-offset-2">+91 91803 28119</a>
+            <span>India</span>
+          </div>
+        </div>
       </div>
       <div className="max-w-6xl mx-auto px-6 pb-8 text-xs" style={{ color: "var(--steel)", borderTop: "1px solid var(--line)", paddingTop: "1.5rem" }}>
         © {new Date().getFullYear()} StellarOne Health Technologies Pvt. Ltd. All rights reserved.
@@ -452,6 +537,7 @@ function HomePage({ setPage }) {
   return (
     <>
       <Hero setPage={setPage} />
+      <TrustSection />
       <PillarsSection />
       <ProductsSection setPage={setPage} />
       <CTASection setPage={setPage} />
@@ -586,25 +672,22 @@ function ContactPage() {
       <div>
         <h1 className="sh-serif text-4xl md:text-5xl mb-6 leading-tight">Let's talk.</h1>
         <p className="text-base leading-relaxed mb-8 max-w-sm" style={{ color: "var(--ink-soft)" }}>
-          Whether it's a question about Stellar.AI, EasyMed, or a partnership — we'd like to hear from you.
+          Whether you're evaluating Stellar.AI, EasyMed, or an implementation partnership, our team can help scope next steps.
         </p>
         <div className="space-y-4 text-sm">
           <div className="flex items-center gap-3">
             <Mail size={16} style={{ color: "var(--teal)" }} />
-            <span>hello@stellaronehealth.com</span>
+            <a href="mailto:hello@stellaronehealth.com" className="underline-offset-2 hover:underline">hello@stellaronehealth.com</a>
           </div>
           <div className="flex items-center gap-3">
             <Phone size={16} style={{ color: "var(--teal)" }} />
-            <span>+919180328119</span>
+            <a href="tel:+919180328119" className="underline-offset-2 hover:underline">+91 91803 28119</a>
           </div>
           <div className="flex items-center gap-3">
             <MapPin size={16} style={{ color: "var(--teal)" }} />
             <span>India · Serving healthcare organizations across the United States</span>
           </div>
         </div>
-        <p className="text-xs mt-6" style={{ color: "var(--steel)" }}>
-          (Placeholder contact details — swap in your real ones before publishing.)
-        </p>
       </div>
 
       <div>
