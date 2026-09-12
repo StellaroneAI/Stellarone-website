@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Activity,
   ArrowRight,
@@ -431,10 +431,25 @@ function BrandMark() {
   );
 }
 
-function ImagePanel({ src, alt, className = "", note, children, loading = "lazy" }) {
+function ImagePanel({
+  src,
+  alt,
+  className = "",
+  note,
+  children,
+  loading = "lazy",
+  fetchPriority,
+}) {
   return (
     <div className={`sh-image-shell ${className}`.trim()}>
-      <img src={src} alt={alt} className="sh-photo" loading={loading} decoding="async" />
+      <img
+        src={src}
+        alt={alt}
+        className="sh-photo"
+        loading={loading}
+        decoding="async"
+        fetchPriority={fetchPriority}
+      />
       {children}
       {note ? <div className="sh-floating-note">{note}</div> : null}
     </div>
@@ -539,6 +554,7 @@ function Hero({ setPage }) {
                 alt="Healthcare professional reviewing digital patient workflows"
                 className="h-[27rem]"
                 loading="eager"
+                fetchPriority="high"
                 note={
                   <>
                     <p className="text-[11px] uppercase tracking-[0.16em] mb-1 text-slate-300">Enterprise look</p>
@@ -678,7 +694,15 @@ function ProductsSection({ setPage }) {
                 </button>
               </div>
               <div className="min-h-[20rem] lg:min-h-full p-3 md:p-4">
-                <ImagePanel src={item.image} alt={item.title} className="h-full min-h-[20rem]" />
+                <ImagePanel
+                  src={item.image}
+                  alt={
+                    item.title === "Stellar.AI"
+                      ? "Healthcare operations team reviewing analytics and revenue workflow performance"
+                      : "Doctor connecting with a patient through a multilingual telehealth experience"
+                  }
+                  className="h-full min-h-[20rem]"
+                />
               </div>
             </div>
           </div>
@@ -1023,12 +1047,21 @@ function ContactPage() {
 export default function StellarOneSite() {
   const [page, setPage] = useState("Home");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [shouldResetScroll, setShouldResetScroll] = useState(false);
 
   const navigateTo = (nextPage) => {
     setMobileOpen(false);
+    setShouldResetScroll(true);
     setPage(nextPage);
-    window.scrollTo?.(0, 0);
   };
+
+  useEffect(() => {
+    if (!shouldResetScroll) {
+      return;
+    }
+    window.scrollTo?.(0, 0);
+    setShouldResetScroll(false);
+  }, [page, shouldResetScroll]);
 
   return (
     <div className="sh-root">
