@@ -240,7 +240,7 @@ function BrandMark({ className = "" }) {
 
 function Nav({ page, setPage, mobileOpen, setMobileOpen }) {
   return (
-    <header className="sh-nav-shell fixed top-0 inset-x-0 z-[1000]" style={{ borderBottom: "1px solid var(--line)" }}>
+    <header className="sh-nav-shell sticky top-0 z-[1000]" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <button onClick={() => setPage("Home")} className="sh-nav-brand sh-serif text-xl tracking-tight" style={{ color: "var(--ink)" }}>
           <BrandMark />
@@ -768,7 +768,7 @@ export default function StellarOneSite() {
   useEffect(() => { window.scrollTo?.(0, 0); }, [page]);
 
   return (
-    <div className="sh-root min-h-screen pt-[72px]">
+    <div className="sh-root min-h-screen">
       <FontImport />
       <Nav page={page} setPage={setPage} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
       {page === "Home" && <HomePage setPage={setPage} />}
