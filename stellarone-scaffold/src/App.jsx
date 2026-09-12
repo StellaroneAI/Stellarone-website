@@ -424,10 +424,10 @@ function BrandMark() {
   );
 }
 
-function ImagePanel({ src, alt, className = "", note, children }) {
+function ImagePanel({ src, alt, className = "", note, children, loading = "lazy" }) {
   return (
     <div className={`sh-image-shell ${className}`.trim()}>
-      <img src={src} alt={alt} className="sh-photo" />
+      <img src={src} alt={alt} className="sh-photo" loading={loading} decoding="async" />
       {children}
       {note ? <div className="sh-floating-note">{note}</div> : null}
     </div>
@@ -531,6 +531,7 @@ function Hero({ setPage }) {
                 src={IMAGES.hero}
                 alt="Healthcare professional reviewing digital patient workflows"
                 className="h-[27rem]"
+                loading="eager"
                 note={
                   <>
                     <p className="text-[11px] uppercase tracking-[0.16em] mb-1 text-slate-300">Enterprise look</p>
@@ -547,6 +548,7 @@ function Hero({ setPage }) {
                   src={IMAGES.heroSecondary}
                   alt="Doctor using telehealth technology"
                   className="h-56"
+                  loading="eager"
                 />
               </div>
               <div className="sh-dark-card rounded-[28px] p-6">
@@ -1018,7 +1020,7 @@ export default function StellarOneSite() {
 
   useEffect(() => {
     setMobileOpen(false);
-    window.scrollTo?.({ top: 0, behavior: "smooth" });
+    window.scrollTo?.(0, 0);
   }, [page]);
 
   return (
