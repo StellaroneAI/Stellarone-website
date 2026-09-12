@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
 import {
-  Activity,
   ArrowRight,
   ArrowUpRight,
-  BadgeCheck,
-  BarChart3,
-  BriefcaseBusiness,
-  Building2,
+  BrainCircuit,
   CheckCircle2,
-  Cpu,
-  FileCheck2,
+  ChevronRight,
+  CircleCheck,
+  Clock3,
+  Code2,
   HeartPulse,
-  Layers3,
-  Mail,
-  MapPin,
+  Home,
+  Hospital,
   Menu,
   MessageSquare,
+  Network,
   Phone,
   ShieldCheck,
   Sparkles,
   Stethoscope,
+  Target,
+  Users,
   X,
+  Zap,
 } from "lucide-react";
 
-/* ============================================================
-   STELLARONE HEALTH
-   Complete standalone React component
-   ============================================================ */
+/* =========================================================
+   BRAND
+========================================================= */
 
 const BRAND = {
   name: "StellarOne Health",
@@ -35,2541 +35,2362 @@ const BRAND = {
   phone: "+91 91803 28119",
 };
 
+/* =========================================================
+   ORIGINAL COLOR PALETTE
+========================================================= */
+
 const COLORS = {
-  bg: "#f4f7fb",
-  surface: "rgba(255, 255, 255, 0.86)",
-  white: "#ffffff",
+  background: "#f4f7fb",
+  surface: "rgba(255,255,255,0.84)",
+  surfaceSolid: "#ffffff",
   panel: "#eaf0f8",
+
   ink: "#0f172a",
-  soft: "#475569",
-  muted: "#64748b",
-  line: "rgba(148, 163, 184, 0.24)",
-  lineStrong: "rgba(148, 163, 184, 0.4)",
+  inkSoft: "#475569",
+  inkMuted: "#64748b",
+
+  line: "rgba(148,163,184,0.24)",
+  lineStrong: "rgba(148,163,184,0.40)",
+
   brand: "#1d4ed8",
   brandDeep: "#0f3aa9",
+
   accent: "#0f766e",
   accentSoft: "#dff7f1",
+
   gold: "#c7922d",
+
   navy: "#091221",
   navySoft: "#0d1b33",
 };
 
-/* ============================================================
+/* =========================================================
    IMAGES
-   ============================================================ */
+========================================================= */
 
 const IMAGES = {
   hero:
-    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=85",
+    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=88",
 
   heroSecondary:
-    "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1000&q=85",
+    "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=88",
 
   operations:
-    "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1400&q=85",
+    "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1600&q=88",
 
   telehealth:
-    "https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&fit=crop&w=1400&q=85",
+    "https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&fit=crop&w=1600&q=88",
 
   about:
-    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1400&q=85",
+    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1600&q=88",
 
   contact:
-    "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1400&q=85",
+    "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=88",
 };
 
-/* ============================================================
-   DATA
-   ============================================================ */
-
-const NAV_ITEMS = [
-  { label: "Home", id: "Home" },
-  { label: "About", id: "About" },
-  { label: "Services", id: "Services" },
-  { label: "Contact", id: "Contact" },
-];
-
-const HIGHLIGHTS = [
-  {
-    headline: "Enterprise-ready",
-    caption: "Healthcare delivery modernization",
-  },
-  {
-    headline: "AI-assisted",
-    caption: "RCM and patient access workflows",
-  },
-  {
-    headline: "Multichannel",
-    caption: "Web, mobile, and operational touchpoints",
-  },
-];
-
-const TRUST_POINTS = [
-  "Operational governance",
-  "Secure automation design",
-  "Revenue cycle enablement",
-  "Care experience modernization",
-];
-
-const PILLARS = [
-  {
-    title: "Clinical Experience",
-    text:
-      "Human-centered digital journeys that help patients understand, access, and continue care with confidence.",
-    icon: HeartPulse,
-    color: COLORS.accent,
-  },
-  {
-    title: "Revenue Operations",
-    text:
-      "Workflow automation for eligibility, coding, visibility, and follow-through that gives healthcare teams cleaner execution.",
-    icon: BriefcaseBusiness,
-    color: COLORS.brand,
-  },
-  {
-    title: "Enterprise AI Layer",
-    text:
-      "A dependable orchestration approach connecting data, teams, and automation without losing control or accountability.",
-    icon: Layers3,
-    color: COLORS.gold,
-  },
-];
-
-const PRODUCTS = [
-  {
-    title: "Stellar.AI",
-    subtitle: "Revenue Intelligence Suite",
-    text:
-      "An enterprise workflow layer for eligibility checks, coding support, denial management, and performance visibility across high-volume healthcare operations.",
-    bullets: [
-      "Eligibility and benefits verification",
-      "AI-assisted CPT and ICD-10 coding workflows",
-      "Denials, payer mix, and AR visibility dashboards",
-    ],
-    icon: BarChart3,
-    image: IMAGES.operations,
-    accent: COLORS.brand,
-  },
-  {
-    title: "EasyMed",
-    subtitle: "Digital Care Access Experience",
-    text:
-      "A multilingual telehealth experience that helps patients communicate symptoms clearly, reach doctors faster, and continue care in a familiar language.",
-    bullets: [
-      "AI-supported symptom intake",
-      "Patient-doctor chat and consultation support",
-      "Responsive web and mobile delivery",
-    ],
-    icon: MessageSquare,
-    image: IMAGES.telehealth,
-    accent: COLORS.accent,
-  },
-];
-
-const SERVICES = [
-  {
-    title: "Eligibility & Benefits Verification",
-    icon: ShieldCheck,
-    text:
-      "Reduce front-desk friction with automation that surfaces coverage detail quickly and consistently.",
-  },
-  {
-    title: "Medical Coding Agent",
-    icon: FileCheck2,
-    text:
-      "Support coding teams with guided AI workflows built around structured review rather than black-box output.",
-  },
-  {
-    title: "Operational Analytics",
-    icon: Activity,
-    text:
-      "Give leaders a clearer view of denials, aging, throughput, and the signals that actually require action.",
-  },
-  {
-    title: "Telehealth Engagement",
-    icon: Stethoscope,
-    text:
-      "Extend care access with multilingual digital interactions that feel simple for patients and manageable for teams.",
-  },
-];
-
-const DELIVERY_STEPS = [
-  {
-    title: "Align the Operating Need",
-    text:
-      "Map the healthcare workflow, stakeholders, and service expectations before introducing automation.",
-  },
-  {
-    title: "Design Controlled Experiences",
-    text:
-      "Shape interfaces, workflows, and AI checkpoints so teams gain speed without losing oversight.",
-  },
-  {
-    title: "Launch and Scale Deliberately",
-    text:
-      "Expand from high-value use cases into a connected digital operating model across products and teams.",
-  },
-];
-
-/* ============================================================
+/* =========================================================
    GLOBAL CSS
-   No Tailwind dependency.
-   ============================================================ */
-
-const GLOBAL_CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
-
-  :root {
-    --sh-bg: #f4f7fb;
-    --sh-surface: rgba(255,255,255,0.86);
-    --sh-white: #ffffff;
-    --sh-ink: #0f172a;
-    --sh-soft: #475569;
-    --sh-muted: #64748b;
-    --sh-line: rgba(148,163,184,0.24);
-    --sh-line-strong: rgba(148,163,184,0.4);
-    --sh-brand: #1d4ed8;
-    --sh-brand-deep: #0f3aa9;
-    --sh-accent: #0f766e;
-    --sh-accent-soft: #dff7f1;
-    --sh-gold: #c7922d;
-    --sh-navy: #091221;
-    --sh-navy-soft: #0d1b33;
-    --sh-shadow: 0 30px 70px -45px rgba(15,23,42,0.45);
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-    background:
-      radial-gradient(
-        circle at top left,
-        rgba(29,78,216,0.08),
-        transparent 28%
-      ),
-      radial-gradient(
-        circle at top right,
-        rgba(15,118,110,0.08),
-        transparent 24%
-      ),
-      var(--sh-bg);
-    color: var(--sh-ink);
-  }
-
-  button,
-  input,
-  textarea {
-    font-family: inherit;
-  }
-
-  button {
-    cursor: pointer;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .sh-root {
-    min-height: 100vh;
-    background:
-      radial-gradient(
-        circle at 15% 10%,
-        rgba(29,78,216,0.055),
-        transparent 30%
-      ),
-      radial-gradient(
-        circle at 90% 20%,
-        rgba(15,118,110,0.05),
-        transparent 25%
-      ),
-      var(--sh-bg);
-    color: var(--sh-ink);
-  }
-
-  .sh-font-display {
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      ui-sans-serif,
-      system-ui,
-      sans-serif;
-  }
-
-  .sh-layout {
-    display: flex;
-    min-height: 100vh;
-  }
-
-  /* ----------------------------------------------------------
-     TOP BRAND BAR
-     ---------------------------------------------------------- */
-
-  .sh-topbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 78px;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    padding: 0 30px;
-    background: rgba(244,247,251,0.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--sh-line);
-  }
-
-  .sh-topbar-inner {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .sh-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 13px;
-    border: 0;
-    background: transparent;
-    padding: 0;
-    color: var(--sh-ink);
-  }
-
-  .sh-brand-mark {
-    width: 44px;
-    height: 44px;
-    flex: 0 0 44px;
-    display: grid;
-    place-items: center;
-    border-radius: 15px;
-    color: #fff;
-    background:
-      linear-gradient(
-        135deg,
-        var(--sh-brand) 0%,
-        #4f46e5 48%,
-        var(--sh-accent) 100%
-      );
-    box-shadow:
-      0 18px 32px -22px rgba(29,78,216,0.9);
-  }
-
-  .sh-brand-copy {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 1.05;
-  }
-
-  .sh-brand-name {
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: -0.045em;
-  }
-
-  .sh-brand-sub {
-    margin-top: 4px;
-    color: var(--sh-muted);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .sh-mobile-menu {
-    width: 44px;
-    height: 44px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--sh-line);
-    border-radius: 14px;
-    background: rgba(255,255,255,0.75);
-    color: var(--sh-ink);
-  }
-
-  /* ----------------------------------------------------------
-     LEFT SIDEBAR
-     ---------------------------------------------------------- */
-
-  .sh-sidebar {
-    position: fixed;
-    top: 78px;
-    left: 0;
-    bottom: 0;
-    width: 245px;
-    z-index: 80;
-    padding: 28px 18px;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255,255,255,0.88),
-        rgba(241,245,249,0.86)
-      );
-    border-right: 1px solid var(--sh-line);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-
-  .sh-sidebar-label {
-    padding: 0 13px;
-    margin: 3px 0 12px;
-    color: var(--sh-muted);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .sh-sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .sh-sidebar-item {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 13px;
-    border: 0;
-    border-radius: 14px;
-    background: transparent;
-    color: var(--sh-soft);
-    text-align: left;
-    font-size: 14px;
-    font-weight: 600;
-    transition:
-      background 0.18s ease,
-      color 0.18s ease,
-      transform 0.18s ease;
-  }
-
-  .sh-sidebar-item:hover {
-    background: rgba(255,255,255,0.8);
-    color: var(--sh-ink);
-    transform: translateX(2px);
-  }
-
-  .sh-sidebar-item.active {
-    color: var(--sh-brand);
-    background:
-      linear-gradient(
-        135deg,
-        rgba(29,78,216,0.1),
-        rgba(15,118,110,0.07)
-      );
-  }
-
-  .sh-sidebar-item.active::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 9px;
-    bottom: 9px;
-    width: 3px;
-    border-radius: 999px;
-    background:
-      linear-gradient(
-        180deg,
-        var(--sh-brand),
-        var(--sh-accent)
-      );
-  }
-
-  .sh-sidebar-icon {
-    width: 32px;
-    height: 32px;
-    display: grid;
-    place-items: center;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.72);
-  }
-
-  .sh-sidebar-item.active .sh-sidebar-icon {
-    background: rgba(255,255,255,0.9);
-  }
-
-  .sh-sidebar-bottom {
-    position: absolute;
-    left: 18px;
-    right: 18px;
-    bottom: 25px;
-  }
-
-  .sh-sidebar-card {
-    padding: 16px;
-    border-radius: 18px;
-    color: white;
-    background:
-      linear-gradient(
-        145deg,
-        var(--sh-navy),
-        var(--sh-navy-soft)
-      );
-    box-shadow:
-      0 25px 45px -32px rgba(9,18,33,0.9);
-  }
-
-  .sh-sidebar-card small {
-    display: block;
-    margin-bottom: 7px;
-    color: #94a3b8;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .sh-sidebar-card strong {
-    display: block;
-    margin-bottom: 10px;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 14px;
-  }
-
-  .sh-sidebar-card span {
-    display: block;
-    color: #cbd5e1;
-    font-size: 11px;
-    line-height: 1.6;
-  }
-
-  /* ----------------------------------------------------------
-     MAIN
-     ---------------------------------------------------------- */
-
-  .sh-main {
-    width: 100%;
-    margin-left: 245px;
-    padding-top: 78px;
-  }
-
-  .sh-container {
-    width: min(1160px, calc(100% - 48px));
-    margin: 0 auto;
-  }
-
-  .sh-section {
-    padding: 82px 0;
-  }
-
-  .sh-section-top {
-    padding-top: 50px;
-  }
-
-  /* ----------------------------------------------------------
-     BUTTONS
-     ---------------------------------------------------------- */
-
-  .sh-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    min-height: 45px;
-    padding: 0 19px;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    font-size: 13px;
-    font-weight: 700;
-    transition:
-      transform 0.18s ease,
-      box-shadow 0.18s ease,
-      background 0.18s ease;
-  }
-
-  .sh-btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .sh-btn-primary {
-    color: white;
-    background:
-      linear-gradient(
-        135deg,
-        var(--sh-brand),
-        #4338ca
-      );
-    box-shadow:
-      0 22px 34px -24px rgba(29,78,216,0.9);
-  }
-
-  .sh-btn-dark {
-    color: white;
-    background: var(--sh-navy);
-    box-shadow:
-      0 22px 34px -24px rgba(9,18,33,0.9);
-  }
-
-  .sh-btn-outline {
-    color: var(--sh-ink);
-    border-color: var(--sh-line-strong);
-    background: rgba(255,255,255,0.72);
-  }
-
-  /* ----------------------------------------------------------
-     CARDS
-     ---------------------------------------------------------- */
-
-  .sh-card {
-    border: 1px solid var(--sh-line);
-    border-radius: 28px;
-    background: var(--sh-surface);
-    box-shadow: var(--sh-shadow);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-
-  .sh-dark-card {
-    border: 1px solid rgba(148,163,184,0.14);
-    border-radius: 28px;
-    color: white;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(9,18,33,0.98),
-        rgba(13,27,51,0.96)
-      );
-  }
-
-  /* ----------------------------------------------------------
-     BADGE
-     ---------------------------------------------------------- */
-
-  .sh-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 13px;
-    border: 1px solid rgba(29,78,216,0.14);
-    border-radius: 999px;
-    background: rgba(255,255,255,0.72);
-    color: var(--sh-brand-deep);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  /* ----------------------------------------------------------
-     HERO
-     ---------------------------------------------------------- */
-
-  .sh-hero {
-    display: grid;
-    grid-template-columns: 1.04fr 0.96fr;
-    gap: 46px;
-    align-items: center;
-  }
-
-  .sh-hero h1 {
-    max-width: 790px;
-    margin: 20px 0;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: clamp(42px, 5vw, 74px);
-    line-height: 0.98;
-    letter-spacing: -0.055em;
-  }
-
-  .sh-hero-description {
-    max-width: 680px;
-    margin-bottom: 28px;
-    color: var(--sh-soft);
-    font-size: 17px;
-    line-height: 1.85;
-  }
-
-  .sh-button-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 35px;
-  }
-
-  .sh-kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 9px;
-  }
-
-  .sh-kpi {
-    padding: 16px;
-    border: 1px solid rgba(148,163,184,0.22);
-    border-radius: 20px;
-    background: rgba(255,255,255,0.78);
-  }
-
-  .sh-kpi strong {
-    display: block;
-    margin-bottom: 5px;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 13px;
-  }
-
-  .sh-kpi span {
-    color: var(--sh-muted);
-    font-size: 11px;
-    line-height: 1.5;
-  }
-
-  .sh-hero-visual {
-    position: relative;
-  }
-
-  .sh-grid-overlay {
-    position: absolute;
-    inset: -18px;
-    border-radius: 35px;
-    opacity: 0.65;
-    background-image:
-      linear-gradient(
-        rgba(148,163,184,0.08) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        90deg,
-        rgba(148,163,184,0.08) 1px,
-        transparent 1px
-      );
-    background-size: 34px 34px;
-  }
-
-  .sh-hero-images {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 13px;
-    align-items: end;
-  }
-
-  /* ----------------------------------------------------------
-     IMAGE
-     ---------------------------------------------------------- */
-
-  .sh-image-frame {
-    position: relative;
-    overflow: hidden;
-    border-radius: 24px;
-    min-height: 100%;
-  }
-
-  .sh-image-frame img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .sh-image-frame::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(
-        180deg,
-        transparent 25%,
-        rgba(15,23,42,0.34) 100%
-      );
-  }
-
-  .sh-hero-main-image {
-    height: 440px;
-    padding: 9px;
-    border: 1px solid var(--sh-line);
-    border-radius: 28px;
-    background: rgba(255,255,255,0.76);
-    box-shadow: var(--sh-shadow);
-  }
-
-  .sh-hero-main-image .sh-image-frame {
-    height: 420px;
-  }
-
-  .sh-hero-side {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-  }
-
-  .sh-side-image {
-    height: 205px;
-    padding: 8px;
-    border: 1px solid var(--sh-line);
-    border-radius: 25px;
-    background: rgba(255,255,255,0.76);
-  }
-
-  .sh-side-image .sh-image-frame {
-    height: 188px;
-  }
-
-  .sh-floating-note {
-    position: absolute;
-    z-index: 3;
-    right: 16px;
-    bottom: 16px;
-    max-width: 245px;
-    padding: 15px;
-    border: 1px solid rgba(255,255,255,0.16);
-    border-radius: 18px;
-    background: rgba(9,18,33,0.78);
-    backdrop-filter: blur(18px);
-    color: white;
-    box-shadow:
-      0 25px 45px -30px rgba(9,18,33,0.9);
-  }
-
-  .sh-floating-note small {
-    display: block;
-    margin-bottom: 5px;
-    color: #cbd5e1;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .sh-floating-note p {
-    margin: 0;
-    color: #f8fafc;
-    font-size: 12px;
-    line-height: 1.65;
-  }
-
-  /* ----------------------------------------------------------
-     TRUST
-     ---------------------------------------------------------- */
-
-  .sh-trust {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-    padding: 27px 30px;
-  }
-
-  .sh-trust h2 {
-    max-width: 650px;
-    margin: 10px 0 0;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 29px;
-    line-height: 1.12;
-    letter-spacing: -0.04em;
-  }
-
-  .sh-pill-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 8px;
-  }
-
-  .sh-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 9px 12px;
-    border: 1px solid var(--sh-line);
-    border-radius: 999px;
-    background: rgba(255,255,255,0.7);
-    color: var(--sh-soft);
-    font-size: 11px;
-    font-weight: 600;
-  }
-
-  /* ----------------------------------------------------------
-     SECTION HEAD
-     ---------------------------------------------------------- */
-
-  .sh-section-head {
-    max-width: 760px;
-    margin-bottom: 35px;
-  }
-
-  .sh-section-head h2,
-  .sh-page-title {
-    margin: 18px 0 12px;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: clamp(36px, 4vw, 56px);
-    line-height: 1;
-    letter-spacing: -0.055em;
-  }
-
-  .sh-section-head p,
-  .sh-page-description {
-    margin: 0;
-    color: var(--sh-soft);
-    font-size: 15px;
-    line-height: 1.85;
-  }
-
-  /* ----------------------------------------------------------
-     PILLARS
-     ---------------------------------------------------------- */
-
-  .sh-three-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-
-  .sh-pillar {
-    padding: 29px;
-  }
-
-  .sh-feature-icon {
-    width: 48px;
-    height: 48px;
-    display: grid;
-    place-items: center;
-    margin-bottom: 20px;
-    border-radius: 16px;
-    background:
-      linear-gradient(
-        145deg,
-        rgba(29,78,216,0.12),
-        rgba(15,118,110,0.16)
-      );
-  }
-
-  .sh-pillar h3 {
-    margin: 0 0 10px;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 22px;
-    letter-spacing: -0.035em;
-  }
-
-  .sh-pillar p {
-    margin: 0;
-    color: var(--sh-soft);
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
-  /* ----------------------------------------------------------
-     PRODUCTS
-     ---------------------------------------------------------- */
-
-  .sh-product {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;
-  }
-
-  .sh-product-copy {
-    padding: 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .sh-product-media {
-    min-height: 430px;
-    padding: 12px;
-  }
-
-  .sh-product-media .sh-image-frame {
-    min-height: 405px;
-  }
-
-  .sh-product-heading {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    margin-bottom: 19px;
-  }
-
-  .sh-product-heading h3 {
-    margin: 4px 0 0;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 31px;
-    letter-spacing: -0.045em;
-  }
-
-  .sh-product-heading p {
-    margin: 0;
-    color: var(--sh-muted);
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .sh-product-copy > p {
-    margin: 0 0 22px;
-    color: var(--sh-soft);
-    font-size: 14px;
-    line-height: 1.85;
-  }
-
-  .sh-check-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 25px;
-  }
-
-  .sh-check {
-    display: flex;
-    align-items: flex-start;
-    gap: 9px;
-    color: var(--sh-ink);
-    font-size: 12px;
-    line-height: 1.6;
-  }
-
-  /* ----------------------------------------------------------
-     DELIVERY
-     ---------------------------------------------------------- */
-
-  .sh-delivery {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 20px;
-    align-items: start;
-  }
-
-  .sh-delivery-intro {
-    padding: 38px;
-  }
-
-  .sh-delivery-intro h2 {
-    margin: 17px 0;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 37px;
-    line-height: 1;
-    letter-spacing: -0.05em;
-  }
-
-  .sh-delivery-intro p {
-    margin: 0;
-    color: #cbd5e1;
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .sh-step-list {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-  }
-
-  .sh-step {
-    display: flex;
-    gap: 16px;
-    padding: 25px;
-  }
-
-  .sh-step-number {
-    width: 44px;
-    height: 44px;
-    flex: 0 0 44px;
-    display: grid;
-    place-items: center;
-    border-radius: 14px;
-    color: white;
-    background: var(--sh-navy);
-    font-size: 12px;
-    font-weight: 800;
-  }
-
-  .sh-step h3 {
-    margin: 0 0 7px;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 19px;
-    letter-spacing: -0.03em;
-  }
-
-  .sh-step p {
-    margin: 0;
-    color: var(--sh-soft);
-    font-size: 12px;
-    line-height: 1.75;
-  }
-
-  /* ----------------------------------------------------------
-     CTA
-     ---------------------------------------------------------- */
-
-  .sh-cta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-    padding: 42px;
-  }
-
-  .sh-cta h2 {
-    max-width: 720px;
-    margin: 8px 0 0;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: clamp(32px, 4vw, 50px);
-    line-height: 1;
-    letter-spacing: -0.055em;
-  }
-
-  .sh-cta small {
-    color: #cbd5e1;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  /* ----------------------------------------------------------
-     PAGE LAYOUT
-     ---------------------------------------------------------- */
-
-  .sh-page-grid {
-    display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: 20px;
-    align-items: stretch;
-  }
-
-  .sh-page-copy {
-    padding: 44px;
-  }
-
-  .sh-page-copy h1 {
-    margin: 18px 0;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: clamp(40px, 4.5vw, 62px);
-    line-height: 0.98;
-    letter-spacing: -0.055em;
-  }
-
-  .sh-page-copy > p {
-    margin: 0 0 28px;
-    color: var(--sh-soft);
-    font-size: 14px;
-    line-height: 1.9;
-  }
-
-  .sh-about-image {
-    min-height: 500px;
-    padding: 12px;
-  }
-
-  .sh-about-image .sh-image-frame {
-    min-height: 475px;
-  }
-
-  .sh-stat-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .sh-stat {
-    padding: 16px;
-    border: 1px solid rgba(148,163,184,0.2);
-    border-radius: 19px;
-    background:
-      linear-gradient(
-        135deg,
-        rgba(29,78,216,0.055),
-        rgba(15,118,110,0.055)
-      );
-  }
-
-  .sh-stat-label {
-    margin-bottom: 6px;
-    color: var(--sh-muted);
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-  }
-
-  .sh-stat-value {
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-  }
-
-  /* ----------------------------------------------------------
-     SERVICES
-     ---------------------------------------------------------- */
-
-  .sh-services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-  }
-
-  .sh-service {
-    padding: 29px;
-  }
-
-  .sh-service h3 {
-    margin: 0 0 10px;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 21px;
-    letter-spacing: -0.035em;
-  }
-
-  .sh-service p {
-    margin: 0;
-    color: var(--sh-soft);
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
-  .sh-tech-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 18px;
-    margin-top: 18px;
-  }
-
-  .sh-tech-copy {
-    padding: 40px;
-  }
-
-  .sh-tech-copy h2 {
-    margin: 15px 0;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 37px;
-    line-height: 1;
-    letter-spacing: -0.05em;
-  }
-
-  .sh-tech-copy p {
-    margin: 0 0 22px;
-    color: #cbd5e1;
-    font-size: 13px;
-    line-height: 1.85;
-  }
-
-  .sh-tech-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-  }
-
-  .sh-tech-tag {
-    padding: 8px 11px;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 999px;
-    background: rgba(255,255,255,0.05);
-    color: #e2e8f0;
-    font-size: 10px;
-  }
-
-  .sh-tech-image {
-    min-height: 330px;
-    padding: 10px;
-  }
-
-  .sh-tech-image .sh-image-frame {
-    min-height: 310px;
-  }
-
-  /* ----------------------------------------------------------
-     CONTACT
-     ---------------------------------------------------------- */
-
-  .sh-contact-grid {
-    display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: 20px;
-    align-items: start;
-  }
-
-  .sh-contact-info {
-    overflow: hidden;
-  }
-
-  .sh-contact-image {
-    height: 285px;
-    padding: 10px;
-  }
-
-  .sh-contact-image .sh-image-frame {
-    height: 265px;
-  }
-
-  .sh-contact-copy {
-    padding: 32px 38px 38px;
-  }
-
-  .sh-contact-copy h1 {
-    margin: 17px 0;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: clamp(35px, 4vw, 52px);
-    line-height: 1;
-    letter-spacing: -0.05em;
-  }
-
-  .sh-contact-copy > p {
-    margin: 0 0 25px;
-    color: var(--sh-soft);
-    font-size: 13px;
-    line-height: 1.85;
-  }
-
-  .sh-contact-details {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-  }
-
-  .sh-contact-detail {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--sh-soft);
-    font-size: 12px;
-  }
-
-  .sh-contact-form {
-    padding: 38px;
-  }
-
-  .sh-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .sh-form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .sh-form-label {
-    color: var(--sh-muted);
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .sh-input {
-    width: 100%;
-    padding: 13px 14px;
-    border: 1px solid var(--sh-line);
-    border-radius: 15px;
-    outline: none;
-    background: rgba(255,255,255,0.88);
-    color: var(--sh-ink);
-    font-size: 13px;
-    transition:
-      border-color 0.18s ease,
-      box-shadow 0.18s ease;
-  }
-
-  .sh-input:focus {
-    border-color: rgba(29,78,216,0.45);
-    box-shadow:
-      0 0 0 4px rgba(29,78,216,0.1);
-  }
-
-  .sh-textarea {
-    min-height: 145px;
-    resize: vertical;
-  }
-
-  .sh-success {
-    padding: 30px;
-    border: 1px solid rgba(15,118,110,0.15);
-    border-radius: 22px;
-    background:
-      linear-gradient(
-        135deg,
-        rgba(29,78,216,0.06),
-        rgba(15,118,110,0.08)
-      );
-  }
-
-  .sh-success h2 {
-    margin: 13px 0 8px;
-    font-family:
-      "Plus Jakarta Sans",
-      Inter,
-      sans-serif;
-    font-size: 27px;
-    letter-spacing: -0.035em;
-  }
-
-  .sh-success p {
-    margin: 0;
-    color: var(--sh-soft);
-    font-size: 12px;
-    line-height: 1.8;
-  }
-
-  /* ----------------------------------------------------------
-     FOOTER
-     ---------------------------------------------------------- */
-
-  .sh-footer {
-    padding: 0 0 35px;
-  }
-
-  .sh-footer-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 0.7fr 0.7fr 1fr;
-    gap: 30px;
-    padding: 35px;
-  }
-
-  .sh-footer p {
-    color: var(--sh-soft);
-    font-size: 12px;
-    line-height: 1.8;
-  }
-
-  .sh-footer-heading {
-    margin-bottom: 13px;
-    font-size: 12px;
-    font-weight: 800;
-  }
-
-  .sh-footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    color: var(--sh-soft);
-    font-size: 11px;
-  }
-
-  .sh-footer-links button {
-    width: fit-content;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: inherit;
-    font-size: inherit;
-  }
-
-  .sh-footer-links a:hover,
-  .sh-footer-links button:hover {
-    color: var(--sh-brand);
-  }
-
-  .sh-footer-bottom {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid var(--sh-line);
-    color: var(--sh-muted);
-    font-size: 10px;
-  }
-
-  /* ----------------------------------------------------------
-     MOBILE
-     ---------------------------------------------------------- */
-
-  @media (max-width: 1000px) {
-    .sh-sidebar {
-      width: 210px;
-    }
-
-    .sh-main {
-      margin-left: 210px;
-    }
-
-    .sh-container {
-      width: min(100% - 32px, 1160px);
-    }
-
-    .sh-hero {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-three-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-trust {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .sh-pill-list {
-      justify-content: flex-start;
-    }
-
-    .sh-delivery,
-    .sh-page-grid,
-    .sh-contact-grid,
-    .sh-tech-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-footer-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 760px) {
-    .sh-topbar {
-      height: 70px;
-      padding: 0 16px;
-    }
-
-    .sh-sidebar {
-      display: none;
-    }
-
-    .sh-main {
-      margin-left: 0;
-      padding-top: 70px;
-    }
-
-    .sh-mobile-menu {
-      display: flex;
-    }
-
-    .sh-container {
-      width: calc(100% - 28px);
-    }
-
-    .sh-section {
-      padding: 58px 0;
-    }
-
-    .sh-hero-images {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-hero-main-image {
-      height: 380px;
-    }
-
-    .sh-hero-main-image .sh-image-frame {
-      height: 360px;
-    }
-
-    .sh-hero-side {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .sh-side-image {
-      height: 180px;
-    }
-
-    .sh-side-image .sh-image-frame {
-      height: 164px;
-    }
-
-    .sh-kpi-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-product {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-product-media {
-      order: -1;
-      min-height: 310px;
-    }
-
-    .sh-product-media .sh-image-frame {
-      min-height: 285px;
-    }
-
-    .sh-product-copy {
-      padding: 29px;
-    }
-
-    .sh-services-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-cta {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 30px;
-    }
-
-    .sh-footer-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-brand-name {
-      font-size: 16px;
-    }
-
-    .sh-brand-sub {
-      font-size: 8px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .sh-hero-side {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-side-image {
-      height: 210px;
-    }
-
-    .sh-side-image .sh-image-frame {
-      height: 194px;
-    }
-
-    .sh-stat-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sh-floating-note {
-      right: 10px;
-      bottom: 10px;
-      max-width: 210px;
-    }
-  }
-`;
-
-/* ============================================================
-   GLOBAL STYLE COMPONENT
-   ============================================================ */
+========================================================= */
 
 function GlobalStyles() {
-  return <style dangerouslySetInnerHTML={{ __html: GLOBAL_CSS }} />;
+  return (
+    <style>{`
+      :root {
+        --background: ${COLORS.background};
+        --surface: ${COLORS.surface};
+        --surface-solid: ${COLORS.surfaceSolid};
+        --panel: ${COLORS.panel};
+
+        --ink: ${COLORS.ink};
+        --ink-soft: ${COLORS.inkSoft};
+        --ink-muted: ${COLORS.inkMuted};
+
+        --line: ${COLORS.line};
+        --line-strong: ${COLORS.lineStrong};
+
+        --brand: ${COLORS.brand};
+        --brand-deep: ${COLORS.brandDeep};
+
+        --accent: ${COLORS.accent};
+        --accent-soft: ${COLORS.accentSoft};
+
+        --gold: ${COLORS.gold};
+
+        --navy: ${COLORS.navy};
+        --navy-soft: ${COLORS.navySoft};
+
+        --shadow:
+          0 30px 70px -45px rgba(15, 23, 42, 0.45);
+
+        --radius-lg: 28px;
+        --radius-md: 20px;
+        --radius-sm: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--background);
+        color: var(--ink);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      body,
+      button,
+      input,
+      textarea {
+        font-family: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      ::selection {
+        background: rgba(29, 78, 216, 0.16);
+      }
+
+      .sh-app {
+        min-height: 100vh;
+        overflow-x: hidden;
+        background:
+          radial-gradient(
+            circle at 80% 0%,
+            rgba(29, 78, 216, 0.07),
+            transparent 32rem
+          ),
+          var(--background);
+      }
+
+      /* =====================================================
+         TOP BAR
+      ===================================================== */
+
+      .sh-topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 78px;
+        z-index: 1000;
+
+        display: flex;
+        align-items: center;
+
+        background: rgba(244,247,251,0.82);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border-bottom: 1px solid var(--line);
+      }
+
+      .sh-topbar-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+      }
+
+      .sh-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sh-brand-mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+
+        display: grid;
+        place-items: center;
+
+        background:
+          linear-gradient(
+            145deg,
+            var(--brand),
+            var(--brand-deep)
+          );
+
+        color: white;
+
+        box-shadow:
+          0 12px 30px -14px rgba(29,78,216,.65);
+      }
+
+      .sh-brand-name {
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      .sh-brand-subtitle {
+        color: var(--ink-muted);
+        font-size: 11px;
+        margin-top: 2px;
+        letter-spacing: .02em;
+      }
+
+      .sh-mobile-menu-btn {
+        display: none;
+
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+
+        background: rgba(255,255,255,.8);
+        color: var(--ink);
+
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* =====================================================
+         SIDEBAR
+      ===================================================== */
+
+      .sh-sidebar {
+        position: fixed;
+        top: 78px;
+        bottom: 0;
+        left: 0;
+        width: 245px;
+        z-index: 900;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 28px 18px;
+
+        background: rgba(255,255,255,.72);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border-right: 1px solid var(--line);
+      }
+
+      .sh-nav-label {
+        padding: 0 12px;
+        margin: 6px 0 12px;
+
+        color: var(--ink-muted);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+      }
+
+      .sh-nav {
+        display: grid;
+        gap: 6px;
+      }
+
+      .sh-nav-button {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        border: 0;
+        border-radius: 14px;
+
+        padding: 13px 14px;
+
+        background: transparent;
+        color: var(--ink-soft);
+
+        font-size: 14px;
+        font-weight: 650;
+
+        text-align: left;
+
+        transition:
+          background .2s ease,
+          color .2s ease,
+          transform .2s ease;
+      }
+
+      .sh-nav-button:hover {
+        background: rgba(29,78,216,.06);
+        color: var(--brand);
+        transform: translateX(2px);
+      }
+
+      .sh-nav-button.active {
+        background: rgba(29,78,216,.09);
+        color: var(--brand);
+      }
+
+      .sh-nav-icon {
+        width: 19px;
+        height: 19px;
+        flex: 0 0 auto;
+      }
+
+      .sh-sidebar-bottom {
+        margin-top: auto;
+      }
+
+      .sh-sidebar-card {
+        padding: 18px;
+        border-radius: 18px;
+
+        background:
+          linear-gradient(
+            145deg,
+            rgba(29,78,216,.09),
+            rgba(15,118,110,.08)
+          );
+
+        border: 1px solid var(--line);
+      }
+
+      .sh-sidebar-card strong {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .sh-sidebar-card p {
+        margin: 0;
+        color: var(--ink-muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      /* =====================================================
+         MOBILE NAV
+      ===================================================== */
+
+      .sh-mobile-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1200;
+
+        background: rgba(9,18,33,.38);
+        backdrop-filter: blur(4px);
+      }
+
+      .sh-mobile-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        width: min(86vw, 360px);
+
+        z-index: 1300;
+
+        padding: 24px;
+
+        background: #fff;
+
+        box-shadow:
+          -30px 0 70px -35px rgba(15,23,42,.5);
+      }
+
+      .sh-mobile-drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .sh-close-btn {
+        width: 42px;
+        height: 42px;
+
+        border: 1px solid var(--line);
+        border-radius: 12px;
+
+        background: var(--background);
+        color: var(--ink);
+
+        display: grid;
+        place-items: center;
+      }
+
+      .sh-mobile-nav {
+        display: grid;
+        gap: 7px;
+        margin-top: 24px;
+      }
+
+      .sh-mobile-nav .sh-nav-button {
+        padding: 15px;
+      }
+
+      /* =====================================================
+         MAIN
+      ===================================================== */
+
+      .sh-main {
+        margin-left: 245px;
+        padding-top: 78px;
+      }
+
+      .sh-section {
+        padding: 110px 6vw;
+      }
+
+      .sh-container {
+        width: min(1280px, 100%);
+        margin: 0 auto;
+      }
+
+      /* =====================================================
+         EYEBROW
+      ===================================================== */
+
+      .sh-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        color: var(--brand);
+
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: .15em;
+        text-transform: uppercase;
+      }
+
+      .sh-eyebrow-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      /* =====================================================
+         HERO
+      ===================================================== */
+
+      .sh-hero {
+        min-height: calc(100vh - 78px);
+
+        display: flex;
+        align-items: center;
+
+        padding:
+          clamp(60px, 8vw, 120px)
+          6vw;
+
+        position: relative;
+      }
+
+      .sh-hero-grid {
+        width: min(1280px, 100%);
+        margin: 0 auto;
+
+        display: grid;
+        grid-template-columns:
+          minmax(0, 1.02fr)
+          minmax(420px, .98fr);
+
+        gap: clamp(50px, 7vw, 110px);
+
+        align-items: center;
+      }
+
+      .sh-hero-copy {
+        max-width: 760px;
+      }
+
+      .sh-hero-title {
+        margin: 22px 0 28px;
+
+        font-size: clamp(44px, 6.2vw, 84px);
+        line-height: .98;
+
+        letter-spacing: -.06em;
+        font-weight: 850;
+      }
+
+      .sh-gradient-text {
+        background:
+          linear-gradient(
+            110deg,
+            var(--brand-deep),
+            var(--brand),
+            var(--accent)
+          );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .sh-hero-description {
+        max-width: 680px;
+
+        margin: 0;
+
+        color: var(--ink-soft);
+
+        font-size: clamp(17px, 1.45vw, 20px);
+        line-height: 1.7;
+      }
+
+      .sh-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        margin-top: 36px;
+      }
+
+      .sh-btn {
+        min-height: 50px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+
+        padding: 0 20px;
+
+        border-radius: 13px;
+        border: 1px solid transparent;
+
+        font-size: 14px;
+        font-weight: 750;
+
+        transition:
+          transform .2s ease,
+          box-shadow .2s ease,
+          background .2s ease;
+      }
+
+      .sh-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .sh-btn-primary {
+        color: #fff;
+
+        background:
+          linear-gradient(
+            135deg,
+            var(--brand),
+            var(--brand-deep)
+          );
+
+        box-shadow:
+          0 20px 40px -25px rgba(29,78,216,.75);
+      }
+
+      .sh-btn-secondary {
+        background: rgba(255,255,255,.75);
+        border-color: var(--line-strong);
+        color: var(--ink);
+      }
+
+      .sh-hero-note {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        margin-top: 28px;
+
+        color: var(--ink-muted);
+        font-size: 12px;
+      }
+
+      .sh-hero-note svg {
+        color: var(--accent);
+      }
+
+      /* =====================================================
+         HERO VISUAL
+      ===================================================== */
+
+      .sh-hero-visual {
+        position: relative;
+      }
+
+      .sh-hero-image {
+        position: relative;
+
+        min-height: 590px;
+
+        overflow: hidden;
+        border-radius: 34px;
+
+        box-shadow: var(--shadow);
+
+        border: 1px solid rgba(255,255,255,.7);
+      }
+
+      .sh-hero-image img {
+        width: 100%;
+        height: 590px;
+        object-fit: cover;
+      }
+
+      .sh-image-overlay {
+        position: absolute;
+        inset: 0;
+
+        background:
+          linear-gradient(
+            180deg,
+            rgba(9,18,33,.02),
+            rgba(9,18,33,.45)
+          );
+      }
+
+      .sh-floating-stat {
+        position: absolute;
+
+        left: -34px;
+        bottom: 38px;
+
+        width: 210px;
+
+        padding: 20px;
+
+        border-radius: 20px;
+
+        background: rgba(255,255,255,.92);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border: 1px solid rgba(255,255,255,.8);
+
+        box-shadow:
+          0 25px 55px -35px rgba(15,23,42,.6);
+      }
+
+      .sh-floating-stat-number {
+        font-size: 32px;
+        line-height: 1;
+        font-weight: 850;
+        color: var(--brand-deep);
+      }
+
+      .sh-floating-stat-label {
+        margin-top: 8px;
+        color: var(--ink-muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .sh-floating-badge {
+        position: absolute;
+        right: -25px;
+        top: 34px;
+
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        padding: 13px 15px;
+
+        border-radius: 14px;
+
+        background: var(--navy);
+        color: white;
+
+        box-shadow:
+          0 25px 50px -30px rgba(9,18,33,.8);
+
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      /* =====================================================
+         INTRO STATEMENT
+      ===================================================== */
+
+      .sh-statement {
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+
+      .sh-statement-grid {
+        display: grid;
+        grid-template-columns: .75fr 1.25fr;
+        gap: 80px;
+        align-items: start;
+      }
+
+      .sh-statement-title {
+        margin: 0;
+
+        font-size: clamp(38px, 5vw, 64px);
+        line-height: 1.02;
+        letter-spacing: -.055em;
+        font-weight: 850;
+      }
+
+      .sh-statement-copy {
+        padding-top: 8px;
+
+        color: var(--ink-soft);
+        font-size: clamp(18px, 1.5vw, 21px);
+        line-height: 1.75;
+      }
+
+      /* =====================================================
+         CAPABILITIES
+      ===================================================== */
+
+      .sh-capabilities {
+        padding-top: 55px;
+      }
+
+      .sh-capability-grid {
+        margin-top: 50px;
+
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .sh-capability {
+        min-height: 270px;
+
+        padding: 34px 28px;
+
+        border-right: 1px solid var(--line);
+
+        transition:
+          background .25s ease,
+          transform .25s ease;
+      }
+
+      .sh-capability:last-child {
+        border-right: 0;
+      }
+
+      .sh-capability:hover {
+        background: rgba(255,255,255,.65);
+      }
+
+      .sh-capability-icon {
+        width: 46px;
+        height: 46px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 14px;
+
+        background: rgba(29,78,216,.08);
+        color: var(--brand);
+      }
+
+      .sh-capability h3 {
+        margin: 30px 0 12px;
+
+        font-size: 20px;
+        letter-spacing: -.025em;
+      }
+
+      .sh-capability p {
+        margin: 0;
+
+        color: var(--ink-muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      /* =====================================================
+         PRODUCT SECTIONS
+      ===================================================== */
+
+      .sh-product-section {
+        padding: 120px 6vw;
+      }
+
+      .sh-product-dark {
+        background:
+          radial-gradient(
+            circle at 90% 10%,
+            rgba(29,78,216,.23),
+            transparent 32rem
+          ),
+          var(--navy);
+
+        color: white;
+      }
+
+      .sh-product-grid {
+        display: grid;
+
+        grid-template-columns:
+          minmax(0, .92fr)
+          minmax(0, 1.08fr);
+
+        gap: clamp(50px, 7vw, 110px);
+
+        align-items: center;
+      }
+
+      .sh-product-grid.reverse {
+        grid-template-columns:
+          minmax(0, 1.08fr)
+          minmax(0, .92fr);
+      }
+
+      .sh-product-copy {
+        max-width: 650px;
+      }
+
+      .sh-product-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .15em;
+        text-transform: uppercase;
+
+        color: var(--accent);
+      }
+
+      .sh-product-dark .sh-product-label {
+        color: #69d6ca;
+      }
+
+      .sh-product-title {
+        margin: 22px 0 22px;
+
+        font-size: clamp(38px, 4.5vw, 60px);
+        line-height: 1;
+        letter-spacing: -.055em;
+        font-weight: 850;
+      }
+
+      .sh-product-description {
+        margin: 0;
+
+        color: var(--ink-soft);
+
+        font-size: 17px;
+        line-height: 1.75;
+      }
+
+      .sh-product-dark .sh-product-description {
+        color: rgba(255,255,255,.68);
+      }
+
+      .sh-product-list {
+        display: grid;
+        gap: 14px;
+
+        margin: 32px 0 0;
+        padding: 0;
+
+        list-style: none;
+      }
+
+      .sh-product-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+
+        color: var(--ink-soft);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .sh-product-dark .sh-product-list li {
+        color: rgba(255,255,255,.72);
+      }
+
+      .sh-product-list svg {
+        flex: 0 0 auto;
+        margin-top: 2px;
+        color: var(--accent);
+      }
+
+      .sh-product-visual {
+        position: relative;
+      }
+
+      .sh-product-image {
+        overflow: hidden;
+
+        border-radius: 30px;
+
+        min-height: 520px;
+
+        border: 1px solid var(--line);
+
+        box-shadow: var(--shadow);
+      }
+
+      .sh-product-dark .sh-product-image {
+        border-color: rgba(255,255,255,.12);
+        box-shadow:
+          0 35px 80px -45px rgba(0,0,0,.8);
+      }
+
+      .sh-product-image img {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+      }
+
+      .sh-product-card {
+        position: absolute;
+
+        right: 25px;
+        bottom: 25px;
+
+        width: min(290px, calc(100% - 50px));
+
+        padding: 20px;
+
+        border-radius: 18px;
+
+        background: rgba(255,255,255,.92);
+        color: var(--ink);
+
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+
+        box-shadow:
+          0 25px 60px -40px rgba(15,23,42,.65);
+      }
+
+      .sh-product-dark .sh-product-card {
+        background: rgba(13,27,51,.91);
+        color: white;
+        border: 1px solid rgba(255,255,255,.12);
+      }
+
+      .sh-product-card-label {
+        color: var(--ink-muted);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      .sh-product-dark .sh-product-card-label {
+        color: rgba(255,255,255,.5);
+      }
+
+      .sh-product-card-title {
+        margin-top: 8px;
+
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: -.02em;
+      }
+
+      /* =====================================================
+         DELIVERY / OUTCOMES
+      ===================================================== */
+
+      .sh-outcomes {
+        padding-top: 120px;
+        padding-bottom: 120px;
+      }
+
+      .sh-outcomes-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .sh-section-title {
+        margin: 18px 0 0;
+
+        font-size: clamp(38px, 4.7vw, 62px);
+        line-height: 1.02;
+        letter-spacing: -.055em;
+        font-weight: 850;
+      }
+
+      .sh-section-description {
+        max-width: 500px;
+
+        color: var(--ink-soft);
+
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .sh-outcome-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        margin-top: 60px;
+
+        border-top: 1px solid var(--line);
+      }
+
+      .sh-outcome {
+        padding: 34px 30px;
+
+        border-right: 1px solid var(--line);
+      }
+
+      .sh-outcome:last-child {
+        border-right: 0;
+      }
+
+      .sh-outcome-number {
+        color: var(--brand);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: .1em;
+      }
+
+      .sh-outcome h3 {
+        margin: 26px 0 12px;
+
+        font-size: 23px;
+        letter-spacing: -.03em;
+      }
+
+      .sh-outcome p {
+        margin: 0;
+
+        color: var(--ink-muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      /* =====================================================
+         CTA
+      ===================================================== */
+
+      .sh-cta {
+        padding: 110px 6vw;
+      }
+
+      .sh-cta-box {
+        position: relative;
+        overflow: hidden;
+
+        padding: clamp(45px, 7vw, 90px);
+
+        border-radius: 32px;
+
+        background:
+          radial-gradient(
+            circle at 85% 10%,
+            rgba(15,118,110,.26),
+            transparent 25rem
+          ),
+          linear-gradient(
+            135deg,
+            var(--navy),
+            var(--navy-soft)
+          );
+
+        color: white;
+      }
+
+      .sh-cta-box::after {
+        content: "";
+
+        position: absolute;
+        width: 380px;
+        height: 380px;
+
+        right: -180px;
+        bottom: -230px;
+
+        border-radius: 50%;
+
+        border: 1px solid rgba(255,255,255,.08);
+      }
+
+      .sh-cta-title {
+        max-width: 850px;
+
+        margin: 18px 0 20px;
+
+        font-size: clamp(38px, 5vw, 66px);
+        line-height: 1;
+        letter-spacing: -.055em;
+        font-weight: 850;
+      }
+
+      .sh-cta-description {
+        max-width: 670px;
+
+        color: rgba(255,255,255,.66);
+
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      /* =====================================================
+         ABOUT
+      ===================================================== */
+
+      .sh-page-hero {
+        padding: 100px 6vw 80px;
+      }
+
+      .sh-page-hero-grid {
+        width: min(1280px, 100%);
+        margin: 0 auto;
+
+        display: grid;
+
+        grid-template-columns:
+          minmax(0, 1fr)
+          minmax(400px, .8fr);
+
+        gap: 80px;
+
+        align-items: center;
+      }
+
+      .sh-page-title {
+        margin: 22px 0;
+
+        font-size: clamp(44px, 6vw, 78px);
+        line-height: .98;
+        letter-spacing: -.06em;
+        font-weight: 850;
+      }
+
+      .sh-page-description {
+        max-width: 680px;
+
+        color: var(--ink-soft);
+
+        font-size: 18px;
+        line-height: 1.75;
+      }
+
+      .sh-page-image {
+        overflow: hidden;
+
+        border-radius: 30px;
+
+        box-shadow: var(--shadow);
+      }
+
+      .sh-page-image img {
+        width: 100%;
+        height: 480px;
+        object-fit: cover;
+      }
+
+      .sh-mission {
+        padding-top: 70px;
+      }
+
+      .sh-mission-grid {
+        display: grid;
+        grid-template-columns: .7fr 1.3fr;
+
+        gap: 80px;
+      }
+
+      .sh-mission-title {
+        margin: 0;
+
+        font-size: clamp(34px, 4vw, 55px);
+        line-height: 1.03;
+        letter-spacing: -.05em;
+        font-weight: 850;
+      }
+
+      .sh-mission-copy {
+        color: var(--ink-soft);
+
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      .sh-values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        margin-top: 60px;
+
+        border-top: 1px solid var(--line);
+      }
+
+      .sh-value {
+        padding: 34px 28px;
+        border-right: 1px solid var(--line);
+      }
+
+      .sh-value:last-child {
+        border-right: 0;
+      }
+
+      .sh-value-icon {
+        color: var(--brand);
+      }
+
+      .sh-value h3 {
+        margin: 24px 0 10px;
+        font-size: 20px;
+      }
+
+      .sh-value p {
+        margin: 0;
+
+        color: var(--ink-muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      /* =====================================================
+         SERVICES
+      ===================================================== */
+
+      .sh-services-list {
+        margin-top: 70px;
+
+        border-top: 1px solid var(--line);
+      }
+
+      .sh-service-row {
+        display: grid;
+
+        grid-template-columns: 90px 1fr 1.2fr 50px;
+
+        align-items: center;
+
+        gap: 30px;
+
+        min-height: 150px;
+
+        border-bottom: 1px solid var(--line);
+
+        transition: background .2s ease;
+      }
+
+      .sh-service-row:hover {
+        background: rgba(255,255,255,.55);
+      }
+
+      .sh-service-number {
+        color: var(--brand);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .sh-service-name {
+        font-size: clamp(22px, 2vw, 30px);
+        font-weight: 800;
+        letter-spacing: -.035em;
+      }
+
+      .sh-service-description {
+        color: var(--ink-muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      /* =====================================================
+         CONTACT
+      ===================================================== */
+
+      .sh-contact-grid {
+        display: grid;
+
+        grid-template-columns: .9fr 1.1fr;
+
+        gap: 80px;
+
+        align-items: start;
+      }
+
+      .sh-contact-image {
+        overflow: hidden;
+
+        border-radius: 30px;
+
+        margin-top: 50px;
+
+        box-shadow: var(--shadow);
+      }
+
+      .sh-contact-image img {
+        width: 100%;
+        height: 430px;
+        object-fit: cover;
+      }
+
+      .sh-contact-details {
+        display: grid;
+        gap: 16px;
+
+        margin-top: 38px;
+      }
+
+      .sh-contact-detail {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+
+        padding: 18px;
+
+        border: 1px solid var(--line);
+        border-radius: 16px;
+
+        background: rgba(255,255,255,.58);
+      }
+
+      .sh-contact-detail-icon {
+        width: 40px;
+        height: 40px;
+
+        display: grid;
+        place-items: center;
+
+        flex: 0 0 auto;
+
+        border-radius: 11px;
+
+        background: rgba(29,78,216,.08);
+        color: var(--brand);
+      }
+
+      .sh-contact-detail strong {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .sh-contact-detail span {
+        color: var(--ink-muted);
+        font-size: 13px;
+        word-break: break-word;
+      }
+
+      .sh-form {
+        padding: 32px;
+
+        border: 1px solid var(--line);
+
+        border-radius: 24px;
+
+        background: rgba(255,255,255,.7);
+
+        box-shadow: var(--shadow);
+      }
+
+      .sh-form-title {
+        margin: 0 0 8px;
+
+        font-size: 27px;
+        letter-spacing: -.035em;
+      }
+
+      .sh-form-subtitle {
+        margin: 0 0 30px;
+
+        color: var(--ink-muted);
+
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .sh-form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .sh-field {
+        display: grid;
+        gap: 7px;
+      }
+
+      .sh-field.full {
+        grid-column: 1 / -1;
+      }
+
+      .sh-field label {
+        color: var(--ink-soft);
+
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      .sh-field input,
+      .sh-field textarea {
+        width: 100%;
+
+        border: 1px solid var(--line-strong);
+        border-radius: 12px;
+
+        background: rgba(255,255,255,.85);
+
+        padding: 13px 14px;
+
+        outline: none;
+
+        color: var(--ink);
+
+        font-size: 14px;
+
+        transition:
+          border-color .2s ease,
+          box-shadow .2s ease;
+      }
+
+      .sh-field input {
+        height: 48px;
+      }
+
+      .sh-field textarea {
+        min-height: 130px;
+        resize: vertical;
+      }
+
+      .sh-field input:focus,
+      .sh-field textarea:focus {
+        border-color: rgba(29,78,216,.6);
+
+        box-shadow:
+          0 0 0 4px rgba(29,78,216,.08);
+      }
+
+      .sh-form-submit {
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .sh-success {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+
+        margin-top: 20px;
+        padding: 15px;
+
+        border-radius: 13px;
+
+        background: var(--accent-soft);
+        color: var(--accent);
+
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      /* =====================================================
+         FOOTER
+      ===================================================== */
+
+      .sh-footer {
+        margin-left: 245px;
+
+        padding: 55px 6vw 35px;
+
+        background: var(--navy);
+        color: white;
+      }
+
+      .sh-footer-grid {
+        width: min(1280px, 100%);
+        margin: 0 auto;
+
+        display: grid;
+        grid-template-columns: 1.3fr .7fr .7fr;
+
+        gap: 60px;
+      }
+
+      .sh-footer-brand {
+        font-size: 20px;
+        font-weight: 850;
+        letter-spacing: -.03em;
+      }
+
+      .sh-footer-description {
+        max-width: 430px;
+
+        margin-top: 14px;
+
+        color: rgba(255,255,255,.56);
+
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .sh-footer-heading {
+        margin-bottom: 16px;
+
+        color: rgba(255,255,255,.42);
+
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+      }
+
+      .sh-footer-links {
+        display: grid;
+        gap: 10px;
+      }
+
+      .sh-footer-links button,
+      .sh-footer-links a {
+        width: fit-content;
+
+        border: 0;
+        background: transparent;
+
+        padding: 0;
+
+        color: rgba(255,255,255,.72);
+
+        font-size: 13px;
+
+        cursor: pointer;
+      }
+
+      .sh-footer-links button:hover,
+      .sh-footer-links a:hover {
+        color: white;
+      }
+
+      .sh-footer-bottom {
+        width: min(1280px, 100%);
+        margin: 45px auto 0;
+
+        padding-top: 20px;
+
+        border-top: 1px solid rgba(255,255,255,.1);
+
+        color: rgba(255,255,255,.38);
+
+        font-size: 11px;
+      }
+
+      /* =====================================================
+         RESPONSIVE — TABLET
+      ===================================================== */
+
+      @media (max-width: 1100px) {
+        .sh-sidebar {
+          width: 215px;
+        }
+
+        .sh-main {
+          margin-left: 215px;
+        }
+
+        .sh-footer {
+          margin-left: 215px;
+        }
+
+        .sh-hero-grid,
+        .sh-product-grid,
+        .sh-product-grid.reverse {
+          grid-template-columns: 1fr;
+        }
+
+        .sh-hero-copy {
+          max-width: 900px;
+        }
+
+        .sh-hero-image {
+          min-height: 480px;
+        }
+
+        .sh-hero-image img {
+          height: 480px;
+        }
+
+        .sh-floating-stat {
+          left: 24px;
+        }
+
+        .sh-floating-badge {
+          right: 24px;
+        }
+
+        .sh-capability-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .sh-capability:nth-child(2) {
+          border-right: 0;
+        }
+
+        .sh-capability:nth-child(-n+2) {
+          border-bottom: 1px solid var(--line);
+        }
+
+        .sh-outcomes-header {
+          display: block;
+        }
+
+        .sh-section-description {
+          margin-top: 24px;
+        }
+
+        .sh-contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sh-page-hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sh-mission-grid {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+      }
+
+      /* =====================================================
+         RESPONSIVE — MOBILE
+      ===================================================== */
+
+      @media (max-width: 767px) {
+        .sh-topbar {
+          height: 68px;
+        }
+
+        .sh-topbar-inner {
+          padding: 0 17px;
+        }
+
+        .sh-brand-mark {
+          width: 37px;
+          height: 37px;
+          border-radius: 11px;
+        }
+
+        .sh-brand-name {
+          font-size: 16px;
+        }
+
+        .sh-brand-subtitle {
+          display: none;
+        }
+
+        .sh-mobile-menu-btn {
+          display: flex;
+        }
+
+        .sh-sidebar {
+          display: none;
+        }
+
+        .sh-main {
+          margin-left: 0;
+          padding-top: 68px;
+        }
+
+        .sh-section {
+          padding: 76px 20px;
+        }
+
+        .sh-hero {
+          min-height: auto;
+
+          padding:
+            65px
+            20px
+            60px;
+        }
+
+        .sh-hero-grid {
+          gap: 42px;
+        }
+
+        .sh-hero-title {
+          margin-top: 18px;
+          margin-bottom: 22px;
+
+          font-size: clamp(43px, 13vw, 62px);
+          line-height: .96;
+        }
+
+        .sh-hero-description {
+          font-size: 16px;
+          line-height: 1.7;
+        }
+
+        .sh-hero-actions {
+          display: grid;
+          gap: 10px;
+        }
+
+        .sh-btn {
+          width: 100%;
+          min-height: 52px;
+        }
+
+        .sh-hero-note {
+          align-items: flex-start;
+          line-height: 1.5;
+        }
+
+        .sh-hero-image {
+          min-height: 390px;
+          border-radius: 24px;
+        }
+
+        .sh-hero-image img {
+          height: 390px;
+        }
+
+        .sh-floating-stat {
+          left: 14px;
+          bottom: 14px;
+
+          width: 175px;
+
+          padding: 15px;
+        }
+
+        .sh-floating-stat-number {
+          font-size: 26px;
+        }
+
+        .sh-floating-badge {
+          right: 14px;
+          top: 14px;
+
+          padding: 10px 12px;
+
+          font-size: 10px;
+        }
+
+        .sh-statement {
+          padding-top: 60px;
+          padding-bottom: 60px;
+        }
+
+        .sh-statement-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .sh-statement-copy {
+          font-size: 16px;
+        }
+
+        .sh-capabilities {
+          padding-top: 20px;
+        }
+
+        .sh-capability-grid {
+          grid-template-columns: 1fr;
+
+          margin-top: 35px;
+        }
+
+        .sh-capability,
+        .sh-capability:nth-child(2) {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .sh-capability:last-child {
+          border-bottom: 0;
+        }
+
+        .sh-capability {
+          min-height: auto;
+          padding: 28px 22px;
+        }
+
+        .sh-capability h3 {
+          margin-top: 22px;
+        }
+
+        .sh-product-section {
+          padding: 75px 20px;
+        }
+
+        .sh-product-grid,
+        .sh-product-grid.reverse {
+          gap: 42px;
+        }
+
+        .sh-product-title {
+          font-size: clamp(37px, 11vw, 52px);
+        }
+
+        .sh-product-description {
+          font-size: 16px;
+        }
+
+        .sh-product-image {
+          min-height: 360px;
+          border-radius: 24px;
+        }
+
+        .sh-product-image img {
+          height: 360px;
+        }
+
+        .sh-product-card {
+          right: 14px;
+          bottom: 14px;
+          width: calc(100% - 28px);
+        }
+
+        .sh-outcomes {
+          padding-top: 75px;
+          padding-bottom: 75px;
+        }
+
+        .sh-outcome-grid {
+          grid-template-columns: 1fr;
+
+          margin-top: 35px;
+        }
+
+        .sh-outcome {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          padding: 28px 0;
+        }
+
+        .sh-outcome:last-child {
+          border-bottom: 0;
+        }
+
+        .sh-cta {
+          padding: 65px 20px;
+        }
+
+        .sh-cta-box {
+          padding: 40px 24px;
+          border-radius: 24px;
+        }
+
+        .sh-cta-title {
+          font-size: clamp(38px, 11vw, 55px);
+        }
+
+        .sh-cta-description {
+          font-size: 15px;
+        }
+
+        .sh-page-hero {
+          padding: 70px 20px 50px;
+        }
+
+        .sh-page-hero-grid {
+          gap: 38px;
+        }
+
+        .sh-page-title {
+          font-size: clamp(43px, 12vw, 60px);
+        }
+
+        .sh-page-description {
+          font-size: 16px;
+        }
+
+        .sh-page-image img {
+          height: 350px;
+        }
+
+        .sh-mission {
+          padding-top: 40px;
+        }
+
+        .sh-values-grid {
+          grid-template-columns: 1fr;
+
+          margin-top: 35px;
+        }
+
+        .sh-value {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          padding: 28px 0;
+        }
+
+        .sh-value:last-child {
+          border-bottom: 0;
+        }
+
+        .sh-services-list {
+          margin-top: 40px;
+        }
+
+        .sh-service-row {
+          grid-template-columns: 35px 1fr 30px;
+
+          gap: 10px;
+
+          min-height: 130px;
+        }
+
+        .sh-service-description {
+          grid-column: 2 / -1;
+          margin-top: -35px;
+          padding-right: 30px;
+        }
+
+        .sh-contact-grid {
+          gap: 45px;
+        }
+
+        .sh-contact-image {
+          margin-top: 35px;
+        }
+
+        .sh-contact-image img {
+          height: 320px;
+        }
+
+        .sh-form {
+          padding: 22px;
+          border-radius: 20px;
+        }
+
+        .sh-form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sh-field.full {
+          grid-column: auto;
+        }
+
+        .sh-footer {
+          margin-left: 0;
+          padding: 50px 20px 28px;
+        }
+
+        .sh-footer-grid {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+
+        .sh-footer-bottom {
+          margin-top: 35px;
+        }
+      }
+
+      /* =====================================================
+         SMALL PHONES
+      ===================================================== */
+
+      @media (max-width: 390px) {
+        .sh-brand-name {
+          font-size: 15px;
+        }
+
+        .sh-hero-title {
+          font-size: 42px;
+        }
+
+        .sh-section-title {
+          font-size: 37px;
+        }
+
+        .sh-product-title {
+          font-size: 36px;
+        }
+
+        .sh-floating-badge {
+          display: none;
+        }
+      }
+
+      /* =====================================================
+         REDUCED MOTION
+      ===================================================== */
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important;
+        }
+      }
+    `}</style>
+  );
 }
 
-/* ============================================================
-   BRAND
-   ============================================================ */
+/* =========================================================
+   BRAND MARK
+========================================================= */
 
-function Brand({ onClick }) {
+function Brand({ compact = false }) {
+  return (
+    <div className="sh-brand">
+      <div className="sh-brand-mark">
+        <HeartPulse size={22} strokeWidth={2.4} />
+      </div>
+
+      {!compact && (
+        <div>
+          <div className="sh-brand-name">{BRAND.name}</div>
+          <div className="sh-brand-subtitle">
+            Healthcare. Intelligence. Access.
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* =========================================================
+   NAV
+========================================================= */
+
+const NAV_ITEMS = [
+  { id: "home", label: "Home", icon: Home },
+  { id: "about", label: "About", icon: Users },
+  { id: "services", label: "Services", icon: Network },
+  { id: "contact", label: "Contact", icon: MessageSquare },
+];
+
+function NavButton({ item, activePage, onNavigate }) {
+  const Icon = item.icon;
+
   return (
     <button
-      type="button"
-      className="sh-brand"
-      onClick={onClick}
-      aria-label="Go to StellarOne Health home"
+      className={`sh-nav-button ${
+        activePage === item.id ? "active" : ""
+      }`}
+      onClick={() => onNavigate(item.id)}
+      aria-current={activePage === item.id ? "page" : undefined}
     >
-      <div className="sh-brand-mark">
-        <Sparkles size={18} strokeWidth={2.2} />
-      </div>
-
-      <div className="sh-brand-copy">
-        <div className="sh-brand-name">
-          {BRAND.name}
-        </div>
-
-        <div className="sh-brand-sub">
-          Health Technologies
-        </div>
-      </div>
+      <Icon className="sh-nav-icon" />
+      <span>{item.label}</span>
     </button>
   );
 }
 
-/* ============================================================
-   ICON MAP
-   ============================================================ */
-
-function getNavIcon(id) {
-  if (id === "Home") return HeartPulse;
-  if (id === "About") return Building2;
-  if (id === "Services") return Layers3;
-  if (id === "Contact") return Mail;
-
-  return Activity;
-}
-
-/* ============================================================
+/* =========================================================
    TOP BAR
-   ============================================================ */
+========================================================= */
 
-function TopBar({
-  onHome,
-  mobileOpen,
-  setMobileOpen,
-}) {
+function TopBar({ onOpenMenu }) {
   return (
     <header className="sh-topbar">
       <div className="sh-topbar-inner">
-        <Brand onClick={onHome} />
+        <Brand />
 
         <button
-          type="button"
-          className="sh-mobile-menu"
-          onClick={() => setMobileOpen((value) => !value)}
-          aria-label="Toggle navigation"
-          aria-expanded={mobileOpen}
+          className="sh-mobile-menu-btn"
+          onClick={onOpenMenu}
+          aria-label="Open navigation menu"
         >
-          {mobileOpen ? (
-            <X size={20} />
-          ) : (
-            <Menu size={20} />
-          )}
+          <Menu size={21} />
         </button>
       </div>
     </header>
   );
 }
 
-/* ============================================================
+/* =========================================================
    SIDEBAR
-   ============================================================ */
+========================================================= */
 
-function Sidebar({
-  page,
-  navigate,
-}) {
+function Sidebar({ activePage, onNavigate }) {
   return (
     <aside className="sh-sidebar">
-      <div className="sh-sidebar-label">
-        Navigation
-      </div>
+      <div className="sh-nav-label">Explore</div>
 
-      <nav className="sh-sidebar-nav">
-        {NAV_ITEMS.map((item) => {
-          const Icon = getNavIcon(item.id);
-
-          return (
-            <button
-              type="button"
-              key={item.id}
-              className={`sh-sidebar-item ${
-                page === item.id ? "active" : ""
-              }`}
-              onClick={() => navigate(item.id)}
-            >
-              <span className="sh-sidebar-icon">
-                <Icon size={16} />
-              </span>
-
-              <span>{item.label}</span>
-            </button>
-          );
-        })}
-
-        <button
-          type="button"
-          className="sh-sidebar-item"
-          onClick={() => navigate("Contact")}
-          style={{ marginTop: 8 }}
-        >
-          <span
-            className="sh-sidebar-icon"
-            style={{
-              color: COLORS.brand,
-            }}
-          >
-            <ArrowRight size={16} />
-          </span>
-
-          <span>Book a Conversation</span>
-        </button>
+      <nav className="sh-nav" aria-label="Primary navigation">
+        {NAV_ITEMS.map((item) => (
+          <NavButton
+            key={item.id}
+            item={item}
+            activePage={activePage}
+            onNavigate={onNavigate}
+          />
+        ))}
       </nav>
 
       <div className="sh-sidebar-bottom">
         <div className="sh-sidebar-card">
-          <small>StellarOne Health</small>
-
-          <strong>
-            Healthcare. AI. Intelligence.
-          </strong>
-
-          <span>
-            Connecting care experiences, revenue
-            operations, and intelligent automation.
-          </span>
+          <strong>Building the future of healthcare.</strong>
+          <p>
+            Intelligent technology designed around the realities of
+            healthcare organizations and patients.
+          </p>
         </div>
       </div>
     </aside>
   );
 }
 
-/* ============================================================
-   MOBILE NAV
-   ============================================================ */
+/* =========================================================
+   MOBILE DRAWER
+========================================================= */
 
-function MobileNav({
-  page,
-  navigate,
+function MobileDrawer({
   open,
-  setOpen,
+  activePage,
+  onNavigate,
+  onClose,
 }) {
   if (!open) return null;
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 70,
-        left: 0,
-        right: 0,
-        zIndex: 90,
-        padding: "12px 14px 16px",
-        background: "rgba(244,247,251,0.97)",
-        borderBottom: `1px solid ${COLORS.line}`,
-        boxShadow:
-          "0 25px 45px -35px rgba(15,23,42,0.4)",
-      }}
-    >
-      {NAV_ITEMS.map((item) => {
-        const Icon = getNavIcon(item.id);
-
-        return (
-          <button
-            type="button"
-            key={item.id}
-            onClick={() => {
-              navigate(item.id);
-              setOpen(false);
-            }}
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              padding: "13px 12px",
-              marginBottom: 4,
-              border: 0,
-              borderRadius: 13,
-              background:
-                page === item.id
-                  ? "rgba(29,78,216,0.08)"
-                  : "transparent",
-              color:
-                page === item.id
-                  ? COLORS.brand
-                  : COLORS.soft,
-              textAlign: "left",
-              fontSize: 13,
-              fontWeight: 700,
-            }}
-          >
-            <Icon size={17} />
-            {item.label}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-/* ============================================================
-   IMAGE COMPONENT
-   ============================================================ */
-
-function ImagePanel({
-  src,
-  alt,
-  className = "",
-  note,
-}) {
-  return (
-    <div
-      className={`sh-image-frame ${className}`}
-    >
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
+    <>
+      <div
+        className="sh-mobile-overlay"
+        onClick={onClose}
+        aria-hidden="true"
       />
 
-      {note ? (
-        <div className="sh-floating-note">
-          {note}
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-
-function Hero({ navigate }) {
-  return (
-    <section className="sh-section sh-section-top">
-      <div className="sh-container">
-        <div className="sh-hero">
-          <div>
-            <div className="sh-badge">
-              <BadgeCheck size={13} />
-              Enterprise Healthcare Technology
-            </div>
-
-            <h1 className="sh-font-display">
-              Building the intelligent infrastructure for modern
-              healthcare.
-            </h1>
-
-            <p className="sh-hero-description">
-              StellarOne Health connects healthcare delivery,
-              revenue operations, digital patient experiences,
-              and AI-enabled workflows into a more intelligent
-              operating model.
-            </p>
-
-            <div className="sh-button-row">
-              <button
-                type="button"
-                className="sh-btn sh-btn-primary"
-                onClick={() => navigate("Services")}
-              >
-                Explore capabilities
-                <ArrowRight size={15} />
-              </button>
-
-              <button
-                type="button"
-                className="sh-btn sh-btn-outline"
-                onClick={() => navigate("About")}
-              >
-                Why StellarOne
-                <ArrowUpRight size={15} />
-              </button>
-            </div>
-
-            <div className="sh-kpi-grid">
-              {HIGHLIGHTS.map((item) => (
-                <div
-                  key={item.headline}
-                  className="sh-kpi"
-                >
-                  <strong className="sh-font-display">
-                    {item.headline}
-                  </strong>
-
-                  <span>{item.caption}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="sh-hero-visual">
-            <div
-              className="sh-grid-overlay"
-              aria-hidden="true"
-            />
-
-            <div className="sh-hero-images">
-              <div className="sh-hero-main-image">
-                <ImagePanel
-                  src={IMAGES.hero}
-                  alt="Healthcare professional using modern digital healthcare technology"
-                  note={
-                    <>
-                      <small>
-                        StellarOne Health
-                      </small>
-
-                      <p>
-                        Technology designed around
-                        healthcare operations, patient
-                        experience, and intelligent
-                        automation.
-                      </p>
-                    </>
-                  }
-                />
-              </div>
-
-              <div className="sh-hero-side">
-                <div className="sh-side-image">
-                  <ImagePanel
-                    src={IMAGES.heroSecondary}
-                    alt="Doctor using digital healthcare technology"
-                  />
-                </div>
-
-                <div
-                  className="sh-dark-card"
-                  style={{
-                    padding: 22,
-                    borderRadius: 25,
-                  }}
-                >
-                  <div
-                    style={{
-                      color: "#94a3b8",
-                      fontSize: 9,
-                      fontWeight: 800,
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      marginBottom: 13,
-                    }}
-                  >
-                    Our focus
-                  </div>
-
-                  {[
-                    "Care experience",
-                    "Revenue intelligence",
-                    "Enterprise AI",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      style={{
-                        display: "flex",
-                        gap: 8,
-                        alignItems: "flex-start",
-                        marginBottom: 10,
-                        color: "#e2e8f0",
-                        fontSize: 11,
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      <CheckCircle2
-                        size={14}
-                        color="#6ee7b7"
-                        style={{
-                          flex: "0 0 auto",
-                          marginTop: 1,
-                        }}
-                      />
-
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
-   TRUST
-   ============================================================ */
-
-function TrustSection() {
-  return (
-    <section
-      className="sh-section"
-      style={{ paddingTop: 0 }}
-    >
-      <div className="sh-container">
-        <div className="sh-card sh-trust">
-          <div>
-            <div className="sh-badge">
-              <Building2 size={13} />
-              Enterprise Readiness
-            </div>
-
-            <h2 className="sh-font-display">
-              A credible digital presence for healthcare buyers,
-              partners, and operational leaders.
-            </h2>
-          </div>
-
-          <div className="sh-pill-list">
-            {TRUST_POINTS.map((point) => (
-              <span
-                key={point}
-                className="sh-pill"
-              >
-                <ShieldCheck
-                  size={13}
-                  color={COLORS.accent}
-                />
-                {point}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
-   PILLARS
-   ============================================================ */
-
-function PillarsSection() {
-  return (
-    <section className="sh-section">
-      <div className="sh-container">
-        <div className="sh-section-head">
-          <div className="sh-badge">
-            <Layers3 size={13} />
-            Three Operating Pillars
-          </div>
-
-          <h2 className="sh-font-display">
-            Connecting the patient, the operation, and the
-            intelligence layer.
-          </h2>
-
-          <p>
-            StellarOne Health brings together digital care
-            experiences, healthcare revenue operations, and
-            AI-enabled workflows into a connected operating
-            model.
-          </p>
-        </div>
-
-        <div className="sh-three-grid">
-          {PILLARS.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={item.title}
-                className="sh-card sh-pillar"
-              >
-                <div
-                  className="sh-feature-icon"
-                  style={{
-                    color: item.color,
-                  }}
-                >
-                  <Icon size={21} />
-                </div>
-
-                <h3 className="sh-font-display">
-                  {item.title}
-                </h3>
-
-                <p>{item.text}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
-   PRODUCTS
-   ============================================================ */
-
-function ProductsSection({ navigate }) {
-  return (
-    <section className="sh-section">
-      <div className="sh-container">
-        <div className="sh-section-head">
-          <div className="sh-badge">
-            <Sparkles size={13} />
-            Our Platforms
-          </div>
-
-          <h2 className="sh-font-display">
-            Products built around real healthcare workflows.
-          </h2>
-
-          <p>
-            From revenue intelligence to patient-facing
-            telehealth, StellarOne Health focuses on practical
-            technology that improves healthcare experiences.
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 18,
-          }}
-        >
-          {PRODUCTS.map((item, index) => {
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={item.title}
-                className="sh-card sh-product"
-              >
-                <div
-                  className="sh-product-copy"
-                  style={{
-                    order:
-                      index % 2 === 1
-                        ? 2
-                        : 1,
-                  }}
-                >
-                  <div className="sh-product-heading">
-                    <div
-                      className="sh-feature-icon"
-                      style={{
-                        color: item.accent,
-                        marginBottom: 0,
-                      }}
-                    >
-                      <Icon size={21} />
-                    </div>
-
-                    <div>
-                      <p>
-                        {item.subtitle}
-                      </p>
-
-                      <h3 className="sh-font-display">
-                        {item.title}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <p>{item.text}</p>
-
-                  <div className="sh-check-list">
-                    {item.bullets.map(
-                      (bullet) => (
-                        <div
-                          key={bullet}
-                          className="sh-check"
-                        >
-                          <CheckCircle2
-                            size={15}
-                            color={item.accent}
-                          />
-
-                          <span>{bullet}</span>
-                        </div>
-                      )
-                    )}
-                  </div>
-
-                  <button
-                    type="button"
-                    className="sh-btn sh-btn-outline"
-                    style={{
-                      width: "fit-content",
-                    }}
-                    onClick={() =>
-                      navigate("Services")
-                    }
-                  >
-                    View capabilities
-                    <ArrowUpRight size={15} />
-                  </button>
-                </div>
-
-                <div
-                  className="sh-product-media"
-                  style={{
-                    order:
-                      index % 2 === 1
-                        ? 1
-                        : 2,
-                  }}
-                >
-                  <ImagePanel
-                    src={item.image}
-                    alt={
-                      item.title ===
-                      "Stellar.AI"
-                        ? "Healthcare operations and analytics"
-                        : "Doctor providing telehealth consultation"
-                    }
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
-   DELIVERY
-   ============================================================ */
-
-function DeliverySection() {
-  return (
-    <section className="sh-section">
-      <div className="sh-container">
-        <div className="sh-delivery">
-          <div className="sh-dark-card sh-delivery-intro">
-            <div
-              className="sh-badge"
-              style={{
-                color: "white",
-                borderColor:
-                  "rgba(255,255,255,0.1)",
-                background:
-                  "rgba(255,255,255,0.07)",
-              }}
-            >
-              <Cpu size={13} />
-              Operating Model
-            </div>
-
-            <h2 className="sh-font-display">
-              From healthcare complexity to controlled digital
-              execution.
-            </h2>
-
-            <p>
-              We focus on high-value healthcare workflows first,
-              then build toward a connected digital operating
-              model that can scale across teams, products, and
-              patient journeys.
-            </p>
-          </div>
-
-          <div className="sh-step-list">
-            {DELIVERY_STEPS.map(
-              (step, index) => (
-                <div
-                  key={step.title}
-                  className="sh-card sh-step"
-                >
-                  <div className="sh-step-number">
-                    0{index + 1}
-                  </div>
-
-                  <div>
-                    <h3 className="sh-font-display">
-                      {step.title}
-                    </h3>
-
-                    <p>{step.text}</p>
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
-   CTA
-   ============================================================ */
-
-function CTASection({ navigate }) {
-  return (
-    <section className="sh-section">
-      <div className="sh-container">
-        <div className="sh-dark-card sh-cta">
-          <div>
-            <small>
-              Ready for the next step
-            </small>
-
-            <h2 className="sh-font-display">
-              Let's build the next generation of healthcare
-              technology together.
-            </h2>
-          </div>
+      <aside
+        className="sh-mobile-drawer"
+        aria-label="Mobile navigation"
+      >
+        <div className="sh-mobile-drawer-header">
+          <Brand compact />
 
           <button
-            type="button"
-            className="sh-btn sh-btn-primary"
-            onClick={() => navigate("Contact")}
+            className="sh-close-btn"
+            onClick={onClose}
+            aria-label="Close navigation menu"
           >
-            Connect with the team
-            <ArrowRight size={15} />
+            <X size={20} />
           </button>
         </div>
-      </div>
-    </section>
-  );
-}
 
-/* ============================================================
-   HOME PAGE
-   ============================================================ */
-
-function HomePage({ navigate }) {
-  return (
-    <>
-      <Hero navigate={navigate} />
-      <TrustSection />
-      <PillarsSection />
-      <ProductsSection navigate={navigate} />
-      <DeliverySection />
-      <CTASection navigate={navigate} />
+        <nav className="sh-mobile-nav">
+          {NAV_ITEMS.map((item) => (
+            <NavButton
+              key={item.id}
+              item={item}
+              activePage={activePage}
+              onNavigate={(page) => {
+                onNavigate(page);
+                onClose();
+              }}
+            />
+          ))}
+        </nav>
+      </aside>
     </>
   );
 }
 
-/* ============================================================
-   ABOUT PAGE
-   ============================================================ */
+/* =========================================================
+   HERO
+========================================================= */
 
-function AboutPage() {
+function Hero({ onNavigate }) {
   return (
-    <section className="sh-section sh-section-top">
-      <div className="sh-container">
-        <div className="sh-page-grid">
-          <div className="sh-card sh-page-copy">
-            <div className="sh-badge">
-              <Sparkles size={13} />
-              About StellarOne Health
-            </div>
-
-            <h1 className="sh-font-display">
-              Healthcare technology with an enterprise mindset.
-            </h1>
-
-            <p>
-              StellarOne Health is focused on modernizing the way
-              healthcare organizations connect patient
-              experiences, operational workflows, revenue
-              processes, and artificial intelligence.
-            </p>
-
-            <p>
-              Our approach combines practical workflow design,
-              intelligent automation, data visibility, and
-              human oversight — helping healthcare teams adopt
-              technology without losing control of the operation.
-            </p>
-
-            <div className="sh-stat-grid">
-              <div className="sh-stat">
-                <div className="sh-stat-label">
-                  Headquarters
-                </div>
-
-                <div className="sh-stat-value">
-                  India
-                </div>
-              </div>
-
-              <div className="sh-stat">
-                <div className="sh-stat-label">
-                  Primary Market
-                </div>
-
-                <div className="sh-stat-value">
-                  United States
-                </div>
-              </div>
-
-              <div className="sh-stat">
-                <div className="sh-stat-label">
-                  Platforms
-                </div>
-
-                <div className="sh-stat-value">
-                  Stellar.AI
-                </div>
-              </div>
-
-              <div className="sh-stat">
-                <div className="sh-stat-label">
-                  Digital Care
-                </div>
-
-                <div className="sh-stat-value">
-                  EasyMed
-                </div>
-              </div>
-            </div>
+    <section className="sh-hero">
+      <div className="sh-hero-grid">
+        <div className="sh-hero-copy">
+          <div className="sh-eyebrow">
+            <span className="sh-eyebrow-dot" />
+            Healthcare technology
           </div>
 
-          <div className="sh-card sh-about-image">
-            <ImagePanel
-              src={IMAGES.about}
-              alt="Healthcare professionals collaborating around technology"
-            />
+          <h1 className="sh-hero-title">
+            Intelligence that moves{" "}
+            <span className="sh-gradient-text">
+              healthcare forward.
+            </span>
+          </h1>
+
+          <p className="sh-hero-description">
+            StellarOne Health helps healthcare organizations simplify
+            complex operations, strengthen revenue performance, and
+            deliver better digital experiences through intelligent
+            automation and AI.
+          </p>
+
+          <div className="sh-hero-actions">
+            <button
+              className="sh-btn sh-btn-primary"
+              onClick={() => onNavigate("services")}
+            >
+              Explore Our Solutions
+              <ArrowRight size={17} />
+            </button>
+
+            <button
+              className="sh-btn sh-btn-secondary"
+              onClick={() => onNavigate("contact")}
+            >
+              Talk to Our Team
+            </button>
+          </div>
+
+          <div className="sh-hero-note">
+            <CheckCircle2 size={16} />
+            Built around healthcare workflows, outcomes and people.
           </div>
         </div>
 
-        <div
-          className="sh-three-grid"
-          style={{
-            marginTop: 20,
-          }}
-        >
-          {PILLARS.map((item) => {
+        <div className="sh-hero-visual">
+          <div className="sh-hero-image">
+            <img
+              src={IMAGES.hero}
+              alt="Healthcare professional using digital technology"
+            />
+            <div className="sh-image-overlay" />
+          </div>
+
+          <div className="sh-floating-badge">
+            <Sparkles size={15} />
+            AI-powered healthcare
+          </div>
+
+          <div className="sh-floating-stat">
+            <div className="sh-floating-stat-number">
+              AI + Human
+            </div>
+
+            <div className="sh-floating-stat-label">
+              Intelligent systems designed to augment healthcare teams,
+              not replace them.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   STATEMENT
+========================================================= */
+
+function StatementSection() {
+  return (
+    <section className="sh-section sh-statement">
+      <div className="sh-container">
+        <div className="sh-statement-grid">
+          <div>
+            <div className="sh-eyebrow">
+              <span className="sh-eyebrow-dot" />
+              Our perspective
+            </div>
+          </div>
+
+          <div>
+            <h2 className="sh-statement-title">
+              Healthcare is complex.
+              <br />
+              Your technology{" "}
+              <span className="sh-gradient-text">
+                shouldn't be.
+              </span>
+            </h2>
+
+            <p className="sh-statement-copy">
+              StellarOne Health brings together healthcare expertise,
+              intelligent automation, revenue-cycle intelligence, and
+              digital patient experiences to help organizations operate
+              with greater clarity and confidence.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   CAPABILITIES
+========================================================= */
+
+function CapabilitiesSection() {
+  const capabilities = [
+    {
+      icon: BrainCircuit,
+      title: "AI-Powered Workflows",
+      text:
+        "Automate repetitive processes, surface meaningful insights, and help teams make faster, more informed decisions.",
+    },
+    {
+      icon: Target,
+      title: "Revenue Cycle Intelligence",
+      text:
+        "Improve visibility across eligibility, coding, denials, accounts receivable, and payer performance.",
+    },
+    {
+      icon: HeartPulse,
+      title: "Digital Patient Access",
+      text:
+        "Create simpler, more intuitive healthcare experiences across digital and connected channels.",
+    },
+    {
+      icon: Network,
+      title: "Enterprise Integration",
+      text:
+        "Connect systems, workflows and data so healthcare organizations can operate from a more complete picture.",
+    },
+  ];
+
+  return (
+    <section className="sh-section sh-capabilities">
+      <div className="sh-container">
+        <div className="sh-eyebrow">
+          <span className="sh-eyebrow-dot" />
+          What we do
+        </div>
+
+        <div className="sh-capability-grid">
+          {capabilities.map((item, index) => {
             const Icon = item.icon;
 
             return (
-              <div
-                key={item.title}
-                className="sh-card sh-pillar"
-              >
-                <div
-                  className="sh-feature-icon"
-                  style={{
-                    color: item.color,
-                  }}
-                >
-                  <Icon size={21} />
+              <article className="sh-capability" key={item.title}>
+                <div className="sh-capability-icon">
+                  <Icon size={22} />
                 </div>
 
-                <h3 className="sh-font-display">
-                  {item.title}
-                </h3>
+                <h3>{item.title}</h3>
 
                 <p>{item.text}</p>
-              </div>
+              </article>
             );
           })}
         </div>
@@ -2578,109 +2399,266 @@ function AboutPage() {
   );
 }
 
-/* ============================================================
-   SERVICES PAGE
-   ============================================================ */
+/* =========================================================
+   STELLAR.AI
+========================================================= */
 
-function ServicesPage() {
+function StellarAISection() {
   return (
-    <section className="sh-section sh-section-top">
+    <section className="sh-product-section sh-product-dark">
       <div className="sh-container">
-        <div className="sh-section-head">
-          <div className="sh-badge">
-            <BarChart3 size={13} />
-            Services & Products
+        <div className="sh-product-grid">
+          <div className="sh-product-copy">
+            <div className="sh-product-label">
+              <BrainCircuit size={16} />
+              Stellar.AI
+            </div>
+
+            <h2 className="sh-product-title">
+              The intelligence layer for healthcare revenue operations.
+            </h2>
+
+            <p className="sh-product-description">
+              Stellar.AI brings intelligence into the revenue cycle,
+              helping healthcare organizations understand performance,
+              identify opportunities, prioritize work, and turn complex
+              operational data into actionable insight.
+            </p>
+
+            <ul className="sh-product-list">
+              <li>
+                <CircleCheck size={17} />
+                Revenue-cycle visibility across critical workflows
+              </li>
+
+              <li>
+                <CircleCheck size={17} />
+                Intelligent identification of operational opportunities
+              </li>
+
+              <li>
+                <CircleCheck size={17} />
+                Denial and accounts-receivable insights
+              </li>
+
+              <li>
+                <CircleCheck size={17} />
+                Executive-ready performance intelligence
+              </li>
+            </ul>
+
+            <div className="sh-hero-actions">
+              <button className="sh-btn sh-btn-primary">
+                Explore Stellar.AI
+                <ArrowUpRight size={17} />
+              </button>
+            </div>
           </div>
 
-          <h1 className="sh-page-title sh-font-display">
-            Healthcare capabilities designed for measurable
-            operational impact.
-          </h1>
+          <div className="sh-product-visual">
+            <div className="sh-product-image">
+              <img
+                src={IMAGES.operations}
+                alt="Healthcare operations team"
+              />
+            </div>
 
-          <p className="sh-page-description">
-            StellarOne Health combines healthcare expertise,
-            digital experiences, automation, analytics, and AI
-            to help organizations modernize critical workflows.
+            <div className="sh-product-card">
+              <div className="sh-product-card-label">
+                Intelligence
+              </div>
+
+              <div className="sh-product-card-title">
+                From operational data to better decisions.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   EASYMED
+========================================================= */
+
+function EasyMedSection() {
+  return (
+    <section className="sh-product-section">
+      <div className="sh-container">
+        <div className="sh-product-grid reverse">
+          <div className="sh-product-visual">
+            <div className="sh-product-image">
+              <img
+                src={IMAGES.telehealth}
+                alt="Patient using digital healthcare services"
+              />
+            </div>
+
+            <div className="sh-product-card">
+              <div className="sh-product-card-label">
+                Patient experience
+              </div>
+
+              <div className="sh-product-card-title">
+                Healthcare access, made easier.
+              </div>
+            </div>
+          </div>
+
+          <div className="sh-product-copy">
+            <div className="sh-product-label">
+              <HeartPulse size={16} />
+              EasyMed
+            </div>
+
+            <h2 className="sh-product-title">
+              Healthcare access, made easier.
+            </h2>
+
+            <p className="sh-product-description">
+              EasyMed is designed to make digital healthcare more
+              accessible, convenient, and intuitive for patients while
+              helping providers deliver connected care experiences.
+            </p>
+
+            <ul className="sh-product-list">
+              <li>
+                <CircleCheck size={17} />
+                Convenient digital healthcare access
+              </li>
+
+              <li>
+                <CircleCheck size={17} />
+                Virtual consultation experiences
+              </li>
+
+              <li>
+                <CircleCheck size={17} />
+                Connected patient journeys
+              </li>
+
+              <li>
+                <CircleCheck size={17} />
+                Designed for scalable digital healthcare delivery
+              </li>
+            </ul>
+
+            <div className="sh-hero-actions">
+              <button className="sh-btn sh-btn-primary">
+                Explore EasyMed
+                <ArrowUpRight size={17} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   OUTCOMES
+========================================================= */
+
+function OutcomesSection() {
+  const outcomes = [
+    {
+      number: "01",
+      title: "Greater operational clarity",
+      text:
+        "Bring fragmented healthcare processes and information into a clearer operational picture.",
+    },
+    {
+      number: "02",
+      title: "Better financial performance",
+      text:
+        "Use intelligence and automation to identify revenue opportunities and reduce avoidable friction.",
+    },
+    {
+      number: "03",
+      title: "More connected experiences",
+      text:
+        "Create digital experiences that make healthcare easier for patients, providers and teams.",
+    },
+  ];
+
+  return (
+    <section className="sh-section sh-outcomes">
+      <div className="sh-container">
+        <div className="sh-outcomes-header">
+          <div>
+            <div className="sh-eyebrow">
+              <span className="sh-eyebrow-dot" />
+              Designed for outcomes
+            </div>
+
+            <h2 className="sh-section-title">
+              Technology should make
+              <br />
+              healthcare work better.
+            </h2>
+          </div>
+
+          <p className="sh-section-description">
+            We focus on practical technology that creates measurable
+            improvements across healthcare operations and patient
+            experiences.
           </p>
         </div>
 
-        <div className="sh-services-grid">
-          {SERVICES.map((service) => {
-            const Icon = service.icon;
-
-            return (
-              <div
-                key={service.title}
-                className="sh-card sh-service"
-              >
-                <div className="sh-feature-icon">
-                  <Icon size={21} />
-                </div>
-
-                <h3 className="sh-font-display">
-                  {service.title}
-                </h3>
-
-                <p>{service.text}</p>
+        <div className="sh-outcome-grid">
+          {outcomes.map((item) => (
+            <article className="sh-outcome" key={item.number}>
+              <div className="sh-outcome-number">
+                {item.number}
               </div>
-            );
-          })}
+
+              <h3>{item.title}</h3>
+
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="sh-tech-grid">
-          <div className="sh-dark-card sh-tech-copy">
-            <div
-              className="sh-badge"
-              style={{
-                color: "white",
-                borderColor:
-                  "rgba(255,255,255,0.1)",
-                background:
-                  "rgba(255,255,255,0.07)",
-              }}
-            >
-              <Cpu size={13} />
-              Technology Foundation
-            </div>
+/* =========================================================
+   CTA
+========================================================= */
 
-            <h2 className="sh-font-display">
-              A connected technology stack for modern healthcare
-              workflows.
-            </h2>
-
-            <p>
-              Our architecture can bring together patient
-              experiences, AI orchestration, operational
-              applications, APIs, analytics, and enterprise
-              integrations into a cohesive ecosystem.
-            </p>
-
-            <div className="sh-tech-tags">
-              {[
-                "React",
-                "FastAPI",
-                "Node.js",
-                "Express",
-                "LangChain",
-                "ChromaDB",
-                "Firebase",
-                "Vercel",
-              ].map((item) => (
-                <span
-                  key={item}
-                  className="sh-tech-tag"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
+function CTASection({ onNavigate }) {
+  return (
+    <section className="sh-cta">
+      <div className="sh-container">
+        <div className="sh-cta-box">
+          <div className="sh-eyebrow">
+            <span className="sh-eyebrow-dot" />
+            Start a conversation
           </div>
 
-          <div className="sh-card sh-tech-image">
-            <ImagePanel
-              src={IMAGES.operations}
-              alt="Healthcare operations analytics"
-            />
+          <h2 className="sh-cta-title">
+            Let’s solve what’s next in healthcare.
+          </h2>
+
+          <p className="sh-cta-description">
+            Whether you're looking to improve revenue performance,
+            modernize operations, or create a better digital healthcare
+            experience, we'd love to understand what you're trying to
+            solve.
+          </p>
+
+          <div className="sh-hero-actions">
+            <button
+              className="sh-btn sh-btn-primary"
+              onClick={() => onNavigate("contact")}
+            >
+              Talk to Our Team
+              <ArrowRight size={17} />
+            </button>
           </div>
         </div>
       </div>
@@ -2688,427 +2666,544 @@ function ServicesPage() {
   );
 }
 
-/* ============================================================
-   CONTACT PAGE
-   ============================================================ */
+/* =========================================================
+   HOME
+========================================================= */
+
+function HomePage({ onNavigate }) {
+  return (
+    <>
+      <Hero onNavigate={onNavigate} />
+      <StatementSection />
+      <CapabilitiesSection />
+      <StellarAISection />
+      <EasyMedSection />
+      <OutcomesSection />
+      <CTASection onNavigate={onNavigate} />
+    </>
+  );
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+function AboutPage({ onNavigate }) {
+  return (
+    <>
+      <section className="sh-page-hero">
+        <div className="sh-page-hero-grid">
+          <div>
+            <div className="sh-eyebrow">
+              <span className="sh-eyebrow-dot" />
+              About StellarOne Health
+            </div>
+
+            <h1 className="sh-page-title">
+              We build technology for the realities of healthcare.
+            </h1>
+
+            <p className="sh-page-description">
+              Healthcare doesn't need more complexity. It needs
+              technology that understands the people, processes and
+              pressures behind every interaction.
+            </p>
+          </div>
+
+          <div className="sh-page-image">
+            <img
+              src={IMAGES.about}
+              alt="Healthcare professionals collaborating"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="sh-section sh-mission">
+        <div className="sh-container">
+          <div className="sh-mission-grid">
+            <div>
+              <div className="sh-eyebrow">
+                <span className="sh-eyebrow-dot" />
+                Our mission
+              </div>
+
+              <h2 className="sh-mission-title">
+                Make healthcare technology simpler, smarter, and more
+                human.
+              </h2>
+            </div>
+
+            <div className="sh-mission-copy">
+              <p>
+                StellarOne Health brings together healthcare expertise,
+                technology, artificial intelligence and digital
+                experiences to solve some of the industry's most
+                persistent challenges.
+              </p>
+
+              <p>
+                We believe technology should remove friction rather than
+                create it. That means designing solutions around the
+                workflows of healthcare organizations and the real
+                experiences of patients and care teams.
+              </p>
+
+              <p>
+                Our approach combines practical innovation with a deep
+                understanding of healthcare operations, revenue cycle
+                management and digital access.
+              </p>
+            </div>
+          </div>
+
+          <div className="sh-values-grid">
+            <article className="sh-value">
+              <ShieldCheck
+                className="sh-value-icon"
+                size={24}
+              />
+
+              <h3>Trust by design</h3>
+
+              <p>
+                Healthcare technology must be built with security,
+                reliability and responsible innovation at its core.
+              </p>
+            </article>
+
+            <article className="sh-value">
+              <Target
+                className="sh-value-icon"
+                size={24}
+              />
+
+              <h3>Outcome focused</h3>
+
+              <p>
+                We focus on technology that solves meaningful problems
+                and produces measurable value.
+              </p>
+            </article>
+
+            <article className="sh-value">
+              <Users
+                className="sh-value-icon"
+                size={24}
+              />
+
+              <h3>Human centered</h3>
+
+              <p>
+                Better healthcare technology starts by understanding
+                the people who use it every day.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <CTASection onNavigate={onNavigate} />
+    </>
+  );
+}
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+function ServicesPage({ onNavigate }) {
+  const services = [
+    {
+      number: "01",
+      name: "Healthcare AI & Automation",
+      description:
+        "Design and implementation of intelligent workflows that reduce repetitive work and surface actionable insights.",
+      icon: BrainCircuit,
+    },
+    {
+      number: "02",
+      name: "Revenue Cycle Intelligence",
+      description:
+        "Technology and analytics designed to improve visibility across the healthcare revenue cycle.",
+      icon: Target,
+    },
+    {
+      number: "03",
+      name: "Digital Health Platforms",
+      description:
+        "Modern patient-facing experiences that make healthcare access more convenient and connected.",
+      icon: HeartPulse,
+    },
+    {
+      number: "04",
+      name: "Healthcare Software Engineering",
+      description:
+        "Scalable software architecture, product engineering and integration for healthcare organizations.",
+      icon: Code2,
+    },
+    {
+      number: "05",
+      name: "Enterprise Integration",
+      description:
+        "Connect systems, data and workflows to create a more unified technology environment.",
+      icon: Network,
+    },
+    {
+      number: "06",
+      name: "Healthcare Technology Consulting",
+      description:
+        "Strategic guidance for organizations evaluating technology modernization and digital transformation.",
+      icon: Hospital,
+    },
+  ];
+
+  return (
+    <>
+      <section className="sh-page-hero">
+        <div className="sh-container">
+          <div className="sh-eyebrow">
+            <span className="sh-eyebrow-dot" />
+            Our capabilities
+          </div>
+
+          <h1 className="sh-page-title">
+            Technology built around healthcare outcomes.
+          </h1>
+
+          <p className="sh-page-description">
+            From AI-powered operations to digital patient experiences,
+            we help healthcare organizations turn technology into a
+            practical advantage.
+          </p>
+
+          <div className="sh-services-list">
+            {services.map((service) => {
+              const Icon = service.icon;
+
+              return (
+                <article
+                  className="sh-service-row"
+                  key={service.number}
+                >
+                  <div className="sh-service-number">
+                    {service.number}
+                  </div>
+
+                  <div className="sh-service-name">
+                    {service.name}
+                  </div>
+
+                  <div className="sh-service-description">
+                    {service.description}
+                  </div>
+
+                  <ChevronRight
+                    size={20}
+                    color={COLORS.brand}
+                  />
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <CTASection onNavigate={onNavigate} />
+    </>
+  );
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
-  });
-
-  const updateField = (
-    field,
-    value
-  ) => {
-    setForm((current) => ({
-      ...current,
-      [field]: value,
-    }));
-  };
-
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
     setSent(true);
-  };
+  }
 
   return (
-    <section className="sh-section sh-section-top">
+    <section className="sh-page-hero">
       <div className="sh-container">
         <div className="sh-contact-grid">
-          <div className="sh-card sh-contact-info">
-            <div className="sh-contact-image">
-              <ImagePanel
-                src={IMAGES.contact}
-                alt="Modern healthcare facility"
-              />
+          <div>
+            <div className="sh-eyebrow">
+              <span className="sh-eyebrow-dot" />
+              Get in touch
             </div>
 
-            <div className="sh-contact-copy">
-              <div className="sh-badge">
-                <Mail size={13} />
-                Contact StellarOne Health
-              </div>
+            <h1 className="sh-page-title">
+              Let’s solve what’s next in healthcare.
+            </h1>
 
-              <h1 className="sh-font-display">
-                Let's start a conversation.
-              </h1>
+            <p className="sh-page-description">
+              Tell us what you're building, improving or trying to
+              solve. Our team would be happy to start the conversation.
+            </p>
 
-              <p>
-                Whether you're exploring healthcare AI,
-                revenue-cycle modernization, telehealth, or
-                digital transformation, we'd love to understand
-                what you're trying to accomplish.
-              </p>
-
-              <div className="sh-contact-details">
-                <div className="sh-contact-detail">
-                  <Mail
-                    size={16}
-                    color={COLORS.brand}
-                  />
-
-                  <a
-                    href={`mailto:${BRAND.email}`}
-                  >
-                    {BRAND.email}
-                  </a>
-                </div>
-
-                <div className="sh-contact-detail">
-                  <Phone
-                    size={16}
-                    color={COLORS.brand}
-                  />
-
-                  <a
-                    href={`tel:${BRAND.phone.replace(
-                      /\\s/g,
-                      ""
-                    )}`}
-                  >
-                    {BRAND.phone}
-                  </a>
-                </div>
-
-                <div className="sh-contact-detail">
-                  <MapPin
-                    size={16}
-                    color={COLORS.brand}
-                  />
-
-                  <span>
-                    India · Serving healthcare
-                    organizations in the United States
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="sh-card sh-contact-form">
-            {sent ? (
-              <div className="sh-success">
-                <CheckCircle2
-                  size={28}
-                  color={COLORS.accent}
-                />
-
-                <h2 className="sh-font-display">
-                  Message received.
-                </h2>
-
-                <p>
-                  Thank you for reaching out to StellarOne
-                  Health. The front-end form is ready for
-                  connection to your production email or backend
-                  service.
-                </p>
-              </div>
-            ) : (
-              <form
-                className="sh-form"
-                onSubmit={handleSubmit}
+            <div className="sh-contact-details">
+              <a
+                className="sh-contact-detail"
+                href={`mailto:${BRAND.email}`}
               >
-                <div className="sh-form-group">
-                  <label
-                    htmlFor="stellar-name"
-                    className="sh-form-label"
-                  >
-                    Name
-                  </label>
-
-                  <input
-                    id="stellar-name"
-                    className="sh-input"
-                    required
-                    value={form.name}
-                    onChange={(event) =>
-                      updateField(
-                        "name",
-                        event.target.value
-                      )
-                    }
-                    placeholder="Your name"
-                  />
+                <div className="sh-contact-detail-icon">
+                  <MessageSquare size={19} />
                 </div>
 
-                <div className="sh-form-group">
-                  <label
-                    htmlFor="stellar-email"
-                    className="sh-form-label"
-                  >
-                    Email
-                  </label>
+                <div>
+                  <strong>Email</strong>
+                  <span>{BRAND.email}</span>
+                </div>
+              </a>
 
-                  <input
-                    id="stellar-email"
-                    className="sh-input"
-                    required
-                    type="email"
-                    value={form.email}
-                    onChange={(event) =>
-                      updateField(
-                        "email",
-                        event.target.value
-                      )
-                    }
-                    placeholder="you@company.com"
-                  />
+              <a
+                className="sh-contact-detail"
+                href={`tel:${BRAND.phone.replace(/\s/g, "")}`}
+              >
+                <div className="sh-contact-detail-icon">
+                  <Phone size={19} />
                 </div>
 
-                <div className="sh-form-group">
-                  <label
-                    htmlFor="stellar-company"
-                    className="sh-form-label"
-                  >
-                    Company
-                  </label>
-
-                  <input
-                    id="stellar-company"
-                    className="sh-input"
-                    value={form.company}
-                    onChange={(event) =>
-                      updateField(
-                        "company",
-                        event.target.value
-                      )
-                    }
-                    placeholder="Company name"
-                  />
+                <div>
+                  <strong>Phone</strong>
+                  <span>{BRAND.phone}</span>
                 </div>
+              </a>
 
-                <div className="sh-form-group">
-                  <label
-                    htmlFor="stellar-message"
-                    className="sh-form-label"
-                  >
-                    Message
-                  </label>
-
-                  <textarea
-                    id="stellar-message"
-                    className="sh-input sh-textarea"
-                    required
-                    value={form.message}
-                    onChange={(event) =>
-                      updateField(
-                        "message",
-                        event.target.value
-                      )
-                    }
-                    placeholder="Tell us how we can help..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="sh-btn sh-btn-primary"
-                  style={{
-                    width: "fit-content",
-                    marginTop: 4,
-                  }}
-                >
-                  Send message
-                  <ArrowRight size={15} />
-                </button>
-
-                <div
-                  style={{
-                    color: COLORS.muted,
-                    fontSize: 10,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Your enquiry will be directed to{" "}
-                  <strong>
-                    {BRAND.email}
-                  </strong>
-                  .
-                </div>
-              </form>
-            )}
+              <div className="sh-contact-image">
+                <img
+                  src={IMAGES.contact}
+                  alt="Modern healthcare facility"
+                />
+              </div>
+            </div>
           </div>
+
+          <form
+            className="sh-form"
+            onSubmit={handleSubmit}
+          >
+            <h2 className="sh-form-title">
+              Start a conversation
+            </h2>
+
+            <p className="sh-form-subtitle">
+              Share a few details and our team can follow up with you.
+            </p>
+
+            <div className="sh-form-grid">
+              <div className="sh-field">
+                <label htmlFor="name">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+
+              <div className="sh-field">
+                <label htmlFor="company">Organization</label>
+                <input
+                  id="company"
+                  name="company"
+                  placeholder="Organization"
+                />
+              </div>
+
+              <div className="sh-field">
+                <label htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+
+              <div className="sh-field">
+                <label htmlFor="phone">Phone</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  placeholder="Phone number"
+                />
+              </div>
+
+              <div className="sh-field full">
+                <label htmlFor="message">How can we help?</label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us a little about what you're looking to solve..."
+                  required
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="sh-btn sh-btn-primary sh-form-submit"
+            >
+              Send Message
+              <ArrowRight size={17} />
+            </button>
+
+            {sent && (
+              <div className="sh-success">
+                <CheckCircle2 size={18} />
+
+                <div>
+                  <strong>Thank you.</strong>
+                  <br />
+                  Your message has been captured. We'll be in touch.
+                </div>
+              </div>
+            )}
+          </form>
         </div>
       </div>
     </section>
   );
 }
 
-/* ============================================================
+/* =========================================================
    FOOTER
-   ============================================================ */
+========================================================= */
 
-function Footer({ navigate }) {
+function Footer({ onNavigate }) {
   return (
     <footer className="sh-footer">
-      <div className="sh-container">
-        <div className="sh-card sh-footer-grid">
-          <div>
-            <Brand onClick={() => navigate("Home")} />
-
-            <p>
-              Healthcare technology experiences built to connect
-              care delivery, revenue workflows, patient access,
-              and enterprise AI modernization.
-            </p>
+      <div className="sh-footer-grid">
+        <div>
+          <div className="sh-footer-brand">
+            {BRAND.name}
           </div>
 
-          <div>
-            <div className="sh-footer-heading">
-              Navigate
-            </div>
+          <p className="sh-footer-description">
+            Intelligent healthcare technology designed to simplify
+            operations, strengthen performance and make healthcare
+            access easier.
+          </p>
+        </div>
 
-            <div className="sh-footer-links">
-              {NAV_ITEMS.map((item) => (
-                <button
-                  type="button"
-                  key={item.id}
-                  onClick={() =>
-                    navigate(item.id)
-                  }
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+        <div>
+          <div className="sh-footer-heading">
+            Company
           </div>
 
-          <div>
-            <div className="sh-footer-heading">
-              Solutions
-            </div>
+          <div className="sh-footer-links">
+            <button onClick={() => onNavigate("about")}>
+              About
+            </button>
 
-            <div className="sh-footer-links">
-              <span>Stellar.AI</span>
-              <span>EasyMed</span>
-              <span>Healthcare AI</span>
-              <span>Revenue Operations</span>
-            </div>
-          </div>
+            <button onClick={() => onNavigate("services")}>
+              Services
+            </button>
 
-          <div>
-            <div className="sh-footer-heading">
+            <button onClick={() => onNavigate("contact")}>
               Contact
-            </div>
-
-            <div className="sh-footer-links">
-              <a
-                href={`mailto:${BRAND.email}`}
-              >
-                {BRAND.email}
-              </a>
-
-              <a
-                href={`tel:${BRAND.phone.replace(
-                  /\\s/g,
-                  ""
-                )}`}
-              >
-                {BRAND.phone}
-              </a>
-
-              <span>
-                India · United States
-              </span>
-            </div>
-          </div>
-
-          <div
-            className="sh-footer-bottom"
-            style={{
-              gridColumn: "1 / -1",
-            }}
-          >
-            © {new Date().getFullYear()}{" "}
-            {BRAND.legalName}. All rights
-            reserved.
+            </button>
           </div>
         </div>
+
+        <div>
+          <div className="sh-footer-heading">
+            Solutions
+          </div>
+
+          <div className="sh-footer-links">
+            <a href="#stellar-ai">Stellar.AI</a>
+            <a href="#easymed">EasyMed</a>
+            <a href={`mailto:${BRAND.email}`}>Email us</a>
+          </div>
+        </div>
+      </div>
+
+      <div className="sh-footer-bottom">
+        © {new Date().getFullYear()} {BRAND.legalName}. All rights
+        reserved.
       </div>
     </footer>
   );
 }
 
-/* ============================================================
+/* =========================================================
    MAIN APP
-   ============================================================ */
+========================================================= */
 
 export default function StellarOneSite() {
-  const [page, setPage] =
-    useState("Home");
+  const [page, setPage] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const [mobileOpen, setMobileOpen] =
-    useState(false);
-
-  const navigate = (nextPage) => {
-    const validPage = NAV_ITEMS.some(
-      (item) => item.id === nextPage
-    );
-
-    if (!validPage) {
-      return;
-    }
-
+  function navigate(nextPage) {
     setPage(nextPage);
-    setMobileOpen(false);
-  };
 
-  useEffect(() => {
     window.scrollTo({
       top: 0,
-      left: 0,
       behavior: "smooth",
     });
+  }
+
+  useEffect(() => {
+    document.title =
+      page === "home"
+        ? "StellarOne Health | Intelligence that moves healthcare forward."
+        : `${page.charAt(0).toUpperCase() + page.slice(1)} | StellarOne Health`;
   }, [page]);
 
+  let content;
+
+  switch (page) {
+    case "about":
+      content = <AboutPage onNavigate={navigate} />;
+      break;
+
+    case "services":
+      content = <ServicesPage onNavigate={navigate} />;
+      break;
+
+    case "contact":
+      content = <ContactPage />;
+      break;
+
+    default:
+      content = <HomePage onNavigate={navigate} />;
+  }
+
   return (
-    <div className="sh-root">
+    <>
       <GlobalStyles />
 
-      <TopBar
-        onHome={() => navigate("Home")}
-        mobileOpen={mobileOpen}
-        setMobileOpen={setMobileOpen}
-      />
+      <div className="sh-app">
+        <TopBar
+          onOpenMenu={() => setMobileMenuOpen(true)}
+        />
 
-      <Sidebar
-        page={page}
-        navigate={navigate}
-      />
+        <Sidebar
+          activePage={page}
+          onNavigate={navigate}
+        />
 
-      <MobileNav
-        page={page}
-        navigate={navigate}
-        open={mobileOpen}
-        setOpen={setMobileOpen}
-      />
+        <MobileDrawer
+          open={mobileMenuOpen}
+          activePage={page}
+          onNavigate={navigate}
+          onClose={() => setMobileMenuOpen(false)}
+        />
 
-      <main className="sh-main">
-        {page === "Home" && (
-          <HomePage navigate={navigate} />
-        )}
+        <main className="sh-main">
+          {content}
+        </main>
 
-        {page === "About" && (
-          <AboutPage />
-        )}
-
-        {page === "Services" && (
-          <ServicesPage />
-        )}
-
-        {page === "Contact" && (
-          <ContactPage />
-        )}
-
-        <Footer navigate={navigate} />
-      </main>
-    </div>
+        <Footer onNavigate={navigate} />
+      </div>
+    </>
   );
 }
