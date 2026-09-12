@@ -230,14 +230,20 @@ function DotGrid({ light = false }) {
 
 const NAV_ITEMS = ["Home", "About", "Services", "Contact"];
 
+function BrandMark({ className = "" }) {
+  return (
+    <span className={`sh-brand-name ${className}`.trim()}>
+      <span className="sh-brand-primary">Stellarone</span> <span className="sh-brand-health">Health</span>
+    </span>
+  );
+}
+
 function Nav({ page, setPage, mobileOpen, setMobileOpen }) {
   return (
     <header className="sh-nav-shell fixed top-0 inset-x-0 z-[1000]" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <button onClick={() => setPage("Home")} className="sh-nav-brand sh-serif text-xl tracking-tight" style={{ color: "var(--ink)" }}>
-          <span className="sh-brand-name">
-            <span className="sh-brand-primary">Stellarone</span> <span className="sh-brand-health">Health</span>
-          </span>
+          <BrandMark />
         </button>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {NAV_ITEMS.map((item) => (
@@ -505,7 +511,7 @@ function Footer({ setPage }) {
       <div className="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10 text-sm">
         <div>
           <p className="sh-serif text-xl mb-2">
-            <span className="sh-brand-name"><span className="sh-brand-primary">Stellarone</span> <span className="sh-brand-health">Health</span></span>
+            <BrandMark />
           </p>
           <p style={{ color: "var(--steel)" }}>Healthcare technology company serving provider organizations across the United States.</p>
         </div>
@@ -762,7 +768,7 @@ export default function StellarOneSite() {
   useEffect(() => { window.scrollTo?.(0, 0); }, [page]);
 
   return (
-    <div className="sh-root min-h-screen pt-[72px] md:pt-[88px]">
+    <div className="sh-root min-h-screen pt-[72px]">
       <FontImport />
       <Nav page={page} setPage={setPage} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
       {page === "Home" && <HomePage setPage={setPage} />}
