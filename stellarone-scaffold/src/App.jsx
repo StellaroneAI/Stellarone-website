@@ -624,41 +624,6 @@ function TrustSection() {
   );
 }
 
-function PillarsSection() {
-  return (
-    <section className="sh-section">
-      <div className="sh-shell">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
-          <div>
-            <p className="sh-badge mb-4">
-              <Globe2 size={14} /> Experience pillars
-            </p>
-            <h2 className="sh-serif text-4xl md:text-5xl tracking-[-0.05em] max-w-2xl">
-              Every section now communicates strategy, capability, and trust more clearly.
-            </h2>
-          </div>
-          <p className="max-w-md text-base leading-7" style={{ color: "var(--ink-soft)" }}>
-            The refreshed layout balances strong executive messaging with product proof points so the site feels enterprise-led rather than template-driven.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-5">
-          {PILLARS.map((item) => (
-            <div key={item.title} className="sh-card p-7 md:p-8">
-              <div className="sh-feature-icon mb-5" style={{ color: item.color }}>
-                <item.icon size={22} />
-              </div>
-              <h3 className="sh-serif text-2xl tracking-[-0.03em] mb-3">{item.title}</h3>
-              <p className="text-sm leading-7" style={{ color: "var(--ink-soft)" }}>
-                {item.text}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function ProductsSection({ setPage }) {
   return (
     <section className="sh-section pt-0">
