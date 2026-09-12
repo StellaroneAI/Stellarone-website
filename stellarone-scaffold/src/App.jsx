@@ -229,20 +229,26 @@ function DotGrid({ light = false }) {
 }
 
 const NAV_ITEMS = ["Home", "About", "Services", "Contact"];
+const BRAND = { name: "Stellarone", sub: "Health" };
 
 function BrandMark({ className = "" }) {
   return (
     <span className={`sh-brand-name ${className}`.trim()}>
-      <span className="sh-brand-primary">Stellarone</span> <span className="sh-brand-health">Health</span>
+      <span className="sh-brand-primary">{BRAND.name}</span> <span className="sh-brand-health">{BRAND.sub}</span>
     </span>
   );
 }
 
 function Nav({ page, setPage, mobileOpen, setMobileOpen }) {
   return (
-    <header className="sh-nav-shell sticky top-0 z-[1000]" style={{ borderBottom: "1px solid var(--line)" }}>
+    <header className="sh-nav-shell sticky top-0 z-50" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <button onClick={() => setPage("Home")} className="sh-nav-brand sh-serif text-xl tracking-tight" style={{ color: "var(--ink)" }}>
+        <button
+          onClick={() => setPage("Home")}
+          className="sh-nav-brand sh-serif text-xl tracking-tight"
+          style={{ color: "var(--ink)" }}
+          aria-label={`${BRAND.name} ${BRAND.sub} home`}
+        >
           <BrandMark />
         </button>
         <nav className="hidden md:flex items-center gap-8 text-sm">
