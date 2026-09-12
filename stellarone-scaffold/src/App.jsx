@@ -40,7 +40,7 @@ const TOKENS = `
   .sh-root textarea { font: inherit; }
   .sh-root button { cursor: pointer; }
   .sh-nav-shell {
-    box-shadow: 0 1px 0 rgba(16,27,45,0.05), 0 12px 32px -28px rgba(16,27,45,0.35);
+    box-shadow: 0 1px 0 rgba(16,27,45,0.05), 0 16px 36px -28px rgba(16,27,45,0.45);
   }
   .sh-nav-shell > div:first-child { min-height: 72px; }
   .sh-nav-brand {
@@ -54,16 +54,23 @@ const TOKENS = `
     gap: 0.35rem;
     white-space: nowrap;
   }
+  .sh-brand-primary {
+    font-weight: 700;
+    background: linear-gradient(105deg, #0a1628 0%, #1d8f87 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
   .sh-brand-health {
     display: inline-block;
-    padding: 0.28em 0.52em 0.24em;
-    border: 1px solid rgba(31,138,130,0.28);
+    padding: 0.3em 0.56em 0.24em;
+    border: 1px solid rgba(31,138,130,0.35);
     border-radius: 999px;
-    background: rgba(31,138,130,0.1);
+    background: rgba(31,138,130,0.16);
     color: var(--teal-deep);
     font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
     font-size: 0.42em;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.12em;
     line-height: 1;
     text-transform: uppercase;
@@ -71,11 +78,11 @@ const TOKENS = `
   }
   .sh-nav-brand::before {
     content: "";
-    width: 0.65rem;
-    height: 0.65rem;
+    width: 0.7rem;
+    height: 0.7rem;
     border-radius: 999px;
-    background: var(--teal);
-    box-shadow: 0 0 0 5px rgba(31,138,130,0.12);
+    background: radial-gradient(circle at 35% 35%, #3dd6cc 0%, var(--teal) 60%);
+    box-shadow: 0 0 0 5px rgba(31,138,130,0.14);
   }
   .sh-hero-copy { max-width: 38rem; }
   .sh-hero-title,
@@ -107,7 +114,7 @@ const TOKENS = `
   }
   .sh-serif { font-family: 'Newsreader', Georgia, serif; }
   .sh-nav-shell {
-    background: rgba(243,245,241,0.82);
+    background: rgba(247,249,252,0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
@@ -222,15 +229,27 @@ function DotGrid({ light = false }) {
 }
 
 const NAV_ITEMS = ["Home", "About", "Services", "Contact"];
+const BRAND = { name: "Stellarone", sub: "Health" };
+
+function BrandMark({ className = "" }) {
+  return (
+    <span className={`sh-brand-name ${className}`.trim()}>
+      <span className="sh-brand-primary">{BRAND.name}</span> <span className="sh-brand-health">{BRAND.sub}</span>
+    </span>
+  );
+}
 
 function Nav({ page, setPage, mobileOpen, setMobileOpen }) {
   return (
-    <header className="sh-nav-shell sticky top-0 z-40" style={{ borderBottom: "1px solid var(--line)" }}>
+    <header className="sh-nav-shell sticky top-0 z-50" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <button onClick={() => setPage("Home")} className="sh-nav-brand sh-serif text-xl tracking-tight" style={{ color: "var(--ink)" }}>
-          <span className="sh-brand-name">
-            StellarOne <span className="sh-brand-health">Health</span>
-          </span>
+        <button
+          onClick={() => setPage("Home")}
+          className="sh-nav-brand sh-serif text-xl tracking-tight"
+          style={{ color: "var(--ink)" }}
+          aria-label={`${BRAND.name} ${BRAND.sub} home`}
+        >
+          <BrandMark />
         </button>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {NAV_ITEMS.map((item) => (
@@ -498,7 +517,7 @@ function Footer({ setPage }) {
       <div className="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10 text-sm">
         <div>
           <p className="sh-serif text-xl mb-2">
-            <span className="sh-brand-name">StellarOne <span className="sh-brand-health">Health</span></span>
+            <BrandMark />
           </p>
           <p style={{ color: "var(--steel)" }}>Healthcare technology company serving provider organizations across the United States.</p>
         </div>
