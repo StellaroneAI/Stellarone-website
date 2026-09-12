@@ -45,7 +45,6 @@ const TOKENS = `
     --shadow: 0 30px 70px -45px rgba(15, 23, 42, 0.45);
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
@@ -210,6 +209,8 @@ const TOKENS = `
     height: 100%;
     object-fit: cover;
     display: block;
+    position: relative;
+    z-index: 0;
   }
   .sh-image-shell {
     overflow: hidden;
@@ -217,11 +218,16 @@ const TOKENS = `
     position: relative;
     min-height: 100%;
   }
+  .sh-image-shell > * {
+    position: relative;
+  }
   .sh-image-shell::after {
     content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg, rgba(15, 23, 42, 0) 20%, rgba(15, 23, 42, 0.32) 100%);
+    z-index: 1;
+    pointer-events: none;
   }
   .sh-floating-note {
     position: absolute;
@@ -235,6 +241,7 @@ const TOKENS = `
     color: white;
     padding: 1rem;
     box-shadow: 0 20px 35px -24px rgba(9, 18, 33, 0.9);
+    z-index: 2;
   }
   .sh-pill {
     display: inline-flex;
@@ -301,9 +308,9 @@ const IMAGES = {
 };
 
 const HIGHLIGHTS = [
-  { value: "Enterprise-ready", label: "Healthcare delivery modernization" },
-  { value: "AI-assisted", label: "RCM and patient access workflows" },
-  { value: "Multichannel", label: "Web, mobile, and operational touchpoints" },
+  { headline: "Enterprise-ready", caption: "Healthcare delivery modernization" },
+  { headline: "AI-assisted", caption: "RCM and patient access workflows" },
+  { headline: "Multichannel", caption: "Web, mobile, and operational touchpoints" },
 ];
 
 const TRUST_POINTS = [
@@ -514,10 +521,10 @@ function Hero({ setPage }) {
           </div>
           <div className="grid sm:grid-cols-3 gap-3">
             {HIGHLIGHTS.map((item) => (
-              <div key={item.label} className="sh-kpi">
-                <strong className="sh-serif">{item.value}</strong>
+              <div key={item.headline} className="sh-kpi">
+                <strong className="sh-serif">{item.headline}</strong>
                 <span className="text-sm" style={{ color: "var(--ink-muted)" }}>
-                  {item.label}
+                  {item.caption}
                 </span>
               </div>
             ))}
