@@ -17,14 +17,14 @@ npm run dev
 npm run build
 ```
 
-Build output is generated in `dist/`.
+Build output is generated in `stellarone-scaffold/dist/`.
 
 ## Vercel deployment
 
-This repository is configured for Vercel using `/home/runner/work/Stellarone-website/Stellarone-website/vercel.json`:
+This repository is configured for Vercel using `vercel.json` at the repository root:
 
 - Build command: `npm run build`
-- Output directory: `dist`
+- Output directory: `stellarone-scaffold/dist`
 - SPA rewrite: `/(.*) -> /index.html`
 
 ### Deploy steps
