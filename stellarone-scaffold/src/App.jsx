@@ -1050,6 +1050,10 @@ export default function StellarOneSite() {
   const [shouldResetScroll, setShouldResetScroll] = useState(false);
 
   const navigateTo = (nextPage) => {
+    if (nextPage === page) {
+      setMobileOpen(false);
+      return;
+    }
     setMobileOpen(false);
     setShouldResetScroll(true);
     setPage(nextPage);
