@@ -169,9 +169,9 @@ const TOKENS = `
   }
   .sh-watermark { opacity: 0.06; pointer-events: none; }
   .sh-kpi {
-    border: 1px solid var(--line-strong);
+    border: 1px solid rgba(169,192,216,0.34);
     border-radius: 12px;
-    background: rgba(243,245,241,0.04);
+    background: rgba(10,22,40,0.42);
   }
   .sh-trust-grid {
     display: grid;
@@ -295,6 +295,12 @@ function OrbitGraphic() {
   );
 }
 
+const HOME_HIGHLIGHTS = [
+  { label: "Patient Access", value: "Connected" },
+  { label: "RCM Workflows", value: "Automated" },
+  { label: "Care Delivery", value: "Multilingual" },
+];
+
 function Hero({ setPage }) {
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--ink)", color: "var(--paper)" }}>
@@ -319,12 +325,8 @@ function Hero({ setPage }) {
               Our story
             </button>
           </div>
-          <div className="grid grid-cols-3 gap-3 mt-10 text-center">
-            {[
-              { label: "Workflow Areas", value: "12+" },
-              { label: "Automation Modules", value: "25+" },
-              { label: "Languages Supported", value: "4" },
-            ].map((kpi) => (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-10 text-center">
+            {HOME_HIGHLIGHTS.map((kpi) => (
               <div key={kpi.label} className="sh-kpi px-3 py-3">
                 <p className="text-xl sh-serif">{kpi.value}</p>
                 <p className="text-[11px] uppercase tracking-[0.09em]" style={{ color: "#A9C0D8" }}>{kpi.label}</p>
@@ -345,11 +347,11 @@ function TrustSection() {
         <div className="flex flex-col md:flex-row gap-4 md:gap-8 md:items-end md:justify-between mb-8">
           <div>
             <p className="sh-section-eyebrow mb-3">Enterprise readiness</p>
-            <h2 className="sh-serif text-3xl leading-tight max-w-2xl">Built for security, reliability, and measurable operational outcomes.</h2>
+            <h2 className="sh-section-heading sh-serif text-3xl leading-tight max-w-2xl">Built for dependable operations and accountable AI adoption.</h2>
           </div>
           <div className="text-sm flex items-center gap-2 md:justify-end" style={{ color: "var(--ink-soft)" }}>
             <ShieldCheck size={17} style={{ color: "var(--teal)" }} />
-            Designed for HIPAA-aware workflows
+            Supports compliance-focused healthcare workflows
           </div>
         </div>
         <div className="sh-trust-grid">
@@ -518,8 +520,8 @@ function Footer({ setPage }) {
         <div>
           <p className="font-medium mb-3" style={{ color: "var(--ink)" }}>Contact</p>
           <div className="flex flex-col gap-2" style={{ color: "var(--ink-soft)" }}>
-            <span>hello@stellaronehealth.com</span>
-            <span>+91 91803 28119</span>
+            <a href="mailto:hello@stellaronehealth.com" className="hover:underline underline-offset-2">hello@stellaronehealth.com</a>
+            <a href="tel:+919180328119" className="hover:underline underline-offset-2">+91 91803 28119</a>
             <span>India</span>
           </div>
         </div>
@@ -675,11 +677,11 @@ function ContactPage() {
         <div className="space-y-4 text-sm">
           <div className="flex items-center gap-3">
             <Mail size={16} style={{ color: "var(--teal)" }} />
-            <span>hello@stellaronehealth.com</span>
+            <a href="mailto:hello@stellaronehealth.com" className="underline-offset-2 hover:underline">hello@stellaronehealth.com</a>
           </div>
           <div className="flex items-center gap-3">
             <Phone size={16} style={{ color: "var(--teal)" }} />
-            <span>+91 91803 28119</span>
+            <a href="tel:+919180328119" className="underline-offset-2 hover:underline">+91 91803 28119</a>
           </div>
           <div className="flex items-center gap-3">
             <MapPin size={16} style={{ color: "var(--teal)" }} />
