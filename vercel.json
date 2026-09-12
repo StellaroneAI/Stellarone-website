@@ -1,12 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "stellarone-scaffold/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "stellarone-scaffold/dist" }
-    }
-  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "routes": [
     { "src": "/(.*)", "dest": "/index.html" }
   ]
