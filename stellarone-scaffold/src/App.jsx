@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
+
 import {
   ArrowRight,
   ArrowUpRight,
   BrainCircuit,
   CheckCircle2,
-  ChevronRight,
   CircleCheck,
   Code2,
   HeartPulse,
   Home,
-  Hospital,
   Menu,
   MessageSquare,
   Network,
@@ -21,48 +20,87 @@ import {
   X,
 } from "lucide-react";
 
+
 /* =========================================================
-   BRAND
+   STELLARONE HEALTH
+   MAIN BRAND CONFIGURATION
 ========================================================= */
 
 const BRAND = {
   name: "StellarOne Health",
-  legalName: "StellarOne Health Technologies Pvt. Ltd.",
-  email: "Praveen.Jayaraman@stellaronehealth.com",
-  phone: "+91 91803 28119",
+
+  legalName:
+    "StellarOne Health Technologies Pvt. Ltd.",
+
+  email:
+    "Praveen.Jayaraman@stellaronehealth.com",
+
+  phone:
+    "+91 91803 28119",
 };
 
+
 /* =========================================================
-   STELLARONE HEALTH COLOR PALETTE
+   BRAND COLORS
+   Keeping the original StellarOne visual direction
 ========================================================= */
 
 const COLORS = {
   background: "#f4f7fb",
-  surface: "rgba(255,255,255,0.84)",
-  surfaceSolid: "#ffffff",
-  panel: "#eaf0f8",
 
-  ink: "#0f172a",
-  inkSoft: "#475569",
-  inkMuted: "#64748b",
+  surface:
+    "rgba(255,255,255,0.84)",
 
-  line: "rgba(148,163,184,0.24)",
-  lineStrong: "rgba(148,163,184,0.40)",
+  surfaceSolid:
+    "#ffffff",
 
-  brand: "#1d4ed8",
-  brandDeep: "#0f3aa9",
+  panel:
+    "#eaf0f8",
 
-  accent: "#0f766e",
-  accentSoft: "#dff7f1",
+  ink:
+    "#0f172a",
 
-  gold: "#c7922d",
+  inkSoft:
+    "#475569",
 
-  navy: "#091221",
-  navySoft: "#0d1b33",
+  inkMuted:
+    "#64748b",
+
+  line:
+    "rgba(148,163,184,0.24)",
+
+  lineStrong:
+    "rgba(148,163,184,0.40)",
+
+  brand:
+    "#1d4ed8",
+
+  brandDeep:
+    "#0f3aa9",
+
+  accent:
+    "#0f766e",
+
+  accentSoft:
+    "#dff7f1",
+
+  gold:
+    "#c7922d",
+
+  navy:
+    "#091221",
+
+  navySoft:
+    "#0d1b33",
 };
+
 
 /* =========================================================
    TEMPORARY VISUAL ASSETS
+
+   These are temporary images for the website.
+   Later we can replace them with custom StellarOne
+   branded graphics / EasyMed / Stellar.AI screenshots.
 ========================================================= */
 
 const IMAGES = {
@@ -84,7 +122,10 @@ const IMAGES = {
   contact:
     "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=88",
 
-  /* Services */
+
+  /* =======================================================
+     WHAT WE DO / SERVICES IMAGES
+  ======================================================= */
 
   aiWorkflows:
     "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=88",
@@ -104,6 +145,7 @@ const IMAGES = {
   healthcareConsulting:
     "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=88",
 };
+
 
 /* =========================================================
    GLOBAL STYLES
@@ -138,12 +180,14 @@ function GlobalStyles() {
         --navy-soft: ${COLORS.navySoft};
 
         --shadow:
-          0 30px 70px -45px rgba(15,23,42,0.45);
-
-        --radius-lg: 28px;
-        --radius-md: 20px;
-        --radius-sm: 14px;
+          0 30px 70px -45px
+          rgba(15,23,42,0.45);
       }
+
+
+      /* =====================================================
+         RESET
+      ===================================================== */
 
       * {
         box-sizing: border-box;
@@ -155,8 +199,12 @@ function GlobalStyles() {
 
       body {
         margin: 0;
-        background: var(--background);
-        color: var(--ink);
+
+        background:
+          var(--background);
+
+        color:
+          var(--ink);
 
         font-family:
           Inter,
@@ -167,20 +215,23 @@ function GlobalStyles() {
           "Segoe UI",
           sans-serif;
 
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing:
+          antialiased;
+
+        text-rendering:
+          optimizeLegibility;
       }
 
       body,
       button,
       input,
       textarea {
-        font-family: inherit;
+        font-family:
+          inherit;
       }
 
-      button,
-      a {
-        -webkit-tap-highlight-color: transparent;
+      button {
+        cursor: pointer;
       }
 
       a {
@@ -193,26 +244,30 @@ function GlobalStyles() {
         max-width: 100%;
       }
 
-      button {
-        cursor: pointer;
+      ::selection {
+        background:
+          rgba(29,78,216,.16);
       }
 
-      ::selection {
-        background: rgba(29,78,216,0.16);
-      }
+
+      /* =====================================================
+         APP
+      ===================================================== */
 
       .sh-app {
         min-height: 100vh;
+
         overflow-x: hidden;
 
         background:
           radial-gradient(
-            circle at 80% 0%,
-            rgba(29,78,216,0.07),
+            circle at 82% 0%,
+            rgba(29,78,216,.07),
             transparent 32rem
           ),
           var(--background);
       }
+
 
       /* =====================================================
          TOP BAR
@@ -220,6 +275,7 @@ function GlobalStyles() {
 
       .sh-topbar {
         position: fixed;
+
         top: 0;
         left: 0;
         right: 0;
@@ -231,12 +287,17 @@ function GlobalStyles() {
         display: flex;
         align-items: center;
 
-        background: rgba(244,247,251,0.86);
+        background:
+          rgba(244,247,251,.88);
 
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
+        border-bottom:
+          1px solid var(--line);
 
-        border-bottom: 1px solid var(--line);
+        backdrop-filter:
+          blur(18px);
+
+        -webkit-backdrop-filter:
+          blur(18px);
       }
 
       .sh-topbar-inner {
@@ -247,23 +308,32 @@ function GlobalStyles() {
         align-items: center;
         justify-content: space-between;
 
-        padding: 0 30px;
+        padding:
+          0 30px;
       }
+
+
+      /* =====================================================
+         BRAND
+      ===================================================== */
 
       .sh-brand {
         display: flex;
         align-items: center;
+
         gap: 12px;
       }
 
       .sh-brand-mark {
-        width: 40px;
-        height: 40px;
-
-        border-radius: 12px;
+        width: 42px;
+        height: 42px;
 
         display: grid;
         place-items: center;
+
+        flex: 0 0 auto;
+
+        border-radius: 13px;
 
         background:
           linear-gradient(
@@ -275,36 +345,54 @@ function GlobalStyles() {
         color: white;
 
         box-shadow:
-          0 12px 30px -14px rgba(29,78,216,0.65);
+          0 14px 30px -15px
+          rgba(29,78,216,.75);
       }
 
       .sh-brand-name {
         font-size: 18px;
+
         font-weight: 850;
-        letter-spacing: -0.035em;
+
+        letter-spacing:
+          -.035em;
       }
 
       .sh-brand-subtitle {
-        color: var(--ink-muted);
-        font-size: 11px;
         margin-top: 2px;
+
+        color:
+          var(--ink-muted);
+
+        font-size: 10px;
       }
+
+
+      /* =====================================================
+         MOBILE MENU BUTTON
+      ===================================================== */
 
       .sh-mobile-menu-btn {
         display: none;
 
-        width: 44px;
-        height: 44px;
-
-        border: 1px solid var(--line);
-        border-radius: 12px;
-
-        background: rgba(255,255,255,0.86);
-        color: var(--ink);
+        width: 46px;
+        height: 46px;
 
         align-items: center;
         justify-content: center;
+
+        border:
+          1px solid var(--line);
+
+        border-radius: 14px;
+
+        background:
+          rgba(255,255,255,.88);
+
+        color:
+          var(--ink);
       }
+
 
       /* =====================================================
          SIDEBAR
@@ -314,8 +402,8 @@ function GlobalStyles() {
         position: fixed;
 
         top: 78px;
-        bottom: 0;
         left: 0;
+        bottom: 0;
 
         width: 245px;
 
@@ -324,34 +412,47 @@ function GlobalStyles() {
         display: flex;
         flex-direction: column;
 
-        padding: 28px 18px;
+        padding:
+          28px 18px;
 
-        background: rgba(255,255,255,0.72);
+        background:
+          rgba(255,255,255,.72);
 
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
+        border-right:
+          1px solid var(--line);
 
-        border-right: 1px solid var(--line);
+        backdrop-filter:
+          blur(18px);
+
+        -webkit-backdrop-filter:
+          blur(18px);
       }
 
       .sh-nav-label {
-        padding: 0 12px;
+        padding:
+          0 12px;
 
         margin:
           6px 0
           12px;
 
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 10px;
+
         font-weight: 850;
 
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
+        letter-spacing:
+          .14em;
+
+        text-transform:
+          uppercase;
       }
 
       .sh-nav {
         display: grid;
+
         gap: 6px;
       }
 
@@ -363,35 +464,48 @@ function GlobalStyles() {
 
         gap: 12px;
 
+        padding:
+          13px 14px;
+
         border: 0;
+
         border-radius: 14px;
 
-        padding: 13px 14px;
+        background:
+          transparent;
 
-        background: transparent;
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
         font-size: 14px;
+
         font-weight: 700;
 
         text-align: left;
 
         transition:
-          background 0.2s ease,
-          color 0.2s ease,
-          transform 0.2s ease;
+          background .2s ease,
+          color .2s ease,
+          transform .2s ease;
       }
 
       .sh-nav-button:hover {
-        background: rgba(29,78,216,0.06);
-        color: var(--brand);
+        background:
+          rgba(29,78,216,.06);
 
-        transform: translateX(2px);
+        color:
+          var(--brand);
+
+        transform:
+          translateX(2px);
       }
 
       .sh-nav-button.active {
-        background: rgba(29,78,216,0.09);
-        color: var(--brand);
+        background:
+          rgba(29,78,216,.09);
+
+        color:
+          var(--brand);
       }
 
       .sh-nav-icon {
@@ -413,29 +527,33 @@ function GlobalStyles() {
         background:
           linear-gradient(
             145deg,
-            rgba(29,78,216,0.09),
-            rgba(15,118,110,0.08)
+            rgba(29,78,216,.09),
+            rgba(15,118,110,.08)
           );
 
-        border: 1px solid var(--line);
+        border:
+          1px solid var(--line);
       }
 
       .sh-sidebar-card strong {
         display: block;
 
-        font-size: 14px;
-
         margin-bottom: 6px;
+
+        font-size: 14px;
       }
 
       .sh-sidebar-card p {
         margin: 0;
 
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 12px;
+
         line-height: 1.6;
       }
+
 
       /* =====================================================
          MOBILE DRAWER
@@ -443,13 +561,16 @@ function GlobalStyles() {
 
       .sh-mobile-overlay {
         position: fixed;
+
         inset: 0;
 
         z-index: 1200;
 
-        background: rgba(9,18,33,0.4);
+        background:
+          rgba(9,18,33,.42);
 
-        backdrop-filter: blur(4px);
+        backdrop-filter:
+          blur(4px);
       }
 
       .sh-mobile-drawer {
@@ -459,16 +580,19 @@ function GlobalStyles() {
         right: 0;
         bottom: 0;
 
-        width: min(86vw, 360px);
+        width:
+          min(86vw,360px);
 
         z-index: 1300;
 
         padding: 24px;
 
-        background: #fff;
+        background:
+          white;
 
         box-shadow:
-          -30px 0 70px -35px rgba(15,23,42,0.5);
+          -30px 0 70px -35px
+          rgba(15,23,42,.55);
       }
 
       .sh-mobile-drawer-header {
@@ -478,7 +602,8 @@ function GlobalStyles() {
 
         padding-bottom: 22px;
 
-        border-bottom: 1px solid var(--line);
+        border-bottom:
+          1px solid var(--line);
       }
 
       .sh-close-btn {
@@ -493,20 +618,21 @@ function GlobalStyles() {
 
         border-radius: 12px;
 
-        background: var(--background);
-        color: var(--ink);
+        background:
+          var(--background);
+
+        color:
+          var(--ink);
       }
 
       .sh-mobile-nav {
         display: grid;
+
         gap: 7px;
 
         margin-top: 24px;
       }
 
-      .sh-mobile-nav .sh-nav-button {
-        padding: 15px;
-      }
 
       /* =====================================================
          MAIN
@@ -514,17 +640,23 @@ function GlobalStyles() {
 
       .sh-main {
         margin-left: 245px;
+
         padding-top: 78px;
       }
 
       .sh-container {
-        width: min(1280px, 100%);
-        margin: 0 auto;
+        width:
+          min(1280px,100%);
+
+        margin:
+          0 auto;
       }
 
       .sh-section {
-        padding: 110px 6vw;
+        padding:
+          110px 6vw;
       }
+
 
       /* =====================================================
          EYEBROW
@@ -533,15 +665,21 @@ function GlobalStyles() {
       .sh-eyebrow {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
 
-        color: var(--brand);
+        gap: 9px;
+
+        color:
+          var(--brand);
 
         font-size: 11px;
+
         font-weight: 850;
 
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
+        letter-spacing:
+          .16em;
+
+        text-transform:
+          uppercase;
       }
 
       .sh-eyebrow-dot {
@@ -550,58 +688,14 @@ function GlobalStyles() {
 
         border-radius: 50%;
 
-        background: var(--accent);
+        background:
+          var(--accent);
       }
+
 
       /* =====================================================
-         HERO
+         GRADIENT TEXT
       ===================================================== */
-
-      .sh-hero {
-        min-height: calc(100vh - 78px);
-
-        display: flex;
-        align-items: center;
-
-        padding:
-          clamp(60px,8vw,120px)
-          6vw;
-      }
-
-      .sh-hero-grid {
-        width: min(1280px,100%);
-        margin: 0 auto;
-
-        display: grid;
-
-        grid-template-columns:
-          minmax(0,1.02fr)
-          minmax(420px,.98fr);
-
-        gap:
-          clamp(50px,7vw,110px);
-
-        align-items: center;
-      }
-
-      .sh-hero-copy {
-        max-width: 760px;
-      }
-
-      .sh-hero-title {
-        margin:
-          22px 0
-          28px;
-
-        font-size:
-          clamp(44px,6.2vw,84px);
-
-        line-height: 0.98;
-
-        letter-spacing: -0.06em;
-
-        font-weight: 850;
-      }
 
       .sh-gradient-text {
         background:
@@ -612,32 +706,20 @@ function GlobalStyles() {
             var(--accent)
           );
 
-        -webkit-background-clip: text;
-        background-clip: text;
+        -webkit-background-clip:
+          text;
 
-        color: transparent;
+        background-clip:
+          text;
+
+        color:
+          transparent;
       }
 
-      .sh-hero-description {
-        max-width: 680px;
 
-        margin: 0;
-
-        color: var(--ink-soft);
-
-        font-size:
-          clamp(17px,1.45vw,20px);
-
-        line-height: 1.7;
-      }
-
-      .sh-hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-
-        margin-top: 36px;
-      }
+      /* =====================================================
+         BUTTONS
+      ===================================================== */
 
       .sh-btn {
         min-height: 50px;
@@ -648,26 +730,30 @@ function GlobalStyles() {
 
         gap: 9px;
 
-        padding: 0 20px;
+        padding:
+          0 20px;
+
+        border:
+          1px solid transparent;
 
         border-radius: 13px;
 
-        border: 1px solid transparent;
-
         font-size: 14px;
+
         font-weight: 750;
 
         transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
+          transform .2s ease,
+          box-shadow .2s ease;
       }
 
       .sh-btn:hover {
-        transform: translateY(-2px);
+        transform:
+          translateY(-2px);
       }
 
       .sh-btn-primary {
-        color: #fff;
+        color: white;
 
         background:
           linear-gradient(
@@ -678,15 +764,103 @@ function GlobalStyles() {
 
         box-shadow:
           0 20px 40px -25px
-          rgba(29,78,216,0.75);
+          rgba(29,78,216,.75);
       }
 
       .sh-btn-secondary {
-        background: rgba(255,255,255,0.75);
+        color:
+          var(--ink);
 
-        border-color: var(--line-strong);
+        background:
+          rgba(255,255,255,.78);
 
-        color: var(--ink);
+        border-color:
+          var(--line-strong);
+      }
+
+
+      /* =====================================================
+         HERO
+      ===================================================== */
+
+      .sh-hero {
+        min-height:
+          calc(100vh - 78px);
+
+        display: flex;
+        align-items: center;
+
+        padding:
+          clamp(60px,8vw,120px)
+          6vw;
+      }
+
+      .sh-hero-grid {
+        width:
+          min(1280px,100%);
+
+        margin:
+          0 auto;
+
+        display: grid;
+
+        grid-template-columns:
+          minmax(0,1.02fr)
+          minmax(420px,.98fr);
+
+        gap:
+          clamp(50px,7vw,110px);
+
+        align-items:
+          center;
+      }
+
+      .sh-hero-copy {
+        max-width:
+          760px;
+      }
+
+      .sh-hero-title {
+        margin:
+          22px 0
+          28px;
+
+        font-size:
+          clamp(46px,6.2vw,84px);
+
+        line-height:
+          .98;
+
+        letter-spacing:
+          -.06em;
+
+        font-weight:
+          850;
+      }
+
+      .sh-hero-description {
+        max-width:
+          680px;
+
+        margin: 0;
+
+        color:
+          var(--ink-soft);
+
+        font-size:
+          clamp(17px,1.45vw,20px);
+
+        line-height:
+          1.7;
+      }
+
+      .sh-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+        margin-top: 36px;
       }
 
       .sh-hero-note {
@@ -697,14 +871,17 @@ function GlobalStyles() {
 
         margin-top: 28px;
 
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 12px;
       }
 
       .sh-hero-note svg {
-        color: var(--accent);
+        color:
+          var(--accent);
       }
+
 
       /* =====================================================
          HERO IMAGE
@@ -717,15 +894,16 @@ function GlobalStyles() {
       .sh-hero-image {
         position: relative;
 
-        min-height: 590px;
-
         overflow: hidden;
 
-        border-radius: 34px;
+        min-height:
+          590px;
 
-        border: 1px solid rgba(255,255,255,0.7);
+        border-radius:
+          34px;
 
-        box-shadow: var(--shadow);
+        box-shadow:
+          var(--shadow);
       }
 
       .sh-hero-image img {
@@ -737,13 +915,14 @@ function GlobalStyles() {
 
       .sh-image-overlay {
         position: absolute;
+
         inset: 0;
 
         background:
           linear-gradient(
             180deg,
-            rgba(9,18,33,0.02),
-            rgba(9,18,33,0.45)
+            rgba(9,18,33,.02),
+            rgba(9,18,33,.45)
           );
       }
 
@@ -759,33 +938,36 @@ function GlobalStyles() {
 
         border-radius: 20px;
 
-        background: rgba(255,255,255,0.92);
+        background:
+          rgba(255,255,255,.93);
 
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-
-        border: 1px solid rgba(255,255,255,0.8);
+        backdrop-filter:
+          blur(18px);
 
         box-shadow:
           0 25px 55px -35px
-          rgba(15,23,42,0.6);
+          rgba(15,23,42,.6);
       }
 
       .sh-floating-stat-number {
-        font-size: 32px;
+        font-size: 30px;
+
         line-height: 1;
 
         font-weight: 850;
 
-        color: var(--brand-deep);
+        color:
+          var(--brand-deep);
       }
 
       .sh-floating-stat-label {
         margin-top: 8px;
 
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 12px;
+
         line-height: 1.5;
       }
 
@@ -800,20 +982,27 @@ function GlobalStyles() {
 
         gap: 9px;
 
-        padding: 13px 15px;
+        padding:
+          13px 15px;
 
-        border-radius: 14px;
+        border-radius:
+          14px;
 
-        background: var(--navy);
-        color: white;
+        background:
+          var(--navy);
+
+        color:
+          white;
 
         box-shadow:
           0 25px 50px -30px
-          rgba(9,18,33,0.8);
+          rgba(9,18,33,.8);
 
         font-size: 12px;
+
         font-weight: 700;
       }
+
 
       /* =====================================================
          STATEMENT
@@ -828,12 +1017,10 @@ function GlobalStyles() {
         display: grid;
 
         grid-template-columns:
-          0.75fr
+          .75fr
           1.25fr;
 
         gap: 80px;
-
-        align-items: start;
       }
 
       .sh-statement-title {
@@ -842,23 +1029,29 @@ function GlobalStyles() {
         font-size:
           clamp(38px,5vw,64px);
 
-        line-height: 1.02;
+        line-height:
+          1.02;
 
-        letter-spacing: -0.055em;
+        letter-spacing:
+          -.055em;
 
-        font-weight: 850;
+        font-weight:
+          850;
       }
 
       .sh-statement-copy {
         padding-top: 8px;
 
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
         font-size:
           clamp(18px,1.5vw,21px);
 
-        line-height: 1.75;
+        line-height:
+          1.75;
       }
+
 
       /* =====================================================
          CAPABILITIES
@@ -869,27 +1062,28 @@ function GlobalStyles() {
       }
 
       .sh-capability-grid {
-        margin-top: 50px;
-
         display: grid;
 
         grid-template-columns:
           repeat(4,1fr);
 
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
+        margin-top: 50px;
+
+        border-top:
+          1px solid var(--line);
+
+        border-bottom:
+          1px solid var(--line);
       }
 
       .sh-capability {
         min-height: 270px;
 
-        padding: 34px 28px;
+        padding:
+          34px 28px;
 
         border-right:
           1px solid var(--line);
-
-        transition:
-          background 0.25s ease;
       }
 
       .sh-capability:last-child {
@@ -898,7 +1092,7 @@ function GlobalStyles() {
 
       .sh-capability:hover {
         background:
-          rgba(255,255,255,0.65);
+          rgba(255,255,255,.65);
       }
 
       .sh-capability-icon {
@@ -911,9 +1105,10 @@ function GlobalStyles() {
         border-radius: 14px;
 
         background:
-          rgba(29,78,216,0.08);
+          rgba(29,78,216,.08);
 
-        color: var(--brand);
+        color:
+          var(--brand);
       }
 
       .sh-capability h3 {
@@ -923,38 +1118,42 @@ function GlobalStyles() {
 
         font-size: 20px;
 
-        letter-spacing: -0.025em;
+        letter-spacing:
+          -.025em;
       }
 
       .sh-capability p {
         margin: 0;
 
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 14px;
+
         line-height: 1.7;
       }
 
+
       /* =====================================================
-         PRODUCT SECTIONS
+         PRODUCTS
       ===================================================== */
 
       .sh-product-section {
         padding:
-          120px
-          6vw;
+          120px 6vw;
       }
 
       .sh-product-dark {
         background:
           radial-gradient(
             circle at 90% 10%,
-            rgba(29,78,216,0.23),
+            rgba(29,78,216,.23),
             transparent 32rem
           ),
           var(--navy);
 
-        color: white;
+        color:
+          white;
       }
 
       .sh-product-grid {
@@ -967,7 +1166,8 @@ function GlobalStyles() {
         gap:
           clamp(50px,7vw,110px);
 
-        align-items: center;
+        align-items:
+          center;
       }
 
       .sh-product-grid.reverse {
@@ -977,7 +1177,8 @@ function GlobalStyles() {
       }
 
       .sh-product-copy {
-        max-width: 650px;
+        max-width:
+          650px;
       }
 
       .sh-product-label {
@@ -986,55 +1187,67 @@ function GlobalStyles() {
 
         gap: 10px;
 
-        color: var(--accent);
+        color:
+          var(--accent);
 
         font-size: 12px;
+
         font-weight: 800;
 
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
+        letter-spacing:
+          .15em;
+
+        text-transform:
+          uppercase;
       }
 
-      .sh-product-dark .sh-product-label {
-        color: #69d6ca;
+      .sh-product-dark
+      .sh-product-label {
+        color:
+          #69d6ca;
       }
 
       .sh-product-title {
         margin:
-          22px 0
-          22px;
+          22px 0;
 
         font-size:
           clamp(38px,4.5vw,60px);
 
-        line-height: 1;
+        line-height:
+          1;
 
-        letter-spacing: -0.055em;
+        letter-spacing:
+          -.055em;
 
-        font-weight: 850;
+        font-weight:
+          850;
       }
 
       .sh-product-description {
         margin: 0;
 
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
         font-size: 17px;
 
         line-height: 1.75;
       }
 
-      .sh-product-dark .sh-product-description {
-        color: rgba(255,255,255,0.68);
+      .sh-product-dark
+      .sh-product-description {
+        color:
+          rgba(255,255,255,.68);
       }
 
       .sh-product-list {
         display: grid;
+
         gap: 14px;
 
         margin:
-          32px 0
-          0;
+          32px 0 0;
 
         padding: 0;
 
@@ -1047,14 +1260,18 @@ function GlobalStyles() {
 
         gap: 10px;
 
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
         font-size: 14px;
+
         line-height: 1.55;
       }
 
-      .sh-product-dark .sh-product-list li {
-        color: rgba(255,255,255,0.72);
+      .sh-product-dark
+      .sh-product-list li {
+        color:
+          rgba(255,255,255,.72);
       }
 
       .sh-product-list svg {
@@ -1062,7 +1279,8 @@ function GlobalStyles() {
 
         margin-top: 2px;
 
-        color: var(--accent);
+        color:
+          var(--accent);
       }
 
       .sh-product-visual {
@@ -1072,22 +1290,14 @@ function GlobalStyles() {
       .sh-product-image {
         overflow: hidden;
 
-        border-radius: 30px;
+        min-height:
+          520px;
 
-        min-height: 520px;
-
-        border: 1px solid var(--line);
-
-        box-shadow: var(--shadow);
-      }
-
-      .sh-product-dark .sh-product-image {
-        border-color:
-          rgba(255,255,255,0.12);
+        border-radius:
+          30px;
 
         box-shadow:
-          0 35px 80px -45px
-          rgba(0,0,0,0.8);
+          var(--shadow);
       }
 
       .sh-product-image img {
@@ -1111,52 +1321,61 @@ function GlobalStyles() {
         border-radius: 18px;
 
         background:
-          rgba(255,255,255,0.92);
+          rgba(255,255,255,.93);
 
-        color: var(--ink);
+        color:
+          var(--ink);
 
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter:
+          blur(15px);
 
         box-shadow:
           0 25px 60px -40px
-          rgba(15,23,42,0.65);
+          rgba(15,23,42,.65);
       }
 
-      .sh-product-dark .sh-product-card {
+      .sh-product-dark
+      .sh-product-card {
         background:
-          rgba(13,27,51,0.91);
+          rgba(13,27,51,.91);
 
-        color: white;
+        color:
+          white;
 
         border:
           1px solid
-          rgba(255,255,255,0.12);
+          rgba(255,255,255,.12);
       }
 
       .sh-product-card-label {
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 10px;
+
         font-weight: 800;
 
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+        letter-spacing:
+          .12em;
+
+        text-transform:
+          uppercase;
       }
 
-      .sh-product-dark .sh-product-card-label {
+      .sh-product-dark
+      .sh-product-card-label {
         color:
-          rgba(255,255,255,0.5);
+          rgba(255,255,255,.5);
       }
 
       .sh-product-card-title {
         margin-top: 8px;
 
         font-size: 18px;
-        font-weight: 800;
 
-        letter-spacing: -0.02em;
+        font-weight: 800;
       }
+
 
       /* =====================================================
          OUTCOMES
@@ -1177,25 +1396,29 @@ function GlobalStyles() {
 
       .sh-section-title {
         margin:
-          18px 0
-          0;
+          18px 0 0;
 
         font-size:
           clamp(38px,4.7vw,62px);
 
-        line-height: 1.02;
+        line-height:
+          1.02;
 
-        letter-spacing: -0.055em;
+        letter-spacing:
+          -.055em;
 
-        font-weight: 850;
+        font-weight:
+          850;
       }
 
       .sh-section-description {
         max-width: 500px;
 
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
         font-size: 16px;
+
         line-height: 1.7;
       }
 
@@ -1207,11 +1430,13 @@ function GlobalStyles() {
 
         margin-top: 60px;
 
-        border-top: 1px solid var(--line);
+        border-top:
+          1px solid var(--line);
       }
 
       .sh-outcome {
-        padding: 34px 30px;
+        padding:
+          34px 30px;
 
         border-right:
           1px solid var(--line);
@@ -1222,12 +1447,15 @@ function GlobalStyles() {
       }
 
       .sh-outcome-number {
-        color: var(--brand);
+        color:
+          var(--brand);
 
         font-size: 13px;
+
         font-weight: 800;
 
-        letter-spacing: 0.1em;
+        letter-spacing:
+          .1em;
       }
 
       .sh-outcome h3 {
@@ -1236,18 +1464,19 @@ function GlobalStyles() {
           12px;
 
         font-size: 23px;
-
-        letter-spacing: -0.03em;
       }
 
       .sh-outcome p {
         margin: 0;
 
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 14px;
+
         line-height: 1.7;
       }
+
 
       /* =====================================================
          CTA
@@ -1255,8 +1484,7 @@ function GlobalStyles() {
 
       .sh-cta {
         padding:
-          110px
-          6vw;
+          110px 6vw;
       }
 
       .sh-cta-box {
@@ -1267,12 +1495,13 @@ function GlobalStyles() {
         padding:
           clamp(45px,7vw,90px);
 
-        border-radius: 32px;
+        border-radius:
+          32px;
 
         background:
           radial-gradient(
             circle at 85% 10%,
-            rgba(15,118,110,0.26),
+            rgba(15,118,110,.26),
             transparent 25rem
           ),
           linear-gradient(
@@ -1281,11 +1510,13 @@ function GlobalStyles() {
             var(--navy-soft)
           );
 
-        color: white;
+        color:
+          white;
       }
 
       .sh-cta-title {
-        max-width: 850px;
+        max-width:
+          850px;
 
         margin:
           18px 0
@@ -1294,22 +1525,28 @@ function GlobalStyles() {
         font-size:
           clamp(38px,5vw,66px);
 
-        line-height: 1;
+        line-height:
+          1;
 
-        letter-spacing: -0.055em;
+        letter-spacing:
+          -.055em;
 
-        font-weight: 850;
+        font-weight:
+          850;
       }
 
       .sh-cta-description {
-        max-width: 670px;
+        max-width:
+          670px;
 
         color:
-          rgba(255,255,255,0.66);
+          rgba(255,255,255,.66);
 
         font-size: 17px;
+
         line-height: 1.7;
       }
+
 
       /* =====================================================
          PAGE HERO
@@ -1317,14 +1554,16 @@ function GlobalStyles() {
 
       .sh-page-hero {
         padding:
-          100px
-          6vw
+          100px 6vw
           80px;
       }
 
       .sh-page-hero-grid {
-        width: min(1280px,100%);
-        margin: 0 auto;
+        width:
+          min(1280px,100%);
+
+        margin:
+          0 auto;
 
         display: grid;
 
@@ -1334,7 +1573,8 @@ function GlobalStyles() {
 
         gap: 80px;
 
-        align-items: center;
+        align-items:
+          center;
       }
 
       .sh-page-title {
@@ -1344,28 +1584,36 @@ function GlobalStyles() {
         font-size:
           clamp(44px,6vw,78px);
 
-        line-height: 0.98;
+        line-height:
+          .98;
 
-        letter-spacing: -0.06em;
+        letter-spacing:
+          -.06em;
 
-        font-weight: 850;
+        font-weight:
+          850;
       }
 
       .sh-page-description {
-        max-width: 680px;
+        max-width:
+          680px;
 
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
         font-size: 18px;
+
         line-height: 1.75;
       }
 
       .sh-page-image {
         overflow: hidden;
 
-        border-radius: 30px;
+        border-radius:
+          30px;
 
-        box-shadow: var(--shadow);
+        box-shadow:
+          var(--shadow);
       }
 
       .sh-page-image img {
@@ -1374,6 +1622,7 @@ function GlobalStyles() {
 
         object-fit: cover;
       }
+
 
       /* =====================================================
          ABOUT
@@ -1387,7 +1636,7 @@ function GlobalStyles() {
         display: grid;
 
         grid-template-columns:
-          0.7fr
+          .7fr
           1.3fr;
 
         gap: 80px;
@@ -1399,18 +1648,28 @@ function GlobalStyles() {
         font-size:
           clamp(34px,4vw,55px);
 
-        line-height: 1.03;
+        line-height:
+          1.03;
 
-        letter-spacing: -0.05em;
+        letter-spacing:
+          -.05em;
 
-        font-weight: 850;
+        font-weight:
+          850;
       }
 
       .sh-mission-copy {
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
         font-size: 18px;
+
         line-height: 1.8;
+      }
+
+      .sh-mission-copy p {
+        margin-top: 0;
+        margin-bottom: 22px;
       }
 
       .sh-values-grid {
@@ -1426,7 +1685,8 @@ function GlobalStyles() {
       }
 
       .sh-value {
-        padding: 34px 28px;
+        padding:
+          34px 28px;
 
         border-right:
           1px solid var(--line);
@@ -1437,7 +1697,8 @@ function GlobalStyles() {
       }
 
       .sh-value-icon {
-        color: var(--brand);
+        color:
+          var(--brand);
       }
 
       .sh-value h3 {
@@ -1451,69 +1712,93 @@ function GlobalStyles() {
       .sh-value p {
         margin: 0;
 
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 14px;
+
         line-height: 1.7;
       }
 
+
       /* =====================================================
-         SERVICES PAGE
+         =====================================================
+         SERVICES / WHAT WE DO
+         =====================================================
       ===================================================== */
 
       .sh-services-hero {
         padding:
-          clamp(65px,8vw,105px)
+          clamp(55px,7vw,90px)
           6vw
-          45px;
+          30px;
       }
 
       .sh-services-hero-inner {
-        max-width: 900px;
+        max-width:
+          850px;
       }
 
       .sh-services-title {
         margin:
-          18px 0
-          15px;
+          14px 0
+          12px;
 
         font-size:
-          clamp(52px,6.5vw,82px);
+          clamp(48px,6vw,76px);
 
-        line-height: 0.94;
+        line-height:
+          .95;
 
-        letter-spacing: -0.065em;
+        letter-spacing:
+          -.065em;
 
-        font-weight: 850;
+        font-weight:
+          850;
       }
 
       .sh-services-intro {
-        max-width: 760px;
+        max-width:
+          720px;
 
         margin: 0;
 
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
         font-size:
-          clamp(17px,1.5vw,21px);
+          clamp(16px,1.4vw,19px);
 
-        line-height: 1.65;
+        line-height:
+          1.6;
       }
 
       .sh-services-section {
         padding:
-          25px
+          10px
           6vw
-          110px;
+          100px;
       }
 
       .sh-services-cards {
         display: grid;
-        gap: 16px;
+
+        gap: 12px;
       }
+
 
       /* =====================================================
          SERVICE CARD
+         
+         IMPORTANT:
+         Desktop/tablet:
+         text left + image right
+
+         Mobile:
+         STILL text left + image right
+
+         This is intentional to match the reference
+         screenshot and prevent the previous overlap.
       ===================================================== */
 
       .sh-service-card {
@@ -1521,41 +1806,45 @@ function GlobalStyles() {
 
         grid-template-columns:
           minmax(0,1fr)
-          minmax(360px,.72fr);
+          360px;
 
-        min-height: 330px;
+        min-height:
+          220px;
 
         overflow: hidden;
 
         background:
-          rgba(255,255,255,0.78);
+          rgba(255,255,255,.82);
 
         border:
           1px solid
-          rgba(148,163,184,0.20);
+          rgba(148,163,184,.22);
 
-        border-radius: 24px;
+        border-radius:
+          20px;
 
         box-shadow:
-          0 18px 45px -38px
-          rgba(15,23,42,0.45);
+          0 14px 35px -30px
+          rgba(15,23,42,.42);
 
         transition:
-          transform 0.25s ease,
-          box-shadow 0.25s ease,
-          border-color 0.25s ease;
+          transform .22s ease,
+          box-shadow .22s ease,
+          border-color .22s ease;
       }
 
       .sh-service-card:hover {
-        transform: translateY(-3px);
+        transform:
+          translateY(-2px);
 
         border-color:
-          rgba(29,78,216,0.18);
+          rgba(29,78,216,.18);
 
         box-shadow:
-          0 28px 60px -40px
-          rgba(15,23,42,0.55);
+          0 22px 45px -32px
+          rgba(15,23,42,.5);
       }
+
 
       /* =====================================================
          SERVICE CONTENT
@@ -1565,127 +1854,165 @@ function GlobalStyles() {
         display: grid;
 
         grid-template-columns:
-          54px
+          58px
           minmax(0,1fr);
 
-        gap: 22px;
+        gap: 16px;
 
         padding:
-          34px
-          34px
-          34px
-          28px;
+          22px
+          24px;
       }
 
-      .sh-service-top {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
 
-        gap: 12px;
-      }
+      /* =====================================================
+         SERVICE NUMBER
+      ===================================================== */
 
-      .sh-service-number-box {
-        width: 52px;
-        height: 52px;
+      .sh-service-number {
+        width: 44px;
+        height: 44px;
 
         display: grid;
         place-items: center;
 
-        border-radius: 15px;
+        border-radius:
+          12px;
 
         background:
-          rgba(29,78,216,0.08);
+          rgba(29,78,216,.07);
 
-        color: var(--brand);
+        color:
+          var(--brand);
 
-        font-size: 15px;
+        font-size: 13px;
+
         font-weight: 850;
       }
 
-      .sh-service-icon {
-        width: 52px;
-        height: 52px;
 
+      /* =====================================================
+         SERVICE MAIN
+      ===================================================== */
+
+      .sh-service-main {
         display: grid;
-        place-items: center;
 
-        border-radius: 15px;
+        grid-template-columns:
+          48px
+          minmax(0,1fr);
 
-        background:
-          rgba(29,78,216,0.08);
-
-        color: var(--brand);
-      }
-
-      .sh-service-copy {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        gap: 13px;
 
         min-width: 0;
       }
 
-      .sh-service-copy h2 {
-        margin: 0;
 
-        color: var(--ink);
+      /* =====================================================
+         SERVICE ICON
+      ===================================================== */
+
+      .sh-service-icon {
+        width: 44px;
+        height: 44px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius:
+          12px;
+
+        background:
+          rgba(29,78,216,.07);
+
+        color:
+          var(--brand);
+      }
+
+
+      /* =====================================================
+         SERVICE COPY
+      ===================================================== */
+
+      .sh-service-copy {
+        min-width: 0;
+      }
+
+      .sh-service-copy h2 {
+        margin:
+          1px 0 0;
+
+        color:
+          var(--ink);
 
         font-size:
-          clamp(24px,2.3vw,34px);
+          clamp(20px,2vw,27px);
 
-        line-height: 1.05;
+        line-height:
+          1.08;
 
-        letter-spacing: -0.045em;
+        letter-spacing:
+          -.04em;
 
-        font-weight: 850;
+        font-weight:
+          850;
       }
 
       .sh-service-copy p {
-        max-width: 620px;
+        max-width:
+          520px;
 
         margin:
-          17px
-          0
-          0;
+          7px 0 0;
 
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
-        font-size: 15px;
+        font-size: 14px;
 
-        line-height: 1.7;
+        line-height:
+          1.45;
       }
 
-      .sh-service-link {
-        width: fit-content;
 
+      /* =====================================================
+         LEARN MORE
+      ===================================================== */
+
+      .sh-service-link {
         display: inline-flex;
         align-items: center;
 
-        gap: 8px;
+        gap: 7px;
 
-        margin-top: 20px;
+        margin-top: 7px;
 
         padding: 0;
 
         border: 0;
 
-        background: transparent;
+        background:
+          transparent;
 
-        color: var(--brand);
+        color:
+          var(--brand);
 
-        font-size: 14px;
-        font-weight: 800;
+        font-size: 13px;
+
+        font-weight: 850;
 
         transition:
-          gap 0.2s ease,
-          color 0.2s ease;
+          gap .2s ease,
+          color .2s ease;
       }
 
       .sh-service-link:hover {
-        gap: 12px;
-        color: var(--brand-deep);
+        gap: 10px;
+
+        color:
+          var(--brand-deep);
       }
+
 
       /* =====================================================
          SERVICE IMAGE
@@ -1694,95 +2021,107 @@ function GlobalStyles() {
       .sh-service-image {
         position: relative;
 
-        min-height: 330px;
+        min-height:
+          196px;
 
         overflow: hidden;
 
         margin:
-          12px
-          12px
-          12px
+          9px
+          9px
+          9px
           0;
 
-        border-radius: 19px;
+        border-radius:
+          16px;
       }
 
       .sh-service-image img {
         width: 100%;
         height: 100%;
 
-        min-height: 306px;
+        min-height:
+          196px;
 
-        object-fit: cover;
+        object-fit:
+          cover;
 
         transition:
-          transform 0.5s ease;
+          transform .45s ease;
       }
 
       .sh-service-card:hover
       .sh-service-image img {
-        transform: scale(1.035);
+        transform:
+          scale(1.035);
       }
 
       .sh-service-image-overlay {
         position: absolute;
+
         inset: 0;
 
         background:
           linear-gradient(
             180deg,
             rgba(9,18,33,0),
-            rgba(9,18,33,0.12)
+            rgba(9,18,33,.10)
           );
 
-        pointer-events: none;
+        pointer-events:
+          none;
       }
 
+
       /* =====================================================
-         SERVICES BOTTOM CTA
+         SERVICES CTA
       ===================================================== */
 
       .sh-services-bottom-cta {
         display: flex;
         align-items: center;
 
-        gap: 15px;
+        gap: 13px;
 
-        margin-top: 20px;
+        margin-top:
+          14px;
 
         padding:
-          20px
-          22px;
+          14px
+          16px;
 
         border:
           1px solid
-          rgba(29,78,216,0.10);
+          rgba(29,78,216,.10);
 
-        border-radius: 20px;
+        border-radius:
+          17px;
 
         background:
           linear-gradient(
             110deg,
-            rgba(29,78,216,0.07),
-            rgba(15,118,110,0.06)
+            rgba(29,78,216,.07),
+            rgba(15,118,110,.06)
           );
       }
 
       .sh-services-bottom-icon {
-        width: 44px;
-        height: 44px;
+        width: 42px;
+        height: 42px;
 
         display: grid;
         place-items: center;
 
         flex: 0 0 auto;
 
-        border-radius: 13px;
+        border-radius:
+          12px;
 
         background:
-          rgba(29,78,216,0.09);
+          rgba(29,78,216,.09);
 
-        color: var(--brand);
+        color:
+          var(--brand);
       }
 
       .sh-services-bottom-copy {
@@ -1793,16 +2132,18 @@ function GlobalStyles() {
       }
 
       .sh-services-bottom-copy strong {
-        font-size: 15px;
+        font-size: 14px;
       }
 
       .sh-services-bottom-copy span {
-        margin-top: 3px;
+        margin-top: 2px;
 
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
-        font-size: 12px;
+        font-size: 11px;
       }
+
 
       /* =====================================================
          CONTACT
@@ -1812,22 +2153,26 @@ function GlobalStyles() {
         display: grid;
 
         grid-template-columns:
-          0.9fr
+          .9fr
           1.1fr;
 
         gap: 80px;
 
-        align-items: start;
+        align-items:
+          start;
       }
 
       .sh-contact-image {
         overflow: hidden;
 
-        border-radius: 30px;
+        margin-top:
+          50px;
 
-        margin-top: 50px;
+        border-radius:
+          30px;
 
-        box-shadow: var(--shadow);
+        box-shadow:
+          var(--shadow);
       }
 
       .sh-contact-image img {
@@ -1839,9 +2184,11 @@ function GlobalStyles() {
 
       .sh-contact-details {
         display: grid;
+
         gap: 16px;
 
-        margin-top: 38px;
+        margin-top:
+          38px;
       }
 
       .sh-contact-detail {
@@ -1855,10 +2202,11 @@ function GlobalStyles() {
         border:
           1px solid var(--line);
 
-        border-radius: 16px;
+        border-radius:
+          16px;
 
         background:
-          rgba(255,255,255,0.58);
+          rgba(255,255,255,.58);
       }
 
       .sh-contact-detail-icon {
@@ -1870,60 +2218,68 @@ function GlobalStyles() {
 
         flex: 0 0 auto;
 
-        border-radius: 11px;
+        border-radius:
+          11px;
 
         background:
-          rgba(29,78,216,0.08);
+          rgba(29,78,216,.08);
 
-        color: var(--brand);
+        color:
+          var(--brand);
       }
 
       .sh-contact-detail strong {
         display: block;
 
-        font-size: 14px;
+        margin-bottom:
+          5px;
 
-        margin-bottom: 5px;
+        font-size: 14px;
       }
 
       .sh-contact-detail span {
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 13px;
 
-        word-break: break-word;
+        word-break:
+          break-word;
       }
 
       .sh-form {
-        padding: 32px;
+        padding:
+          32px;
 
         border:
           1px solid var(--line);
 
-        border-radius: 24px;
+        border-radius:
+          24px;
 
         background:
-          rgba(255,255,255,0.7);
+          rgba(255,255,255,.70);
 
-        box-shadow: var(--shadow);
+        box-shadow:
+          var(--shadow);
       }
 
       .sh-form-title {
         margin:
-          0 0
-          8px;
+          0 0 8px;
 
         font-size: 27px;
 
-        letter-spacing: -0.035em;
+        letter-spacing:
+          -.035em;
       }
 
       .sh-form-subtitle {
         margin:
-          0 0
-          30px;
+          0 0 30px;
 
-        color: var(--ink-muted);
+        color:
+          var(--ink-muted);
 
         font-size: 14px;
 
@@ -1941,17 +2297,21 @@ function GlobalStyles() {
 
       .sh-field {
         display: grid;
+
         gap: 7px;
       }
 
       .sh-field.full {
-        grid-column: 1 / -1;
+        grid-column:
+          1 / -1;
       }
 
       .sh-field label {
-        color: var(--ink-soft);
+        color:
+          var(--ink-soft);
 
         font-size: 12px;
+
         font-weight: 750;
       }
 
@@ -1959,27 +2319,30 @@ function GlobalStyles() {
       .sh-field textarea {
         width: 100%;
 
-        border:
-          1px solid var(--line-strong);
+        outline: none;
 
-        border-radius: 12px;
+        border:
+          1px solid
+          var(--line-strong);
+
+        border-radius:
+          12px;
 
         background:
-          rgba(255,255,255,0.85);
+          rgba(255,255,255,.85);
 
         padding:
           13px
           14px;
 
-        outline: none;
-
-        color: var(--ink);
+        color:
+          var(--ink);
 
         font-size: 14px;
 
         transition:
-          border-color 0.2s ease,
-          box-shadow 0.2s ease;
+          border-color .2s ease,
+          box-shadow .2s ease;
       }
 
       .sh-field input {
@@ -1987,24 +2350,28 @@ function GlobalStyles() {
       }
 
       .sh-field textarea {
-        min-height: 130px;
+        min-height:
+          130px;
 
-        resize: vertical;
+        resize:
+          vertical;
       }
 
       .sh-field input:focus,
       .sh-field textarea:focus {
         border-color:
-          rgba(29,78,216,0.6);
+          rgba(29,78,216,.6);
 
         box-shadow:
           0 0 0 4px
-          rgba(29,78,216,0.08);
+          rgba(29,78,216,.08);
       }
 
       .sh-form-submit {
         width: 100%;
-        margin-top: 20px;
+
+        margin-top:
+          20px;
       }
 
       .sh-success {
@@ -2013,47 +2380,61 @@ function GlobalStyles() {
 
         gap: 12px;
 
-        margin-top: 20px;
+        margin-top:
+          20px;
 
-        padding: 15px;
+        padding:
+          15px;
 
-        border-radius: 13px;
+        border-radius:
+          13px;
 
-        background: var(--accent-soft);
-        color: var(--accent);
+        background:
+          var(--accent-soft);
+
+        color:
+          var(--accent);
 
         font-size: 13px;
 
-        line-height: 1.55;
+        line-height:
+          1.55;
       }
+
 
       /* =====================================================
          FOOTER
       ===================================================== */
 
       .sh-footer {
-        margin-left: 245px;
+        margin-left:
+          245px;
 
         padding:
           55px
           6vw
           35px;
 
-        background: var(--navy);
+        background:
+          var(--navy);
 
-        color: white;
+        color:
+          white;
       }
 
       .sh-footer-grid {
-        width: min(1280px,100%);
-        margin: 0 auto;
+        width:
+          min(1280px,100%);
+
+        margin:
+          0 auto;
 
         display: grid;
 
         grid-template-columns:
           1.3fr
-          0.7fr
-          0.7fr;
+          .7fr
+          .7fr;
 
         gap: 60px;
       }
@@ -2061,56 +2442,68 @@ function GlobalStyles() {
       .sh-footer-brand {
         font-size: 20px;
 
-        font-weight: 850;
+        font-weight:
+          850;
 
-        letter-spacing: -0.03em;
+        letter-spacing:
+          -.03em;
       }
 
       .sh-footer-description {
-        max-width: 430px;
+        max-width:
+          430px;
 
-        margin-top: 14px;
+        margin-top:
+          14px;
 
         color:
-          rgba(255,255,255,0.56);
+          rgba(255,255,255,.56);
 
         font-size: 13px;
 
-        line-height: 1.7;
+        line-height:
+          1.7;
       }
 
       .sh-footer-heading {
-        margin-bottom: 16px;
+        margin-bottom:
+          16px;
 
         color:
-          rgba(255,255,255,0.42);
+          rgba(255,255,255,.42);
 
         font-size: 10px;
 
-        font-weight: 800;
+        font-weight:
+          800;
 
-        letter-spacing: 0.14em;
+        letter-spacing:
+          .14em;
 
-        text-transform: uppercase;
+        text-transform:
+          uppercase;
       }
 
       .sh-footer-links {
         display: grid;
+
         gap: 10px;
       }
 
       .sh-footer-links button,
       .sh-footer-links a {
-        width: fit-content;
-
-        border: 0;
-
-        background: transparent;
+        width:
+          fit-content;
 
         padding: 0;
 
+        border: 0;
+
+        background:
+          transparent;
+
         color:
-          rgba(255,255,255,0.72);
+          rgba(255,255,255,.72);
 
         font-size: 13px;
 
@@ -2119,27 +2512,30 @@ function GlobalStyles() {
 
       .sh-footer-links button:hover,
       .sh-footer-links a:hover {
-        color: white;
+        color:
+          white;
       }
 
       .sh-footer-bottom {
-        width: min(1280px,100%);
-        margin:
-          45px
-          auto
-          0;
+        width:
+          min(1280px,100%);
 
-        padding-top: 20px;
+        margin:
+          45px auto 0;
+
+        padding-top:
+          20px;
 
         border-top:
           1px solid
-          rgba(255,255,255,0.1);
+          rgba(255,255,255,.1);
 
         color:
-          rgba(255,255,255,0.38);
+          rgba(255,255,255,.38);
 
         font-size: 11px;
       }
+
 
       /* =====================================================
          TABLET
@@ -2148,39 +2544,48 @@ function GlobalStyles() {
       @media (max-width: 1100px) {
 
         .sh-sidebar {
-          width: 215px;
+          width:
+            215px;
         }
 
         .sh-main {
-          margin-left: 215px;
+          margin-left:
+            215px;
         }
 
         .sh-footer {
-          margin-left: 215px;
+          margin-left:
+            215px;
         }
 
         .sh-hero-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
         }
 
         .sh-hero-copy {
-          max-width: 900px;
+          max-width:
+            900px;
         }
 
         .sh-hero-image {
-          min-height: 480px;
+          min-height:
+            480px;
         }
 
         .sh-hero-image img {
-          height: 480px;
+          height:
+            480px;
         }
 
         .sh-floating-stat {
-          left: 24px;
+          left:
+            24px;
         }
 
         .sh-floating-badge {
-          right: 24px;
+          right:
+            24px;
         }
 
         .sh-capability-grid {
@@ -2199,7 +2604,8 @@ function GlobalStyles() {
 
         .sh-product-grid,
         .sh-product-grid.reverse {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
         }
 
         .sh-outcomes-header {
@@ -2207,47 +2613,65 @@ function GlobalStyles() {
         }
 
         .sh-section-description {
-          margin-top: 24px;
+          margin-top:
+            24px;
         }
 
         .sh-page-hero-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
         }
 
         .sh-mission-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
+
           gap: 35px;
         }
 
         .sh-contact-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
         }
 
-        /* Service cards become vertical */
+
+        /* -----------------------------------------------
+           SERVICES AT TABLET
+        ----------------------------------------------- */
+
         .sh-service-card {
-          grid-template-columns: 1fr;
-        }
-
-        .sh-service-image {
-          order: -1;
-
-          min-height: 300px;
-
-          margin:
-            12px
-            12px
-            0;
-        }
-
-        .sh-service-image img {
-          min-height: 300px;
-          height: 300px;
+          grid-template-columns:
+            minmax(0,1fr)
+            300px;
         }
 
         .sh-service-content {
-          padding: 28px;
+          padding:
+            20px;
+        }
+
+        .sh-service-main {
+          grid-template-columns:
+            42px
+            minmax(0,1fr);
+        }
+
+        .sh-service-icon {
+          width: 40px;
+          height: 40px;
+        }
+
+        .sh-service-copy h2 {
+          font-size:
+            20px;
+        }
+
+        .sh-service-copy p {
+          font-size:
+            13px;
         }
       }
+
 
       /* =====================================================
          MOBILE
@@ -2255,44 +2679,62 @@ function GlobalStyles() {
 
       @media (max-width: 767px) {
 
-        /* Header */
+        /* -----------------------------------------------
+           TOP BAR
+        ----------------------------------------------- */
 
         .sh-topbar {
-          height: 68px;
+          height:
+            68px;
         }
 
         .sh-topbar-inner {
-          padding: 0 17px;
+          padding:
+            0 17px;
         }
 
         .sh-brand-mark {
-          width: 37px;
-          height: 37px;
+          width:
+            38px;
 
-          border-radius: 11px;
+          height:
+            38px;
+
+          border-radius:
+            11px;
         }
 
         .sh-brand-name {
-          font-size: 16px;
+          font-size:
+            16px;
         }
 
         .sh-brand-subtitle {
-          display: none;
+          display:
+            none;
         }
 
         .sh-mobile-menu-btn {
-          display: flex;
+          display:
+            flex;
         }
 
         .sh-sidebar {
-          display: none;
+          display:
+            none;
         }
 
-        /* Main */
+
+        /* -----------------------------------------------
+           MAIN
+        ----------------------------------------------- */
 
         .sh-main {
-          margin-left: 0;
-          padding-top: 68px;
+          margin-left:
+            0;
+
+          padding-top:
+            68px;
         }
 
         .sh-section {
@@ -2301,10 +2743,14 @@ function GlobalStyles() {
             20px;
         }
 
-        /* Hero */
+
+        /* -----------------------------------------------
+           HERO
+        ----------------------------------------------- */
 
         .sh-hero {
-          min-height: auto;
+          min-height:
+            auto;
 
           padding:
             65px
@@ -2313,136 +2759,184 @@ function GlobalStyles() {
         }
 
         .sh-hero-grid {
-          gap: 42px;
+          gap:
+            42px;
         }
 
         .sh-hero-title {
-          margin-top: 18px;
-          margin-bottom: 22px;
+          margin:
+            18px 0 22px;
 
           font-size:
             clamp(43px,13vw,62px);
 
-          line-height: 0.96;
+          line-height:
+            .96;
         }
 
         .sh-hero-description {
-          font-size: 16px;
-          line-height: 1.7;
+          font-size:
+            16px;
+
+          line-height:
+            1.7;
         }
 
         .sh-hero-actions {
-          display: grid;
-          gap: 10px;
+          display:
+            grid;
+
+          gap:
+            10px;
         }
 
         .sh-btn {
-          width: 100%;
-          min-height: 52px;
+          width:
+            100%;
+
+          min-height:
+            52px;
         }
 
         .sh-hero-note {
-          align-items: flex-start;
-          line-height: 1.5;
+          align-items:
+            flex-start;
+
+          line-height:
+            1.5;
         }
 
         .sh-hero-image {
-          min-height: 390px;
+          min-height:
+            390px;
 
-          border-radius: 24px;
+          border-radius:
+            24px;
         }
 
         .sh-hero-image img {
-          height: 390px;
+          height:
+            390px;
         }
 
         .sh-floating-stat {
-          left: 14px;
-          bottom: 14px;
+          left:
+            14px;
 
-          width: 175px;
+          bottom:
+            14px;
 
-          padding: 15px;
+          width:
+            175px;
+
+          padding:
+            15px;
         }
 
         .sh-floating-stat-number {
-          font-size: 26px;
+          font-size:
+            26px;
         }
 
         .sh-floating-badge {
-          right: 14px;
-          top: 14px;
+          right:
+            14px;
+
+          top:
+            14px;
 
           padding:
-            10px
-            12px;
+            10px 12px;
 
-          font-size: 10px;
+          font-size:
+            10px;
         }
 
-        /* Statement */
+
+        /* -----------------------------------------------
+           STATEMENT
+        ----------------------------------------------- */
 
         .sh-statement {
-          padding-top: 60px;
-          padding-bottom: 60px;
+          padding-top:
+            60px;
+
+          padding-bottom:
+            60px;
         }
 
         .sh-statement-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
 
-          gap: 24px;
+          gap:
+            24px;
         }
 
         .sh-statement-copy {
-          font-size: 16px;
+          font-size:
+            16px;
         }
 
-        /* Capabilities */
+
+        /* -----------------------------------------------
+           CAPABILITIES
+        ----------------------------------------------- */
 
         .sh-capabilities {
-          padding-top: 20px;
+          padding-top:
+            20px;
         }
 
         .sh-capability-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
 
-          margin-top: 35px;
+          margin-top:
+            35px;
         }
 
         .sh-capability,
         .sh-capability:nth-child(2) {
-          border-right: 0;
+          border-right:
+            0;
+
           border-bottom:
             1px solid var(--line);
         }
 
         .sh-capability:last-child {
-          border-bottom: 0;
+          border-bottom:
+            0;
         }
 
         .sh-capability {
-          min-height: auto;
+          min-height:
+            auto;
 
           padding:
-            28px
-            22px;
+            28px 22px;
         }
 
         .sh-capability h3 {
-          margin-top: 22px;
+          margin-top:
+            22px;
         }
 
-        /* Products */
+
+        /* -----------------------------------------------
+           PRODUCTS
+        ----------------------------------------------- */
 
         .sh-product-section {
           padding:
-            75px
-            20px;
+            75px 20px;
         }
 
         .sh-product-grid,
         .sh-product-grid.reverse {
-          gap: 42px;
+          gap:
+            42px;
         }
 
         .sh-product-title {
@@ -2451,69 +2945,87 @@ function GlobalStyles() {
         }
 
         .sh-product-description {
-          font-size: 16px;
+          font-size:
+            16px;
         }
 
         .sh-product-image {
-          min-height: 360px;
+          min-height:
+            360px;
 
-          border-radius: 24px;
+          border-radius:
+            24px;
         }
 
         .sh-product-image img {
-          height: 360px;
+          height:
+            360px;
         }
 
         .sh-product-card {
-          right: 14px;
-          bottom: 14px;
+          right:
+            14px;
+
+          bottom:
+            14px;
 
           width:
             calc(100% - 28px);
         }
 
-        /* Outcomes */
+
+        /* -----------------------------------------------
+           OUTCOMES
+        ----------------------------------------------- */
 
         .sh-outcomes {
-          padding-top: 75px;
-          padding-bottom: 75px;
+          padding-top:
+            75px;
+
+          padding-bottom:
+            75px;
         }
 
         .sh-outcome-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
 
-          margin-top: 35px;
+          margin-top:
+            35px;
         }
 
         .sh-outcome {
-          border-right: 0;
+          border-right:
+            0;
 
           border-bottom:
             1px solid var(--line);
 
           padding:
-            28px
-            0;
+            28px 0;
         }
 
         .sh-outcome:last-child {
-          border-bottom: 0;
+          border-bottom:
+            0;
         }
 
-        /* CTA */
+
+        /* -----------------------------------------------
+           CTA
+        ----------------------------------------------- */
 
         .sh-cta {
           padding:
-            65px
-            20px;
+            65px 20px;
         }
 
         .sh-cta-box {
           padding:
-            40px
-            24px;
+            40px 24px;
 
-          border-radius: 24px;
+          border-radius:
+            24px;
         }
 
         .sh-cta-title {
@@ -2522,10 +3034,14 @@ function GlobalStyles() {
         }
 
         .sh-cta-description {
-          font-size: 15px;
+          font-size:
+            15px;
         }
 
-        /* Page Hero */
+
+        /* -----------------------------------------------
+           PAGE HERO
+        ----------------------------------------------- */
 
         .sh-page-hero {
           padding:
@@ -2535,7 +3051,8 @@ function GlobalStyles() {
         }
 
         .sh-page-hero-grid {
-          gap: 38px;
+          gap:
+            38px;
         }
 
         .sh-page-title {
@@ -2544,236 +3061,435 @@ function GlobalStyles() {
         }
 
         .sh-page-description {
-          font-size: 16px;
+          font-size:
+            16px;
         }
 
         .sh-page-image img {
-          height: 350px;
+          height:
+            350px;
         }
 
-        /* About */
+
+        /* -----------------------------------------------
+           ABOUT
+        ----------------------------------------------- */
 
         .sh-mission {
-          padding-top: 40px;
+          padding-top:
+            40px;
         }
 
         .sh-mission-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
         }
 
         .sh-values-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
 
-          margin-top: 35px;
+          margin-top:
+            35px;
         }
 
         .sh-value {
-          border-right: 0;
+          border-right:
+            0;
 
           border-bottom:
             1px solid var(--line);
 
           padding:
-            28px
-            0;
+            28px 0;
         }
 
         .sh-value:last-child {
-          border-bottom: 0;
+          border-bottom:
+            0;
         }
+
 
         /* =================================================
            SERVICES — MOBILE
+           
+           THIS IS THE IMPORTANT FIX.
+           
+           Cards remain horizontal:
+           
+           [NUMBER + CONTENT] [IMAGE]
+           
+           Exactly like the second screenshot.
         ================================================= */
 
         .sh-services-hero {
           padding:
-            55px
-            20px
-            28px;
+            48px
+            27px
+            22px;
         }
 
         .sh-services-title {
-          margin-top: 15px;
+          margin-top:
+            12px;
 
           font-size:
-            clamp(48px,15vw,64px);
-
-          line-height: 0.94;
+            clamp(45px,14vw,60px);
         }
 
         .sh-services-intro {
-          font-size: 16px;
-          line-height: 1.65;
+          font-size:
+            15px;
+
+          line-height:
+            1.55;
         }
 
         .sh-services-section {
           padding:
-            18px
+            8px
             20px
-            70px;
+            65px;
         }
 
         .sh-services-cards {
-          gap: 14px;
+          gap:
+            10px;
         }
 
-        /*
-          IMPORTANT:
-          Service cards use a normal vertical flow on mobile.
-          No negative margins.
-          No absolute text positioning.
-        */
+
+        /* -----------------------------------------------
+           SERVICE CARD
+        ----------------------------------------------- */
 
         .sh-service-card {
-          display: flex;
-          flex-direction: column;
 
-          min-height: 0;
-
-          border-radius: 22px;
-        }
-
-        .sh-service-content {
-          order: 1;
-
-          display: grid;
+          display:
+            grid;
 
           grid-template-columns:
-            46px
+            minmax(0,1fr)
+            43%;
+
+          min-height:
+            184px;
+
+          border-radius:
+            17px;
+        }
+
+
+        /* -----------------------------------------------
+           SERVICE CONTENT
+        ----------------------------------------------- */
+
+        .sh-service-content {
+
+          display:
+            grid;
+
+          grid-template-columns:
+            39px
             minmax(0,1fr);
 
-          gap: 16px;
+          gap:
+            9px;
 
           padding:
-            24px
-            22px
-            24px;
+            13px
+            10px
+            13px
+            11px;
         }
 
-        .sh-service-top {
-          gap: 9px;
+
+        /* -----------------------------------------------
+           NUMBER
+        ----------------------------------------------- */
+
+        .sh-service-number {
+
+          width:
+            36px;
+
+          height:
+            36px;
+
+          border-radius:
+            10px;
+
+          font-size:
+            11px;
         }
 
-        .sh-service-number-box,
+
+        /* -----------------------------------------------
+           MAIN SERVICE
+        ----------------------------------------------- */
+
+        .sh-service-main {
+
+          display:
+            block;
+
+          min-width:
+            0;
+        }
+
+
+        /* -----------------------------------------------
+           ICON
+        ----------------------------------------------- */
+
         .sh-service-icon {
-          width: 44px;
-          height: 44px;
 
-          border-radius: 13px;
-        }
+          width:
+            37px;
 
-        .sh-service-number-box {
-          font-size: 13px;
+          height:
+            37px;
+
+          margin-bottom:
+            7px;
+
+          border-radius:
+            10px;
         }
 
         .sh-service-icon svg {
-          width: 21px;
-          height: 21px;
+          width:
+            19px;
+
+          height:
+            19px;
         }
 
-        .sh-service-copy {
-          display: block;
-        }
+
+        /* -----------------------------------------------
+           SERVICE TITLE
+        ----------------------------------------------- */
 
         .sh-service-copy h2 {
-          font-size: 23px;
-
-          line-height: 1.08;
-
-          letter-spacing: -0.04em;
-        }
-
-        .sh-service-copy p {
-          margin-top: 12px;
-
-          font-size: 14px;
-
-          line-height: 1.65;
-        }
-
-        .sh-service-link {
-          margin-top: 15px;
-
-          font-size: 13px;
-        }
-
-        .sh-service-image {
-          order: 2;
-
-          height: 205px;
-          min-height: 205px;
 
           margin:
-            0
-            10px
-            10px;
+            0;
 
-          border-radius: 17px;
+          font-size:
+            clamp(16px,4.7vw,20px);
+
+          line-height:
+            1.06;
+
+          letter-spacing:
+            -.035em;
+        }
+
+
+        /* -----------------------------------------------
+           SERVICE DESCRIPTION
+        ----------------------------------------------- */
+
+        .sh-service-copy p {
+
+          margin-top:
+            5px;
+
+          font-size:
+            clamp(10.5px,3vw,13px);
+
+          line-height:
+            1.35;
+
+          display:
+            -webkit-box;
+
+          -webkit-line-clamp:
+            3;
+
+          -webkit-box-orient:
+            vertical;
+
+          overflow:
+            hidden;
+        }
+
+
+        /* -----------------------------------------------
+           LEARN MORE
+        ----------------------------------------------- */
+
+        .sh-service-link {
+
+          margin-top:
+            5px;
+
+          gap:
+            5px;
+
+          font-size:
+            11px;
+        }
+
+        .sh-service-link svg {
+
+          width:
+            13px;
+
+          height:
+            13px;
+        }
+
+
+        /* -----------------------------------------------
+           SERVICE IMAGE
+           
+           IMAGE STAYS ON THE RIGHT
+        ----------------------------------------------- */
+
+        .sh-service-image {
+
+          min-height:
+            166px;
+
+          height:
+            calc(100% - 16px);
+
+          margin:
+            8px
+            8px
+            8px
+            0;
+
+          border-radius:
+            13px;
         }
 
         .sh-service-image img {
-          width: 100%;
 
-          height: 205px;
-          min-height: 205px;
+          width:
+            100%;
 
-          object-fit: cover;
+          height:
+            100%;
+
+          min-height:
+            166px;
+
+          object-fit:
+            cover;
         }
 
-        /* Services CTA */
+
+        /* -----------------------------------------------
+           SERVICES CTA
+        ----------------------------------------------- */
 
         .sh-services-bottom-cta {
-          display: grid;
+
+          display:
+            grid;
 
           grid-template-columns:
-            44px
-            1fr;
+            38px
+            minmax(0,1fr);
 
-          gap: 12px;
+          gap:
+            9px;
 
-          padding: 18px;
+          padding:
+            12px;
+
+          border-radius:
+            14px;
+        }
+
+        .sh-services-bottom-icon {
+
+          width:
+            38px;
+
+          height:
+            38px;
+
+          border-radius:
+            10px;
+        }
+
+        .sh-services-bottom-copy strong {
+          font-size:
+            12px;
+        }
+
+        .sh-services-bottom-copy span {
+          font-size:
+            9.5px;
+
+          line-height:
+            1.35;
         }
 
         .sh-services-bottom-cta
         .sh-btn {
-          grid-column: 1 / -1;
 
-          width: 100%;
+          grid-column:
+            1 / -1;
+
+          width:
+            100%;
+
+          min-height:
+            42px;
+
+          font-size:
+            12px;
         }
 
-        /* Contact */
+
+        /* -----------------------------------------------
+           CONTACT
+        ----------------------------------------------- */
 
         .sh-contact-grid {
-          gap: 45px;
+          gap:
+            45px;
         }
 
         .sh-contact-image {
-          margin-top: 35px;
+          margin-top:
+            35px;
         }
 
         .sh-contact-image img {
-          height: 320px;
+          height:
+            320px;
         }
 
         .sh-form {
-          padding: 22px;
+          padding:
+            22px;
 
-          border-radius: 20px;
+          border-radius:
+            20px;
         }
 
         .sh-form-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
         }
 
         .sh-field.full {
-          grid-column: auto;
+          grid-column:
+            auto;
         }
 
-        /* Footer */
+
+        /* -----------------------------------------------
+           FOOTER
+        ----------------------------------------------- */
 
         .sh-footer {
-          margin-left: 0;
+          margin-left:
+            0;
 
           padding:
             50px
@@ -2782,81 +3498,158 @@ function GlobalStyles() {
         }
 
         .sh-footer-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns:
+            1fr;
 
-          gap: 35px;
+          gap:
+            35px;
         }
 
         .sh-footer-bottom {
-          margin-top: 35px;
+          margin-top:
+            35px;
         }
       }
 
+
       /* =====================================================
-         EXTRA SMALL PHONES
+         VERY SMALL PHONES
       ===================================================== */
 
-      @media (max-width: 390px) {
+      @media (max-width: 375px) {
 
         .sh-brand-name {
-          font-size: 15px;
+          font-size:
+            15px;
         }
 
         .sh-hero-title {
-          font-size: 42px;
+          font-size:
+            42px;
         }
 
         .sh-section-title {
-          font-size: 37px;
+          font-size:
+            37px;
         }
 
         .sh-product-title {
-          font-size: 36px;
+          font-size:
+            36px;
         }
 
         .sh-services-title {
-          font-size: 46px;
+          font-size:
+            46px;
+        }
+
+
+        /* -----------------------------------------------
+           SERVICE CARDS
+        ----------------------------------------------- */
+
+        .sh-services-section {
+          padding-left:
+            14px;
+
+          padding-right:
+            14px;
+        }
+
+        .sh-service-card {
+          grid-template-columns:
+            minmax(0,1fr)
+            41%;
+        }
+
+        .sh-service-content {
+          grid-template-columns:
+            34px
+            minmax(0,1fr);
+
+          padding:
+            11px
+            8px
+            11px
+            9px;
+
+          gap:
+            7px;
+        }
+
+        .sh-service-number {
+          width:
+            32px;
+
+          height:
+            32px;
+
+          font-size:
+            10px;
+        }
+
+        .sh-service-icon {
+          width:
+            34px;
+
+          height:
+            34px;
         }
 
         .sh-service-copy h2 {
-          font-size: 21px;
+          font-size:
+            15px;
         }
 
         .sh-service-copy p {
-          font-size: 13.5px;
+          font-size:
+            10px;
+        }
+
+        .sh-service-link {
+          font-size:
+            10px;
         }
 
         .sh-service-image {
-          height: 185px;
-          min-height: 185px;
+          min-height:
+            158px;
         }
 
         .sh-service-image img {
-          height: 185px;
-          min-height: 185px;
+          min-height:
+            158px;
         }
 
         .sh-floating-badge {
-          display: none;
+          display:
+            none;
         }
       }
 
+
       /* =====================================================
-         ACCESSIBILITY / REDUCED MOTION
+         ACCESSIBILITY
       ===================================================== */
 
       @media (prefers-reduced-motion: reduce) {
 
         html {
-          scroll-behavior: auto;
+          scroll-behavior:
+            auto;
         }
 
         *,
         *::before,
         *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
+          animation-duration:
+            .01ms !important;
+
+          animation-iteration-count:
+            1 !important;
+
+          transition-duration:
+            .01ms !important;
         }
       }
 
@@ -2864,8 +3657,9 @@ function GlobalStyles() {
   );
 }
 
+
 /* =========================================================
-   BRAND
+   BRAND COMPONENT
 ========================================================= */
 
 function Brand({ compact = false }) {
@@ -2873,14 +3667,17 @@ function Brand({ compact = false }) {
     <div className="sh-brand">
 
       <div className="sh-brand-mark">
+
         <HeartPulse
-          size={22}
+          size={23}
           strokeWidth={2.4}
         />
+
       </div>
 
       {!compact && (
         <div>
+
           <div className="sh-brand-name">
             {BRAND.name}
           </div>
@@ -2888,6 +3685,7 @@ function Brand({ compact = false }) {
           <div className="sh-brand-subtitle">
             Healthcare. Intelligence. Access.
           </div>
+
         </div>
       )}
 
@@ -2895,8 +3693,9 @@ function Brand({ compact = false }) {
   );
 }
 
+
 /* =========================================================
-   NAVIGATION
+   NAVIGATION ITEMS
 ========================================================= */
 
 const NAV_ITEMS = [
@@ -2922,6 +3721,7 @@ const NAV_ITEMS = [
   },
 ];
 
+
 /* =========================================================
    NAV BUTTON
 ========================================================= */
@@ -2931,6 +3731,7 @@ function NavButton({
   activePage,
   onNavigate,
 }) {
+
   const Icon = item.icon;
 
   return (
@@ -2951,14 +3752,17 @@ function NavButton({
           : undefined
       }
     >
+
       <Icon className="sh-nav-icon" />
 
       <span>
         {item.label}
       </span>
+
     </button>
   );
 }
+
 
 /* =========================================================
    TOP BAR
@@ -2977,7 +3781,7 @@ function TopBar({ onOpenMenu }) {
           onClick={onOpenMenu}
           aria-label="Open navigation menu"
         >
-          <Menu size={21} />
+          <Menu size={22} />
         </button>
 
       </div>
@@ -2985,6 +3789,7 @@ function TopBar({ onOpenMenu }) {
     </header>
   );
 }
+
 
 /* =========================================================
    SIDEBAR
@@ -3005,6 +3810,7 @@ function Sidebar({
         className="sh-nav"
         aria-label="Primary navigation"
       >
+
         {NAV_ITEMS.map((item) => (
           <NavButton
             key={item.id}
@@ -3013,6 +3819,7 @@ function Sidebar({
             onNavigate={onNavigate}
           />
         ))}
+
       </nav>
 
       <div className="sh-sidebar-bottom">
@@ -3037,6 +3844,7 @@ function Sidebar({
   );
 }
 
+
 /* =========================================================
    MOBILE DRAWER
 ========================================================= */
@@ -3047,10 +3855,14 @@ function MobileDrawer({
   onNavigate,
   onClose,
 }) {
-  if (!open) return null;
+
+  if (!open) {
+    return null;
+  }
 
   return (
     <>
+
       <div
         className="sh-mobile-overlay"
         onClick={onClose}
@@ -3079,29 +3891,37 @@ function MobileDrawer({
         <nav className="sh-mobile-nav">
 
           {NAV_ITEMS.map((item) => (
+
             <NavButton
               key={item.id}
               item={item}
               activePage={activePage}
-              onNavigate={(page) => {
-                onNavigate(page);
+              onNavigate={(nextPage) => {
+
+                onNavigate(nextPage);
+
                 onClose();
+
               }}
             />
+
           ))}
 
         </nav>
 
       </aside>
+
     </>
   );
 }
 
+
 /* =========================================================
-   HERO
+   HOME — HERO
 ========================================================= */
 
 function Hero({ onNavigate }) {
+
   return (
     <section className="sh-hero">
 
@@ -3110,8 +3930,11 @@ function Hero({ onNavigate }) {
         <div className="sh-hero-copy">
 
           <div className="sh-eyebrow">
+
             <span className="sh-eyebrow-dot" />
+
             Healthcare technology
+
           </div>
 
           <h1 className="sh-hero-title">
@@ -3125,12 +3948,14 @@ function Hero({ onNavigate }) {
           </h1>
 
           <p className="sh-hero-description">
+
             StellarOne Health helps healthcare
             organizations simplify complex
             operations, strengthen revenue
             performance, and deliver better
             digital experiences through
             intelligent automation and AI.
+
           </p>
 
           <div className="sh-hero-actions">
@@ -3141,8 +3966,11 @@ function Hero({ onNavigate }) {
                 onNavigate("services")
               }
             >
+
               Explore Our Solutions
+
               <ArrowRight size={17} />
+
             </button>
 
             <button
@@ -3151,7 +3979,9 @@ function Hero({ onNavigate }) {
                 onNavigate("contact")
               }
             >
+
               Talk to Our Team
+
             </button>
 
           </div>
@@ -3167,6 +3997,7 @@ function Hero({ onNavigate }) {
 
         </div>
 
+
         <div className="sh-hero-visual">
 
           <div className="sh-hero-image">
@@ -3180,6 +4011,7 @@ function Hero({ onNavigate }) {
 
           </div>
 
+
           <div className="sh-floating-badge">
 
             <Sparkles size={15} />
@@ -3188,6 +4020,7 @@ function Hero({ onNavigate }) {
 
           </div>
 
+
           <div className="sh-floating-stat">
 
             <div className="sh-floating-stat-number">
@@ -3195,9 +4028,11 @@ function Hero({ onNavigate }) {
             </div>
 
             <div className="sh-floating-stat-label">
+
               Intelligent systems designed
               to augment healthcare teams,
               not replace them.
+
             </div>
 
           </div>
@@ -3210,11 +4045,13 @@ function Hero({ onNavigate }) {
   );
 }
 
+
 /* =========================================================
-   STATEMENT
+   HOME — STATEMENT
 ========================================================= */
 
 function StatementSection() {
+
   return (
     <section className="sh-section sh-statement">
 
@@ -3225,11 +4062,15 @@ function StatementSection() {
           <div>
 
             <div className="sh-eyebrow">
+
               <span className="sh-eyebrow-dot" />
+
               Our perspective
+
             </div>
 
           </div>
+
 
           <div>
 
@@ -3247,12 +4088,14 @@ function StatementSection() {
             </h2>
 
             <p className="sh-statement-copy">
+
               StellarOne Health brings together
               healthcare expertise, intelligent
               automation, revenue-cycle intelligence,
               and digital patient experiences to
               help organizations operate with
               greater clarity and confidence.
+
             </p>
 
           </div>
@@ -3265,36 +4108,55 @@ function StatementSection() {
   );
 }
 
+
 /* =========================================================
-   CAPABILITIES
+   HOME — CAPABILITIES
 ========================================================= */
 
 function CapabilitiesSection() {
+
   const capabilities = [
+
     {
       icon: BrainCircuit,
-      title: "AI-Powered Workflows",
+
+      title:
+        "AI-Powered Workflows",
+
       text:
         "Automate repetitive processes, surface meaningful insights, and help teams make faster, more informed decisions.",
     },
+
     {
       icon: Target,
-      title: "Revenue Cycle Intelligence",
+
+      title:
+        "Revenue Cycle Intelligence",
+
       text:
         "Improve visibility across eligibility, coding, denials, accounts receivable, and payer performance.",
     },
+
     {
       icon: HeartPulse,
-      title: "Digital Patient Access",
+
+      title:
+        "Digital Patient Access",
+
       text:
         "Create simpler, more intuitive healthcare experiences across digital and connected channels.",
     },
+
     {
       icon: Network,
-      title: "Enterprise Integration",
+
+      title:
+        "Enterprise Integration",
+
       text:
         "Connect systems, workflows and data so healthcare organizations can operate from a more complete picture.",
     },
+
   ];
 
   return (
@@ -3303,9 +4165,13 @@ function CapabilitiesSection() {
       <div className="sh-container">
 
         <div className="sh-eyebrow">
+
           <span className="sh-eyebrow-dot" />
+
           What we do
+
         </div>
+
 
         <div className="sh-capability-grid">
 
@@ -3320,7 +4186,9 @@ function CapabilitiesSection() {
               >
 
                 <div className="sh-capability-icon">
+
                   <Icon size={22} />
+
                 </div>
 
                 <h3>
@@ -3344,15 +4212,19 @@ function CapabilitiesSection() {
   );
 }
 
+
 /* =========================================================
-   STELLAR.AI
+   HOME — STELLAR.AI
 ========================================================= */
 
 function StellarAISection() {
+
   return (
     <section
-      id="stellar-ai"
-      className="sh-product-section sh-product-dark"
+      className="
+        sh-product-section
+        sh-product-dark
+      "
     >
 
       <div className="sh-container">
@@ -3362,62 +4234,92 @@ function StellarAISection() {
           <div className="sh-product-copy">
 
             <div className="sh-product-label">
+
               <BrainCircuit size={16} />
+
               Stellar.AI
+
             </div>
 
+
             <h2 className="sh-product-title">
+
               The intelligence layer for
               healthcare revenue operations.
+
             </h2>
 
+
             <p className="sh-product-description">
+
               Stellar.AI brings intelligence into
               the revenue cycle, helping healthcare
               organizations understand performance,
               identify opportunities, prioritize work,
               and turn complex operational data into
               actionable insight.
+
             </p>
+
 
             <ul className="sh-product-list">
 
               <li>
+
                 <CircleCheck size={17} />
+
                 Revenue-cycle visibility across
                 critical workflows
+
               </li>
 
               <li>
+
                 <CircleCheck size={17} />
+
                 Intelligent identification of
                 operational opportunities
+
               </li>
 
               <li>
+
                 <CircleCheck size={17} />
+
                 Denial and accounts-receivable
                 insights
+
               </li>
 
               <li>
+
                 <CircleCheck size={17} />
+
                 Executive-ready performance
                 intelligence
+
               </li>
 
             </ul>
 
+
             <div className="sh-hero-actions">
 
-              <button className="sh-btn sh-btn-primary">
+              <button
+                className="sh-btn sh-btn-primary"
+                type="button"
+              >
+
                 Explore Stellar.AI
+
                 <ArrowUpRight size={17} />
+
               </button>
 
             </div>
 
           </div>
+
 
           <div className="sh-product-visual">
 
@@ -3431,6 +4333,7 @@ function StellarAISection() {
 
             </div>
 
+
             <div className="sh-product-card">
 
               <div className="sh-product-card-label">
@@ -3438,8 +4341,10 @@ function StellarAISection() {
               </div>
 
               <div className="sh-product-card-title">
+
                 From operational data to
                 better decisions.
+
               </div>
 
             </div>
@@ -3454,16 +4359,15 @@ function StellarAISection() {
   );
 }
 
+
 /* =========================================================
-   EASYMED
+   HOME — EASYMED
 ========================================================= */
 
 function EasyMedSection() {
+
   return (
-    <section
-      id="easymed"
-      className="sh-product-section"
-    >
+    <section className="sh-product-section">
 
       <div className="sh-container">
 
@@ -3481,6 +4385,7 @@ function EasyMedSection() {
 
             </div>
 
+
             <div className="sh-product-card">
 
               <div className="sh-product-card-label">
@@ -3488,64 +4393,96 @@ function EasyMedSection() {
               </div>
 
               <div className="sh-product-card-title">
+
                 Healthcare access,
                 made easier.
+
               </div>
 
             </div>
 
           </div>
 
+
           <div className="sh-product-copy">
 
             <div className="sh-product-label">
+
               <HeartPulse size={16} />
+
               EasyMed
+
             </div>
 
+
             <h2 className="sh-product-title">
+
               Healthcare access,
               made easier.
+
             </h2>
 
+
             <p className="sh-product-description">
+
               EasyMed is designed to make digital
               healthcare more accessible, convenient,
               and intuitive for patients while helping
               providers deliver connected care
               experiences.
+
             </p>
+
 
             <ul className="sh-product-list">
 
               <li>
+
                 <CircleCheck size={17} />
+
                 Convenient digital healthcare access
+
               </li>
 
               <li>
+
                 <CircleCheck size={17} />
+
                 Virtual consultation experiences
+
               </li>
 
               <li>
+
                 <CircleCheck size={17} />
+
                 Connected patient journeys
+
               </li>
 
               <li>
+
                 <CircleCheck size={17} />
+
                 Designed for scalable digital
                 healthcare delivery
+
               </li>
 
             </ul>
 
+
             <div className="sh-hero-actions">
 
-              <button className="sh-btn sh-btn-primary">
+              <button
+                className="sh-btn sh-btn-primary"
+                type="button"
+              >
+
                 Explore EasyMed
+
                 <ArrowUpRight size={17} />
+
               </button>
 
             </div>
@@ -3560,31 +4497,45 @@ function EasyMedSection() {
   );
 }
 
+
 /* =========================================================
-   OUTCOMES
+   HOME — OUTCOMES
 ========================================================= */
 
 function OutcomesSection() {
 
   const outcomes = [
+
     {
       number: "01",
-      title: "Greater operational clarity",
+
+      title:
+        "Greater operational clarity",
+
       text:
         "Bring fragmented healthcare processes and information into a clearer operational picture.",
     },
+
     {
       number: "02",
-      title: "Better financial performance",
+
+      title:
+        "Better financial performance",
+
       text:
         "Use intelligence and automation to identify revenue opportunities and reduce avoidable friction.",
     },
+
     {
       number: "03",
-      title: "More connected experiences",
+
+      title:
+        "More connected experiences",
+
       text:
         "Create digital experiences that make healthcare easier for patients, providers and teams.",
     },
+
   ];
 
   return (
@@ -3597,26 +4548,36 @@ function OutcomesSection() {
           <div>
 
             <div className="sh-eyebrow">
+
               <span className="sh-eyebrow-dot" />
+
               Designed for outcomes
+
             </div>
 
+
             <h2 className="sh-section-title">
+
               Technology should make
               <br />
               healthcare work better.
+
             </h2>
 
           </div>
 
+
           <p className="sh-section-description">
+
             We focus on practical technology
             that creates measurable improvements
             across healthcare operations and
             patient experiences.
+
           </p>
 
         </div>
+
 
         <div className="sh-outcome-grid">
 
@@ -3651,11 +4612,13 @@ function OutcomesSection() {
   );
 }
 
+
 /* =========================================================
-   CTA
+   SHARED CTA
 ========================================================= */
 
 function CTASection({ onNavigate }) {
+
   return (
     <section className="sh-cta">
 
@@ -3664,22 +4627,32 @@ function CTASection({ onNavigate }) {
         <div className="sh-cta-box">
 
           <div className="sh-eyebrow">
+
             <span className="sh-eyebrow-dot" />
+
             Start a conversation
+
           </div>
 
+
           <h2 className="sh-cta-title">
+
             Let’s solve what’s next
             in healthcare.
+
           </h2>
 
+
           <p className="sh-cta-description">
+
             Whether you're looking to improve
             revenue performance, modernize
             operations, or create a better digital
             healthcare experience, we'd love to
             understand what you're trying to solve.
+
           </p>
+
 
           <div className="sh-hero-actions">
 
@@ -3689,8 +4662,11 @@ function CTASection({ onNavigate }) {
                 onNavigate("contact")
               }
             >
+
               Talk to Our Team
+
               <ArrowRight size={17} />
+
             </button>
 
           </div>
@@ -3703,14 +4679,19 @@ function CTASection({ onNavigate }) {
   );
 }
 
+
 /* =========================================================
    HOME PAGE
 ========================================================= */
 
 function HomePage({ onNavigate }) {
+
   return (
     <>
-      <Hero onNavigate={onNavigate} />
+
+      <Hero
+        onNavigate={onNavigate}
+      />
 
       <StatementSection />
 
@@ -3722,18 +4703,24 @@ function HomePage({ onNavigate }) {
 
       <OutcomesSection />
 
-      <CTASection onNavigate={onNavigate} />
+      <CTASection
+        onNavigate={onNavigate}
+      />
+
     </>
   );
 }
+
 
 /* =========================================================
    ABOUT PAGE
 ========================================================= */
 
 function AboutPage({ onNavigate }) {
+
   return (
     <>
+
       <section className="sh-page-hero">
 
         <div className="sh-page-hero-grid">
@@ -3741,23 +4728,33 @@ function AboutPage({ onNavigate }) {
           <div>
 
             <div className="sh-eyebrow">
+
               <span className="sh-eyebrow-dot" />
+
               About StellarOne Health
+
             </div>
 
+
             <h1 className="sh-page-title">
+
               We build technology for
               the realities of healthcare.
+
             </h1>
 
+
             <p className="sh-page-description">
+
               Healthcare doesn't need more complexity.
               It needs technology that understands
               the people, processes and pressures
               behind every interaction.
+
             </p>
 
           </div>
+
 
           <div className="sh-page-image">
 
@@ -3773,6 +4770,7 @@ function AboutPage({ onNavigate }) {
 
       </section>
 
+
       <section className="sh-section sh-mission">
 
         <div className="sh-container">
@@ -3782,46 +4780,62 @@ function AboutPage({ onNavigate }) {
             <div>
 
               <div className="sh-eyebrow">
+
                 <span className="sh-eyebrow-dot" />
+
                 Our mission
+
               </div>
 
+
               <h2 className="sh-mission-title">
+
                 Make healthcare technology
                 simpler, smarter, and more human.
+
               </h2>
 
             </div>
 
+
             <div className="sh-mission-copy">
 
               <p>
+
                 StellarOne Health brings together
                 healthcare expertise, technology,
                 artificial intelligence and digital
                 experiences to solve some of the
                 industry's most persistent challenges.
+
               </p>
 
+
               <p>
+
                 We believe technology should remove
                 friction rather than create it. That
                 means designing solutions around the
                 workflows of healthcare organizations
                 and the real experiences of patients
                 and care teams.
+
               </p>
 
+
               <p>
+
                 Our approach combines practical
                 innovation with a deep understanding
                 of healthcare operations, revenue cycle
                 management and digital access.
+
               </p>
 
             </div>
 
           </div>
+
 
           <div className="sh-values-grid">
 
@@ -3837,12 +4851,15 @@ function AboutPage({ onNavigate }) {
               </h3>
 
               <p>
+
                 Healthcare technology must be built
                 with security, reliability and
                 responsible innovation at its core.
+
               </p>
 
             </article>
+
 
             <article className="sh-value">
 
@@ -3856,12 +4873,15 @@ function AboutPage({ onNavigate }) {
               </h3>
 
               <p>
+
                 We focus on technology that solves
                 meaningful problems and produces
                 measurable value.
+
               </p>
 
             </article>
+
 
             <article className="sh-value">
 
@@ -3875,9 +4895,11 @@ function AboutPage({ onNavigate }) {
               </h3>
 
               <p>
+
                 Better healthcare technology starts
                 by understanding the people who use
                 it every day.
+
               </p>
 
             </article>
@@ -3888,12 +4910,15 @@ function AboutPage({ onNavigate }) {
 
       </section>
 
+
       <CTASection
         onNavigate={onNavigate}
       />
+
     </>
   );
 }
+
 
 /* =========================================================
    SERVICES PAGE
@@ -3905,71 +4930,125 @@ function ServicesPage({ onNavigate }) {
 
     {
       number: "01",
-      name: "AI-Powered Workflows",
+
+      name:
+        "AI-Powered Workflows",
+
       description:
         "Automate repetitive processes, surface meaningful insights, and help teams make faster, more informed decisions.",
-      icon: BrainCircuit,
-      image: IMAGES.aiWorkflows,
+
+      icon:
+        BrainCircuit,
+
+      image:
+        IMAGES.aiWorkflows,
+
       imageAlt:
-        "Artificial intelligence technology supporting healthcare workflows",
+        "AI-powered healthcare workflow technology",
     },
+
 
     {
       number: "02",
-      name: "Revenue Cycle Intelligence",
+
+      name:
+        "Revenue Cycle Intelligence",
+
       description:
         "Improve visibility across eligibility, coding, denials, accounts receivable, and payer performance.",
-      icon: Target,
-      image: IMAGES.revenueCycle,
+
+      icon:
+        Target,
+
+      image:
+        IMAGES.revenueCycle,
+
       imageAlt:
-        "Revenue cycle analytics and healthcare financial intelligence",
+        "Healthcare revenue cycle analytics",
     },
+
 
     {
       number: "03",
-      name: "Digital Patient Access",
+
+      name:
+        "Digital Patient Access",
+
       description:
         "Create simpler, more intuitive healthcare experiences across digital and connected channels.",
-      icon: HeartPulse,
-      image: IMAGES.patientAccess,
+
+      icon:
+        HeartPulse,
+
+      image:
+        IMAGES.patientAccess,
+
       imageAlt:
-        "Patient accessing healthcare through a digital device",
+        "Digital healthcare and telehealth patient access",
     },
+
 
     {
       number: "04",
-      name: "Healthcare Software Engineering",
+
+      name:
+        "Healthcare Software Engineering",
+
       description:
-        "Build scalable architecture, healthcare products, and integrations designed around real-world healthcare workflows.",
-      icon: Code2,
-      image: IMAGES.softwareEngineering,
+        "Build scalable architecture, products, and integrations designed around real-world healthcare workflows.",
+
+      icon:
+        Code2,
+
+      image:
+        IMAGES.softwareEngineering,
+
       imageAlt:
-        "Software engineering environment supporting healthcare technology",
+        "Healthcare software engineering",
     },
+
 
     {
       number: "05",
-      name: "Enterprise Integration",
+
+      name:
+        "Enterprise Integration",
+
       description:
         "Connect systems, data, and workflows to create a more unified healthcare technology environment.",
-      icon: Network,
-      image: IMAGES.enterpriseIntegration,
+
+      icon:
+        Network,
+
+      image:
+        IMAGES.enterpriseIntegration,
+
       imageAlt:
-        "Enterprise technology infrastructure and connected systems",
+        "Connected healthcare enterprise systems",
     },
+
 
     {
       number: "06",
-      name: "Healthcare Technology Consulting",
+
+      name:
+        "Healthcare Technology Consulting",
+
       description:
         "Strategic guidance for organizations evaluating technology modernization, AI adoption, and digital transformation.",
-      icon: Users,
-      image: IMAGES.healthcareConsulting,
+
+      icon:
+        Users,
+
+      image:
+        IMAGES.healthcareConsulting,
+
       imageAlt:
-        "Healthcare technology consulting and strategy meeting",
+        "Healthcare technology consulting",
     },
 
   ];
+
 
   return (
     <>
@@ -3985,22 +5064,32 @@ function ServicesPage({ onNavigate }) {
           <div className="sh-services-hero-inner">
 
             <div className="sh-eyebrow">
+
               <span className="sh-eyebrow-dot" />
-              Our services
+
+              Our Services
+
             </div>
 
+
             <h1 className="sh-services-title">
+
               What{" "}
+
               <span className="sh-gradient-text">
                 We Do
               </span>
+
             </h1>
 
+
             <p className="sh-services-intro">
+
               Technology and expertise to help
               healthcare organizations operate
               smarter, perform better, and deliver
               exceptional experiences.
+
             </p>
 
           </div>
@@ -4009,8 +5098,9 @@ function ServicesPage({ onNavigate }) {
 
       </section>
 
+
       {/* ===================================================
-          SERVICES
+          SERVICES CARDS
       =================================================== */}
 
       <section className="sh-services-section">
@@ -4021,7 +5111,8 @@ function ServicesPage({ onNavigate }) {
 
             {services.map((service) => {
 
-              const Icon = service.icon;
+              const Icon =
+                service.icon;
 
               return (
 
@@ -4030,50 +5121,73 @@ function ServicesPage({ onNavigate }) {
                   key={service.number}
                 >
 
-                  {/* Text */}
+                  {/* -----------------------------------------
+                      LEFT CONTENT
+                  ----------------------------------------- */}
 
                   <div className="sh-service-content">
 
-                    <div className="sh-service-top">
+                    {/* Number */}
 
-                      <div className="sh-service-number-box">
-                        {service.number}
-                      </div>
-
-                      <div className="sh-service-icon">
-                        <Icon
-                          size={25}
-                          strokeWidth={2}
-                        />
-                      </div>
-
+                    <div className="sh-service-number">
+                      {service.number}
                     </div>
 
-                    <div className="sh-service-copy">
 
-                      <h2>
-                        {service.name}
-                      </h2>
+                    {/* Main */}
 
-                      <p>
-                        {service.description}
-                      </p>
+                    <div className="sh-service-main">
 
-                      <button
-                        className="sh-service-link"
-                        onClick={() =>
-                          onNavigate("contact")
-                        }
-                      >
-                        Learn more
-                        <ArrowRight size={17} />
-                      </button>
+                      <div className="sh-service-icon">
+
+                        <Icon
+                          size={22}
+                          strokeWidth={2}
+                        />
+
+                      </div>
+
+
+                      <div className="sh-service-copy">
+
+                        <h2>
+                          {service.name}
+                        </h2>
+
+
+                        <p>
+                          {service.description}
+                        </p>
+
+
+                        <button
+                          type="button"
+                          className="sh-service-link"
+                          onClick={() =>
+                            onNavigate("contact")
+                          }
+                        >
+
+                          <span>
+                            Learn more
+                          </span>
+
+                          <ArrowRight
+                            size={16}
+                          />
+
+                        </button>
+
+                      </div>
 
                     </div>
 
                   </div>
 
-                  {/* Image */}
+
+                  {/* -----------------------------------------
+                      RIGHT IMAGE
+                  ----------------------------------------- */}
 
                   <div className="sh-service-image">
 
@@ -4083,7 +5197,11 @@ function ServicesPage({ onNavigate }) {
                       loading="lazy"
                     />
 
-                    <div className="sh-service-image-overlay" />
+                    <div
+                      className="
+                        sh-service-image-overlay
+                      "
+                    />
 
                   </div>
 
@@ -4095,15 +5213,19 @@ function ServicesPage({ onNavigate }) {
 
           </div>
 
+
           {/* =================================================
-              SERVICES CTA
+              BOTTOM SERVICES CTA
           ================================================= */}
 
           <div className="sh-services-bottom-cta">
 
             <div className="sh-services-bottom-icon">
-              <MessageSquare size={21} />
+
+              <MessageSquare size={20} />
+
             </div>
+
 
             <div className="sh-services-bottom-copy">
 
@@ -4118,14 +5240,19 @@ function ServicesPage({ onNavigate }) {
 
             </div>
 
+
             <button
+              type="button"
               className="sh-btn sh-btn-primary"
               onClick={() =>
                 onNavigate("contact")
               }
             >
+
               Get in Touch
-              <ArrowRight size={17} />
+
+              <ArrowRight size={16} />
+
             </button>
 
           </div>
@@ -4138,6 +5265,7 @@ function ServicesPage({ onNavigate }) {
   );
 }
 
+
 /* =========================================================
    CONTACT PAGE
 ========================================================= */
@@ -4147,12 +5275,14 @@ function ContactPage() {
   const [sent, setSent] =
     useState(false);
 
+
   function handleSubmit(event) {
 
     event.preventDefault();
 
     setSent(true);
   }
+
 
   return (
     <section className="sh-page-hero">
@@ -4161,26 +5291,42 @@ function ContactPage() {
 
         <div className="sh-contact-grid">
 
+          {/* =================================================
+              CONTACT INFORMATION
+          ================================================= */}
+
           <div>
 
             <div className="sh-eyebrow">
+
               <span className="sh-eyebrow-dot" />
+
               Get in touch
+
             </div>
 
+
             <h1 className="sh-page-title">
+
               Let’s solve what’s next
               in healthcare.
+
             </h1>
 
+
             <p className="sh-page-description">
+
               Tell us what you're building,
               improving or trying to solve.
               Our team would be happy to
               start the conversation.
+
             </p>
 
+
             <div className="sh-contact-details">
+
+              {/* Email */}
 
               <a
                 className="sh-contact-detail"
@@ -4188,8 +5334,11 @@ function ContactPage() {
               >
 
                 <div className="sh-contact-detail-icon">
+
                   <MessageSquare size={19} />
+
                 </div>
+
 
                 <div>
 
@@ -4205,6 +5354,9 @@ function ContactPage() {
 
               </a>
 
+
+              {/* Phone */}
+
               <a
                 className="sh-contact-detail"
                 href={`tel:${BRAND.phone.replace(
@@ -4214,8 +5366,11 @@ function ContactPage() {
               >
 
                 <div className="sh-contact-detail-icon">
+
                   <Phone size={19} />
+
                 </div>
+
 
                 <div>
 
@@ -4231,6 +5386,9 @@ function ContactPage() {
 
               </a>
 
+
+              {/* Image */}
+
               <div className="sh-contact-image">
 
                 <img
@@ -4245,21 +5403,34 @@ function ContactPage() {
 
           </div>
 
+
+          {/* =================================================
+              CONTACT FORM
+          ================================================= */}
+
           <form
             className="sh-form"
             onSubmit={handleSubmit}
           >
 
             <h2 className="sh-form-title">
+
               Start a conversation
+
             </h2>
 
+
             <p className="sh-form-subtitle">
+
               Share a few details and our team
               can follow up with you.
+
             </p>
 
+
             <div className="sh-form-grid">
+
+              {/* Name */}
 
               <div className="sh-field">
 
@@ -4271,10 +5442,14 @@ function ContactPage() {
                   id="name"
                   name="name"
                   placeholder="Your name"
+                  autoComplete="name"
                   required
                 />
 
               </div>
+
+
+              {/* Organization */}
 
               <div className="sh-field">
 
@@ -4286,9 +5461,13 @@ function ContactPage() {
                   id="company"
                   name="company"
                   placeholder="Organization"
+                  autoComplete="organization"
                 />
 
               </div>
+
+
+              {/* Email */}
 
               <div className="sh-field">
 
@@ -4301,10 +5480,14 @@ function ContactPage() {
                   name="email"
                   type="email"
                   placeholder="you@example.com"
+                  autoComplete="email"
                   required
                 />
 
               </div>
+
+
+              {/* Phone */}
 
               <div className="sh-field">
 
@@ -4316,9 +5499,13 @@ function ContactPage() {
                   id="phone"
                   name="phone"
                   placeholder="Phone number"
+                  autoComplete="tel"
                 />
 
               </div>
+
+
+              {/* Message */}
 
               <div className="sh-field full">
 
@@ -4337,13 +5524,22 @@ function ContactPage() {
 
             </div>
 
+
             <button
               type="submit"
-              className="sh-btn sh-btn-primary sh-form-submit"
+              className="
+                sh-btn
+                sh-btn-primary
+                sh-form-submit
+              "
             >
+
               Send Message
+
               <ArrowRight size={17} />
+
             </button>
+
 
             {sent && (
 
@@ -4378,36 +5574,49 @@ function ContactPage() {
   );
 }
 
+
 /* =========================================================
    FOOTER
 ========================================================= */
 
 function Footer({ onNavigate }) {
+
   return (
     <footer className="sh-footer">
 
       <div className="sh-footer-grid">
 
+        {/* Brand */}
+
         <div>
 
           <div className="sh-footer-brand">
+
             {BRAND.name}
+
           </div>
 
+
           <p className="sh-footer-description">
+
             Intelligent healthcare technology
             designed to simplify operations,
             strengthen performance and make
             healthcare access easier.
+
           </p>
 
         </div>
+
+
+        {/* Company */}
 
         <div>
 
           <div className="sh-footer-heading">
             Company
           </div>
+
 
           <div className="sh-footer-links">
 
@@ -4439,11 +5648,15 @@ function Footer({ onNavigate }) {
 
         </div>
 
+
+        {/* Solutions */}
+
         <div>
 
           <div className="sh-footer-heading">
             Solutions
           </div>
+
 
           <div className="sh-footer-links">
 
@@ -4475,18 +5688,24 @@ function Footer({ onNavigate }) {
 
       </div>
 
+
       <div className="sh-footer-bottom">
+
         © {new Date().getFullYear()}{" "}
-        {BRAND.legalName}. All rights
-        reserved.
+
+        {BRAND.legalName}.
+
+        {" "}All rights reserved.
+
       </div>
 
     </footer>
   );
 }
 
+
 /* =========================================================
-   MAIN APP
+   MAIN APPLICATION
 ========================================================= */
 
 export default function StellarOneSite() {
@@ -4494,12 +5713,21 @@ export default function StellarOneSite() {
   const [page, setPage] =
     useState("home");
 
-  const [mobileMenuOpen, setMobileMenuOpen] =
-    useState(false);
+  const [
+    mobileMenuOpen,
+    setMobileMenuOpen,
+  ] = useState(false);
+
+
+  /* =======================================================
+     NAVIGATION
+  ======================================================= */
 
   function navigate(nextPage) {
 
     setPage(nextPage);
+
+    setMobileMenuOpen(false);
 
     window.scrollTo({
       top: 0,
@@ -4507,9 +5735,15 @@ export default function StellarOneSite() {
     });
   }
 
+
+  /* =======================================================
+     PAGE TITLE
+  ======================================================= */
+
   useEffect(() => {
 
     const titles = {
+
       home:
         "StellarOne Health | Intelligence that moves healthcare forward.",
 
@@ -4521,7 +5755,9 @@ export default function StellarOneSite() {
 
       contact:
         "Contact | StellarOne Health",
+
     };
+
 
     document.title =
       titles[page] ||
@@ -4529,7 +5765,13 @@ export default function StellarOneSite() {
 
   }, [page]);
 
+
+  /* =======================================================
+     PAGE ROUTING
+  ======================================================= */
+
   let content;
+
 
   switch (page) {
 
@@ -4543,6 +5785,7 @@ export default function StellarOneSite() {
 
       break;
 
+
     case "services":
 
       content = (
@@ -4553,6 +5796,7 @@ export default function StellarOneSite() {
 
       break;
 
+
     case "contact":
 
       content = (
@@ -4561,6 +5805,9 @@ export default function StellarOneSite() {
 
       break;
 
+
+    case "home":
+
     default:
 
       content = (
@@ -4568,13 +5815,23 @@ export default function StellarOneSite() {
           onNavigate={navigate}
         />
       );
+
+      break;
   }
+
+
+  /* =======================================================
+     APP
+  ======================================================= */
 
   return (
     <>
+
       <GlobalStyles />
 
       <div className="sh-app">
+
+        {/* Header */}
 
         <TopBar
           onOpenMenu={() =>
@@ -4582,10 +5839,16 @@ export default function StellarOneSite() {
           }
         />
 
+
+        {/* Desktop Sidebar */}
+
         <Sidebar
           activePage={page}
           onNavigate={navigate}
         />
+
+
+        {/* Mobile Navigation */}
 
         <MobileDrawer
           open={mobileMenuOpen}
@@ -4596,15 +5859,24 @@ export default function StellarOneSite() {
           }
         />
 
+
+        {/* Main Content */}
+
         <main className="sh-main">
+
           {content}
+
         </main>
+
+
+        {/* Footer */}
 
         <Footer
           onNavigate={navigate}
         />
 
       </div>
+
     </>
   );
 }
