@@ -22,93 +22,54 @@ import {
 
 
 /* =========================================================
-   STELLARONE HEALTH
-   MAIN BRAND CONFIGURATION
+   BRAND
 ========================================================= */
 
 const BRAND = {
   name: "StellarOne Health",
-
-  legalName:
-    "StellarOne Health Technologies Pvt. Ltd.",
-
-  email:
-    "Praveen.Jayaraman@stellaronehealth.com",
-
-  phone:
-    "+91 91803 28119",
+  legalName: "StellarOne Health Technologies Pvt. Ltd.",
+  email: "Praveen.Jayaraman@stellaronehealth.com",
+  phone: "+91 91803 28119",
 };
 
 
 /* =========================================================
-   BRAND COLORS
-   Keeping the original StellarOne visual direction
+   COLORS
 ========================================================= */
 
 const COLORS = {
-  background: "#f4f7fb",
+  background: "#f6f8fc",
+  surface: "#ffffff",
+  panel: "#edf2f8",
 
-  surface:
-    "rgba(255,255,255,0.84)",
+  ink: "#101a2f",
+  inkSoft: "#52627a",
+  inkMuted: "#718097",
 
-  surfaceSolid:
-    "#ffffff",
+  line: "rgba(148,163,184,0.22)",
+  lineStrong: "rgba(148,163,184,0.36)",
 
-  panel:
-    "#eaf0f8",
+  brand: "#2457d6",
+  brandDeep: "#1745b7",
 
-  ink:
-    "#0f172a",
+  accent: "#087f78",
+  accentSoft: "#e1f5f2",
 
-  inkSoft:
-    "#475569",
+  gold: "#c7922d",
 
-  inkMuted:
-    "#64748b",
-
-  line:
-    "rgba(148,163,184,0.24)",
-
-  lineStrong:
-    "rgba(148,163,184,0.40)",
-
-  brand:
-    "#1d4ed8",
-
-  brandDeep:
-    "#0f3aa9",
-
-  accent:
-    "#0f766e",
-
-  accentSoft:
-    "#dff7f1",
-
-  gold:
-    "#c7922d",
-
-  navy:
-    "#091221",
-
-  navySoft:
-    "#0d1b33",
+  navy: "#091426",
+  navySoft: "#10203a",
 };
 
 
 /* =========================================================
-   TEMPORARY VISUAL ASSETS
-
-   These are temporary images for the website.
-   Later we can replace them with custom StellarOne
-   branded graphics / EasyMed / Stellar.AI screenshots.
+   TEMPORARY IMAGES
 ========================================================= */
 
 const IMAGES = {
+
   hero:
     "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=88",
-
-  heroSecondary:
-    "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=88",
 
   operations:
     "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1600&q=88",
@@ -121,11 +82,6 @@ const IMAGES = {
 
   contact:
     "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=88",
-
-
-  /* =======================================================
-     WHAT WE DO / SERVICES IMAGES
-  ======================================================= */
 
   aiWorkflows:
     "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=88",
@@ -152,13 +108,18 @@ const IMAGES = {
 ========================================================= */
 
 function GlobalStyles() {
+
   return (
     <style>{`
 
+      @import url(
+        'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap'
+      );
+
       :root {
+
         --background: ${COLORS.background};
         --surface: ${COLORS.surface};
-        --surface-solid: ${COLORS.surfaceSolid};
         --panel: ${COLORS.panel};
 
         --ink: ${COLORS.ink};
@@ -178,10 +139,6 @@ function GlobalStyles() {
 
         --navy: ${COLORS.navy};
         --navy-soft: ${COLORS.navySoft};
-
-        --shadow:
-          0 30px 70px -45px
-          rgba(15,23,42,0.45);
       }
 
 
@@ -198,6 +155,7 @@ function GlobalStyles() {
       }
 
       body {
+
         margin: 0;
 
         background:
@@ -207,9 +165,8 @@ function GlobalStyles() {
           var(--ink);
 
         font-family:
+          "Manrope",
           Inter,
-          ui-sans-serif,
-          system-ui,
           -apple-system,
           BlinkMacSystemFont,
           "Segoe UI",
@@ -222,12 +179,10 @@ function GlobalStyles() {
           optimizeLegibility;
       }
 
-      body,
       button,
       input,
       textarea {
-        font-family:
-          inherit;
+        font-family: inherit;
       }
 
       button {
@@ -244,26 +199,22 @@ function GlobalStyles() {
         max-width: 100%;
       }
 
-      ::selection {
-        background:
-          rgba(29,78,216,.16);
-      }
-
 
       /* =====================================================
          APP
       ===================================================== */
 
       .sh-app {
+
         min-height: 100vh;
 
         overflow-x: hidden;
 
         background:
           radial-gradient(
-            circle at 82% 0%,
-            rgba(29,78,216,.07),
-            transparent 32rem
+            circle at 85% 0%,
+            rgba(36,87,214,.055),
+            transparent 28rem
           ),
           var(--background);
       }
@@ -274,21 +225,19 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-topbar {
+
         position: fixed;
 
         top: 0;
         left: 0;
         right: 0;
 
-        height: 78px;
+        height: 76px;
 
         z-index: 1000;
 
-        display: flex;
-        align-items: center;
-
         background:
-          rgba(244,247,251,.88);
+          rgba(246,248,252,.94);
 
         border-bottom:
           1px solid var(--line);
@@ -301,7 +250,7 @@ function GlobalStyles() {
       }
 
       .sh-topbar-inner {
-        width: 100%;
+
         height: 100%;
 
         display: flex;
@@ -309,7 +258,7 @@ function GlobalStyles() {
         justify-content: space-between;
 
         padding:
-          0 30px;
+          0 28px;
       }
 
 
@@ -318,22 +267,24 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-brand {
+
         display: flex;
         align-items: center;
 
-        gap: 12px;
+        gap: 11px;
       }
 
       .sh-brand-mark {
+
         width: 42px;
         height: 42px;
 
         display: grid;
         place-items: center;
 
-        flex: 0 0 auto;
+        flex-shrink: 0;
 
-        border-radius: 13px;
+        border-radius: 12px;
 
         background:
           linear-gradient(
@@ -345,49 +296,59 @@ function GlobalStyles() {
         color: white;
 
         box-shadow:
-          0 14px 30px -15px
-          rgba(29,78,216,.75);
+          0 12px 28px -18px
+          rgba(36,87,214,.75);
       }
 
       .sh-brand-name {
-        font-size: 18px;
 
-        font-weight: 850;
+        font-size: 17px;
+
+        line-height: 1.1;
+
+        font-weight: 800;
 
         letter-spacing:
           -.035em;
       }
 
       .sh-brand-subtitle {
-        margin-top: 2px;
+
+        margin-top: 3px;
 
         color:
           var(--ink-muted);
 
-        font-size: 10px;
+        font-size: 9px;
+
+        font-weight: 600;
+
+        letter-spacing:
+          .04em;
       }
 
 
       /* =====================================================
-         MOBILE MENU BUTTON
+         MOBILE MENU
       ===================================================== */
 
       .sh-mobile-menu-btn {
+
         display: none;
 
-        width: 46px;
-        height: 46px;
+        width: 44px;
+        height: 44px;
 
         align-items: center;
         justify-content: center;
 
         border:
-          1px solid var(--line);
+          1px solid var(--line-strong);
 
-        border-radius: 14px;
+        border-radius: 13px;
 
         background:
-          rgba(255,255,255,.88);
+          rgba(255,255,255,.9);
 
         color:
           var(--ink);
@@ -399,13 +360,14 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-sidebar {
+
         position: fixed;
 
-        top: 78px;
+        top: 76px;
         left: 0;
         bottom: 0;
 
-        width: 245px;
+        width: 238px;
 
         z-index: 900;
 
@@ -413,145 +375,149 @@ function GlobalStyles() {
         flex-direction: column;
 
         padding:
-          28px 18px;
+          27px 16px;
 
         background:
-          rgba(255,255,255,.72);
+          rgba(255,255,255,.74);
 
         border-right:
           1px solid var(--line);
 
         backdrop-filter:
           blur(18px);
-
-        -webkit-backdrop-filter:
-          blur(18px);
       }
 
       .sh-nav-label {
+
         padding:
           0 12px;
 
         margin:
-          6px 0
-          12px;
+          5px 0 11px;
 
         color:
           var(--ink-muted);
 
-        font-size: 10px;
+        font-size: 9px;
 
-        font-weight: 850;
+        font-weight: 800;
 
         letter-spacing:
-          .14em;
+          .16em;
 
         text-transform:
           uppercase;
       }
 
       .sh-nav {
+
         display: grid;
 
-        gap: 6px;
+        gap: 5px;
       }
 
       .sh-nav-button {
+
         width: 100%;
 
         display: flex;
         align-items: center;
 
-        gap: 12px;
+        gap: 11px;
 
         padding:
-          13px 14px;
+          11px 13px;
 
         border: 0;
 
-        border-radius: 14px;
+        border-radius: 11px;
 
         background:
           transparent;
 
         color:
+          var(--inkSoft);
+
+        color:
           var(--ink-soft);
 
-        font-size: 14px;
+        font-size: 13px;
 
         font-weight: 700;
 
         text-align: left;
 
         transition:
-          background .2s ease,
-          color .2s ease,
-          transform .2s ease;
+          .2s ease;
       }
 
       .sh-nav-button:hover {
+
         background:
-          rgba(29,78,216,.06);
+          rgba(36,87,214,.055);
 
         color:
           var(--brand);
-
-        transform:
-          translateX(2px);
       }
 
       .sh-nav-button.active {
+
         background:
-          rgba(29,78,216,.09);
+          rgba(36,87,214,.085);
 
         color:
           var(--brand);
       }
 
       .sh-nav-icon {
-        width: 19px;
-        height: 19px;
 
-        flex: 0 0 auto;
+        width: 18px;
+        height: 18px;
       }
 
       .sh-sidebar-bottom {
+
         margin-top: auto;
       }
 
       .sh-sidebar-card {
-        padding: 18px;
 
-        border-radius: 18px;
+        padding: 16px;
+
+        border:
+          1px solid var(--line);
+
+        border-radius: 15px;
 
         background:
           linear-gradient(
             145deg,
-            rgba(29,78,216,.09),
-            rgba(15,118,110,.08)
+            rgba(36,87,214,.055),
+            rgba(8,127,120,.045)
           );
-
-        border:
-          1px solid var(--line);
       }
 
       .sh-sidebar-card strong {
+
         display: block;
 
-        margin-bottom: 6px;
+        margin-bottom: 5px;
 
-        font-size: 14px;
+        font-size: 12px;
+
+        line-height: 1.35;
       }
 
       .sh-sidebar-card p {
+
         margin: 0;
 
         color:
           var(--ink-muted);
 
-        font-size: 12px;
+        font-size: 10px;
 
-        line-height: 1.6;
+        line-height: 1.55;
       }
 
 
@@ -560,6 +526,7 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-mobile-overlay {
+
         position: fixed;
 
         inset: 0;
@@ -567,13 +534,11 @@ function GlobalStyles() {
         z-index: 1200;
 
         background:
-          rgba(9,18,33,.42);
-
-        backdrop-filter:
-          blur(4px);
+          rgba(9,20,38,.42);
       }
 
       .sh-mobile-drawer {
+
         position: fixed;
 
         top: 0;
@@ -581,34 +546,36 @@ function GlobalStyles() {
         bottom: 0;
 
         width:
-          min(86vw,360px);
+          min(86vw,350px);
 
         z-index: 1300;
 
-        padding: 24px;
+        padding: 22px;
 
         background:
           white;
 
         box-shadow:
-          -30px 0 70px -35px
+          -25px 0 55px -30px
           rgba(15,23,42,.55);
       }
 
       .sh-mobile-drawer-header {
+
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        padding-bottom: 22px;
+        padding-bottom: 20px;
 
         border-bottom:
           1px solid var(--line);
       }
 
       .sh-close-btn {
-        width: 42px;
-        height: 42px;
+
+        width: 40px;
+        height: 40px;
 
         display: grid;
         place-items: center;
@@ -616,7 +583,7 @@ function GlobalStyles() {
         border:
           1px solid var(--line);
 
-        border-radius: 12px;
+        border-radius: 11px;
 
         background:
           var(--background);
@@ -626,11 +593,12 @@ function GlobalStyles() {
       }
 
       .sh-mobile-nav {
+
         display: grid;
 
-        gap: 7px;
+        gap: 6px;
 
-        margin-top: 24px;
+        margin-top: 20px;
       }
 
 
@@ -639,22 +607,25 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-main {
-        margin-left: 245px;
 
-        padding-top: 78px;
+        margin-left: 238px;
+
+        padding-top: 76px;
       }
 
       .sh-container {
+
         width:
-          min(1280px,100%);
+          min(1240px,100%);
 
         margin:
           0 auto;
       }
 
       .sh-section {
+
         padding:
-          110px 6vw;
+          96px 6vw;
       }
 
 
@@ -663,28 +634,30 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-eyebrow {
+
         display: inline-flex;
         align-items: center;
 
-        gap: 9px;
+        gap: 8px;
 
         color:
           var(--brand);
 
-        font-size: 11px;
+        font-size: 10px;
 
-        font-weight: 850;
+        font-weight: 800;
 
         letter-spacing:
-          .16em;
+          .17em;
 
         text-transform:
           uppercase;
       }
 
       .sh-eyebrow-dot {
-        width: 7px;
-        height: 7px;
+
+        width: 6px;
+        height: 6px;
 
         border-radius: 50%;
 
@@ -698,12 +671,12 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-gradient-text {
+
         background:
           linear-gradient(
             110deg,
             var(--brand-deep),
-            var(--brand),
-            var(--accent)
+            var(--brand)
           );
 
         -webkit-background-clip:
@@ -722,23 +695,24 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-btn {
-        min-height: 50px;
+
+        min-height: 46px;
 
         display: inline-flex;
         align-items: center;
         justify-content: center;
 
-        gap: 9px;
+        gap: 8px;
 
         padding:
-          0 20px;
+          0 18px;
 
         border:
           1px solid transparent;
 
-        border-radius: 13px;
+        border-radius: 11px;
 
-        font-size: 14px;
+        font-size: 12px;
 
         font-weight: 750;
 
@@ -748,31 +722,31 @@ function GlobalStyles() {
       }
 
       .sh-btn:hover {
+
         transform:
-          translateY(-2px);
+          translateY(-1px);
       }
 
       .sh-btn-primary {
-        color: white;
+
+        color:
+          white;
 
         background:
-          linear-gradient(
-            135deg,
-            var(--brand),
-            var(--brand-deep)
-          );
+          var(--brand);
 
         box-shadow:
-          0 20px 40px -25px
-          rgba(29,78,216,.75);
+          0 14px 30px -22px
+          rgba(36,87,214,.75);
       }
 
       .sh-btn-secondary {
+
         color:
           var(--ink);
 
         background:
-          rgba(255,255,255,.78);
+          rgba(255,255,255,.82);
 
         border-color:
           var(--line-strong);
@@ -784,63 +758,65 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-hero {
+
         min-height:
-          calc(100vh - 78px);
+          calc(100vh - 76px);
 
         display: flex;
         align-items: center;
 
         padding:
-          clamp(60px,8vw,120px)
-          6vw;
+          85px 6vw;
       }
 
       .sh-hero-grid {
-        width:
-          min(1280px,100%);
 
-        margin:
-          0 auto;
+        width:
+          min(1240px,100%);
+
+        margin: 0 auto;
 
         display: grid;
 
         grid-template-columns:
-          minmax(0,1.02fr)
-          minmax(420px,.98fr);
+          minmax(0,1fr)
+          minmax(400px,.86fr);
 
         gap:
-          clamp(50px,7vw,110px);
+          clamp(55px,7vw,100px);
 
         align-items:
           center;
       }
 
       .sh-hero-copy {
+
         max-width:
-          760px;
+          690px;
       }
 
       .sh-hero-title {
+
         margin:
-          22px 0
-          28px;
+          19px 0 23px;
 
         font-size:
-          clamp(46px,6.2vw,84px);
+          clamp(50px,5.5vw,70px);
 
         line-height:
-          .98;
+          1.01;
 
         letter-spacing:
           -.06em;
 
         font-weight:
-          850;
+          800;
       }
 
       .sh-hero-description {
+
         max-width:
-          680px;
+          650px;
 
         margin: 0;
 
@@ -848,36 +824,44 @@ function GlobalStyles() {
           var(--ink-soft);
 
         font-size:
-          clamp(17px,1.45vw,20px);
+          clamp(15px,1.3vw,17px);
 
         line-height:
-          1.7;
+          1.72;
+
+        font-weight:
+          500;
       }
 
       .sh-hero-actions {
+
         display: flex;
         flex-wrap: wrap;
 
-        gap: 12px;
+        gap: 10px;
 
-        margin-top: 36px;
+        margin-top: 29px;
       }
 
       .sh-hero-note {
+
         display: flex;
         align-items: center;
 
-        gap: 9px;
+        gap: 8px;
 
-        margin-top: 28px;
+        margin-top: 20px;
 
         color:
           var(--ink-muted);
 
-        font-size: 12px;
+        font-size: 11px;
+
+        font-weight: 600;
       }
 
       .sh-hero-note svg {
+
         color:
           var(--accent);
       }
@@ -888,32 +872,35 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-hero-visual {
+
         position: relative;
       }
 
       .sh-hero-image {
-        position: relative;
 
         overflow: hidden;
 
         min-height:
-          590px;
+          520px;
 
         border-radius:
-          34px;
+          28px;
 
         box-shadow:
-          var(--shadow);
+          0 28px 60px -42px
+          rgba(15,23,42,.55);
       }
 
       .sh-hero-image img {
+
         width: 100%;
-        height: 590px;
+        height: 520px;
 
         object-fit: cover;
       }
 
       .sh-image-overlay {
+
         position: absolute;
 
         inset: 0;
@@ -921,72 +908,78 @@ function GlobalStyles() {
         background:
           linear-gradient(
             180deg,
-            rgba(9,18,33,.02),
-            rgba(9,18,33,.45)
+            transparent,
+            rgba(9,20,38,.28)
           );
       }
 
       .sh-floating-stat {
+
         position: absolute;
 
-        left: -34px;
-        bottom: 38px;
+        left: -25px;
+        bottom: 28px;
 
-        width: 210px;
+        width: 185px;
 
-        padding: 20px;
+        padding: 17px;
 
-        border-radius: 20px;
+        border:
+          1px solid
+          rgba(255,255,255,.7);
+
+        border-radius: 16px;
 
         background:
-          rgba(255,255,255,.93);
-
-        backdrop-filter:
-          blur(18px);
+          rgba(255,255,255,.94);
 
         box-shadow:
-          0 25px 55px -35px
+          0 20px 45px -30px
           rgba(15,23,42,.6);
       }
 
       .sh-floating-stat-number {
-        font-size: 30px;
 
-        line-height: 1;
+        font-size: 24px;
 
-        font-weight: 850;
+        font-weight: 800;
+
+        letter-spacing:
+          -.04em;
 
         color:
           var(--brand-deep);
       }
 
       .sh-floating-stat-label {
-        margin-top: 8px;
+
+        margin-top: 6px;
 
         color:
           var(--ink-muted);
 
-        font-size: 12px;
+        font-size: 10px;
 
         line-height: 1.5;
       }
 
       .sh-floating-badge {
+
         position: absolute;
 
-        right: -25px;
-        top: 34px;
+        right: -20px;
+        top: 25px;
 
         display: flex;
         align-items: center;
 
-        gap: 9px;
+        gap: 7px;
 
         padding:
-          13px 15px;
+          10px 12px;
 
         border-radius:
-          14px;
+          11px;
 
         background:
           var(--navy);
@@ -994,11 +987,7 @@ function GlobalStyles() {
         color:
           white;
 
-        box-shadow:
-          0 25px 50px -30px
-          rgba(9,18,33,.8);
-
-        font-size: 12px;
+        font-size: 10px;
 
         font-weight: 700;
       }
@@ -1009,47 +998,54 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-statement {
-        padding-top: 80px;
-        padding-bottom: 80px;
+
+        padding-top: 70px;
+        padding-bottom: 75px;
       }
 
       .sh-statement-grid {
+
         display: grid;
 
         grid-template-columns:
-          .75fr
-          1.25fr;
+          .65fr
+          1.35fr;
 
-        gap: 80px;
+        gap: 70px;
       }
 
       .sh-statement-title {
+
         margin: 0;
 
         font-size:
-          clamp(38px,5vw,64px);
+          clamp(38px,4.2vw,54px);
 
         line-height:
-          1.02;
+          1.05;
 
         letter-spacing:
           -.055em;
 
         font-weight:
-          850;
+          800;
       }
 
       .sh-statement-copy {
-        padding-top: 8px;
+
+        padding-top: 4px;
 
         color:
           var(--ink-soft);
 
         font-size:
-          clamp(18px,1.5vw,21px);
+          clamp(16px,1.35vw,18px);
 
         line-height:
           1.75;
+
+        font-weight:
+          500;
       }
 
 
@@ -1058,16 +1054,18 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-capabilities {
-        padding-top: 55px;
+
+        padding-top: 45px;
       }
 
       .sh-capability-grid {
+
         display: grid;
 
         grid-template-columns:
           repeat(4,1fr);
 
-        margin-top: 50px;
+        margin-top: 40px;
 
         border-top:
           1px solid var(--line);
@@ -1077,120 +1075,128 @@ function GlobalStyles() {
       }
 
       .sh-capability {
-        min-height: 270px;
+
+        min-height:
+          235px;
 
         padding:
-          34px 28px;
+          29px 24px;
 
         border-right:
           1px solid var(--line);
       }
 
       .sh-capability:last-child {
+
         border-right: 0;
       }
 
-      .sh-capability:hover {
-        background:
-          rgba(255,255,255,.65);
-      }
-
       .sh-capability-icon {
-        width: 46px;
-        height: 46px;
+
+        width: 42px;
+        height: 42px;
 
         display: grid;
         place-items: center;
 
-        border-radius: 14px;
+        border-radius: 12px;
 
         background:
-          rgba(29,78,216,.08);
+          rgba(36,87,214,.075);
 
         color:
           var(--brand);
       }
 
       .sh-capability h3 {
-        margin:
-          30px 0
-          12px;
 
-        font-size: 20px;
+        margin:
+          22px 0 9px;
+
+        font-size: 18px;
+
+        line-height: 1.25;
 
         letter-spacing:
           -.025em;
       }
 
       .sh-capability p {
+
         margin: 0;
 
         color:
           var(--ink-muted);
 
-        font-size: 14px;
+        font-size: 12px;
 
-        line-height: 1.7;
+        line-height: 1.65;
+
+        font-weight: 500;
       }
 
 
       /* =====================================================
-         PRODUCTS
+         PRODUCT SECTIONS
       ===================================================== */
 
       .sh-product-section {
+
         padding:
-          120px 6vw;
+          100px 6vw;
       }
 
       .sh-product-dark {
+
         background:
           radial-gradient(
-            circle at 90% 10%,
-            rgba(29,78,216,.23),
-            transparent 32rem
+            circle at 88% 10%,
+            rgba(36,87,214,.18),
+            transparent 28rem
           ),
           var(--navy);
 
-        color:
-          white;
+        color: white;
       }
 
       .sh-product-grid {
+
         display: grid;
 
         grid-template-columns:
-          minmax(0,.92fr)
-          minmax(0,1.08fr);
+          minmax(0,.9fr)
+          minmax(0,1.1fr);
 
         gap:
-          clamp(50px,7vw,110px);
+          clamp(55px,7vw,95px);
 
-        align-items:
-          center;
+        align-items: center;
       }
 
       .sh-product-grid.reverse {
+
         grid-template-columns:
-          minmax(0,1.08fr)
-          minmax(0,.92fr);
+          minmax(0,1.1fr)
+          minmax(0,.9fr);
       }
 
       .sh-product-copy {
+
         max-width:
-          650px;
+          620px;
       }
 
       .sh-product-label {
+
         display: flex;
         align-items: center;
 
-        gap: 10px;
+        gap: 8px;
 
         color:
           var(--accent);
 
-        font-size: 12px;
+        font-size: 10px;
 
         font-weight: 800;
 
@@ -1203,51 +1209,60 @@ function GlobalStyles() {
 
       .sh-product-dark
       .sh-product-label {
+
         color:
-          #69d6ca;
+          #6dd7ce;
       }
 
       .sh-product-title {
+
         margin:
-          22px 0;
+          18px 0;
 
         font-size:
-          clamp(38px,4.5vw,60px);
+          clamp(37px,4vw,51px);
 
         line-height:
-          1;
+          1.04;
 
         letter-spacing:
           -.055em;
 
         font-weight:
-          850;
+          800;
       }
 
       .sh-product-description {
+
         margin: 0;
 
         color:
           var(--ink-soft);
 
-        font-size: 17px;
+        font-size: 15px;
 
-        line-height: 1.75;
+        line-height:
+          1.75;
+
+        font-weight:
+          500;
       }
 
       .sh-product-dark
       .sh-product-description {
+
         color:
-          rgba(255,255,255,.68);
+          rgba(255,255,255,.66);
       }
 
       .sh-product-list {
+
         display: grid;
 
-        gap: 14px;
+        gap: 11px;
 
         margin:
-          32px 0 0;
+          25px 0 0;
 
         padding: 0;
 
@@ -1255,27 +1270,33 @@ function GlobalStyles() {
       }
 
       .sh-product-list li {
-        display: flex;
-        align-items: flex-start;
 
-        gap: 10px;
+        display: flex;
+
+        align-items:
+          flex-start;
+
+        gap: 9px;
 
         color:
           var(--ink-soft);
 
-        font-size: 14px;
+        font-size: 12px;
 
-        line-height: 1.55;
+        line-height:
+          1.55;
       }
 
       .sh-product-dark
       .sh-product-list li {
+
         color:
-          rgba(255,255,255,.72);
+          rgba(255,255,255,.68);
       }
 
       .sh-product-list svg {
-        flex: 0 0 auto;
+
+        flex-shrink: 0;
 
         margin-top: 2px;
 
@@ -1284,74 +1305,78 @@ function GlobalStyles() {
       }
 
       .sh-product-visual {
+
         position: relative;
       }
 
       .sh-product-image {
+
         overflow: hidden;
 
         min-height:
-          520px;
+          460px;
 
         border-radius:
-          30px;
+          25px;
 
         box-shadow:
-          var(--shadow);
+          0 30px 65px -45px
+          rgba(15,23,42,.6);
       }
 
       .sh-product-image img {
+
         width: 100%;
-        height: 520px;
+        height: 460px;
 
         object-fit: cover;
       }
 
       .sh-product-card {
+
         position: absolute;
 
-        right: 25px;
-        bottom: 25px;
+        right: 20px;
+        bottom: 20px;
 
         width:
-          min(290px,calc(100% - 50px));
+          min(250px,calc(100% - 40px));
 
-        padding: 20px;
+        padding: 16px;
 
-        border-radius: 18px;
+        border-radius:
+          14px;
 
         background:
-          rgba(255,255,255,.93);
+          rgba(255,255,255,.94);
 
         color:
           var(--ink);
 
-        backdrop-filter:
-          blur(15px);
-
         box-shadow:
-          0 25px 60px -40px
+          0 20px 45px -30px
           rgba(15,23,42,.65);
       }
 
       .sh-product-dark
       .sh-product-card {
-        background:
-          rgba(13,27,51,.91);
 
-        color:
-          white;
+        background:
+          rgba(13,27,51,.94);
+
+        color: white;
 
         border:
           1px solid
-          rgba(255,255,255,.12);
+          rgba(255,255,255,.1);
       }
 
       .sh-product-card-label {
+
         color:
           var(--ink-muted);
 
-        font-size: 10px;
+        font-size: 9px;
 
         font-weight: 800;
 
@@ -1362,18 +1387,15 @@ function GlobalStyles() {
           uppercase;
       }
 
-      .sh-product-dark
-      .sh-product-card-label {
-        color:
-          rgba(255,255,255,.5);
-      }
-
       .sh-product-card-title {
-        margin-top: 8px;
 
-        font-size: 18px;
+        margin-top: 6px;
 
-        font-weight: 800;
+        font-size: 15px;
+
+        line-height: 1.35;
+
+        font-weight: 750;
       }
 
 
@@ -1382,75 +1404,85 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-outcomes {
-        padding-top: 120px;
-        padding-bottom: 120px;
+
+        padding-top: 100px;
+        padding-bottom: 100px;
       }
 
       .sh-outcomes-header {
+
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
 
-        gap: 40px;
+        gap: 50px;
       }
 
       .sh-section-title {
+
         margin:
-          18px 0 0;
+          15px 0 0;
 
         font-size:
-          clamp(38px,4.7vw,62px);
+          clamp(38px,4.2vw,54px);
 
         line-height:
-          1.02;
+          1.04;
 
         letter-spacing:
           -.055em;
 
         font-weight:
-          850;
+          800;
       }
 
       .sh-section-description {
-        max-width: 500px;
+
+        max-width:
+          450px;
 
         color:
           var(--ink-soft);
 
-        font-size: 16px;
+        font-size: 14px;
 
-        line-height: 1.7;
+        line-height:
+          1.7;
       }
 
       .sh-outcome-grid {
+
         display: grid;
 
         grid-template-columns:
           repeat(3,1fr);
 
-        margin-top: 60px;
+        margin-top: 48px;
 
         border-top:
           1px solid var(--line);
       }
 
       .sh-outcome {
+
         padding:
-          34px 30px;
+          28px 26px;
 
         border-right:
           1px solid var(--line);
       }
 
       .sh-outcome:last-child {
+
         border-right: 0;
       }
 
       .sh-outcome-number {
+
         color:
           var(--brand);
 
-        font-size: 13px;
+        font-size: 10px;
 
         font-weight: 800;
 
@@ -1459,22 +1491,25 @@ function GlobalStyles() {
       }
 
       .sh-outcome h3 {
-        margin:
-          26px 0
-          12px;
 
-        font-size: 23px;
+        margin:
+          20px 0 8px;
+
+        font-size: 18px;
+
+        line-height: 1.3;
       }
 
       .sh-outcome p {
+
         margin: 0;
 
         color:
           var(--ink-muted);
 
-        font-size: 14px;
+        font-size: 12px;
 
-        line-height: 1.7;
+        line-height: 1.65;
       }
 
 
@@ -1483,26 +1518,24 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-cta {
+
         padding:
-          110px 6vw;
+          85px 6vw;
       }
 
       .sh-cta-box {
-        position: relative;
-
-        overflow: hidden;
 
         padding:
-          clamp(45px,7vw,90px);
+          clamp(42px,6vw,70px);
 
         border-radius:
-          32px;
+          26px;
 
         background:
           radial-gradient(
-            circle at 85% 10%,
-            rgba(15,118,110,.26),
-            transparent 25rem
+            circle at 88% 10%,
+            rgba(8,127,120,.22),
+            transparent 22rem
           ),
           linear-gradient(
             135deg,
@@ -1515,36 +1548,38 @@ function GlobalStyles() {
       }
 
       .sh-cta-title {
+
         max-width:
-          850px;
+          760px;
 
         margin:
-          18px 0
-          20px;
+          15px 0;
 
         font-size:
-          clamp(38px,5vw,66px);
+          clamp(38px,4.6vw,56px);
 
         line-height:
-          1;
+          1.03;
 
         letter-spacing:
           -.055em;
 
         font-weight:
-          850;
+          800;
       }
 
       .sh-cta-description {
+
         max-width:
-          670px;
+          620px;
 
         color:
-          rgba(255,255,255,.66);
+          rgba(255,255,255,.65);
 
-        font-size: 17px;
+        font-size: 14px;
 
-        line-height: 1.7;
+        line-height:
+          1.7;
       }
 
 
@@ -1553,17 +1588,17 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-page-hero {
+
         padding:
-          100px 6vw
-          80px;
+          85px 6vw 65px;
       }
 
       .sh-page-hero-grid {
-        width:
-          min(1280px,100%);
 
-        margin:
-          0 auto;
+        width:
+          min(1240px,100%);
+
+        margin: 0 auto;
 
         display: grid;
 
@@ -1571,54 +1606,62 @@ function GlobalStyles() {
           minmax(0,1fr)
           minmax(400px,.8fr);
 
-        gap: 80px;
+        gap: 75px;
 
-        align-items:
-          center;
+        align-items: center;
       }
 
       .sh-page-title {
+
         margin:
-          22px 0;
+          17px 0;
 
         font-size:
-          clamp(44px,6vw,78px);
+          clamp(46px,5.3vw,65px);
 
         line-height:
-          .98;
+          1.01;
 
         letter-spacing:
           -.06em;
 
         font-weight:
-          850;
+          800;
       }
 
       .sh-page-description {
+
         max-width:
-          680px;
+          650px;
 
         color:
           var(--ink-soft);
 
-        font-size: 18px;
+        font-size: 15px;
 
-        line-height: 1.75;
+        line-height:
+          1.75;
+
+        font-weight:
+          500;
       }
 
       .sh-page-image {
+
         overflow: hidden;
 
         border-radius:
-          30px;
+          25px;
 
         box-shadow:
-          var(--shadow);
+          0 25px 60px -42px
+          rgba(15,23,42,.55);
       }
 
       .sh-page-image img {
+
         width: 100%;
-        height: 480px;
+        height: 430px;
 
         object-fit: cover;
       }
@@ -1629,220 +1672,224 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-mission {
-        padding-top: 70px;
+
+        padding-top: 50px;
       }
 
       .sh-mission-grid {
+
         display: grid;
 
         grid-template-columns:
           .7fr
           1.3fr;
 
-        gap: 80px;
+        gap: 70px;
       }
 
       .sh-mission-title {
+
         margin: 0;
 
         font-size:
-          clamp(34px,4vw,55px);
+          clamp(34px,4vw,50px);
 
         line-height:
-          1.03;
+          1.05;
 
         letter-spacing:
           -.05em;
 
         font-weight:
-          850;
+          800;
       }
 
       .sh-mission-copy {
+
         color:
           var(--ink-soft);
 
-        font-size: 18px;
+        font-size: 15px;
 
-        line-height: 1.8;
+        line-height:
+          1.8;
+
+        font-weight:
+          500;
       }
 
       .sh-mission-copy p {
-        margin-top: 0;
-        margin-bottom: 22px;
+
+        margin:
+          0 0 20px;
       }
 
       .sh-values-grid {
+
         display: grid;
 
         grid-template-columns:
           repeat(3,1fr);
 
-        margin-top: 60px;
+        margin-top: 50px;
 
         border-top:
           1px solid var(--line);
       }
 
       .sh-value {
+
         padding:
-          34px 28px;
+          28px 24px;
 
         border-right:
           1px solid var(--line);
       }
 
       .sh-value:last-child {
+
         border-right: 0;
       }
 
       .sh-value-icon {
+
         color:
           var(--brand);
       }
 
       .sh-value h3 {
-        margin:
-          24px 0
-          10px;
 
-        font-size: 20px;
+        margin:
+          20px 0 8px;
+
+        font-size: 17px;
       }
 
       .sh-value p {
+
         margin: 0;
 
         color:
           var(--ink-muted);
 
-        font-size: 14px;
+        font-size: 12px;
 
-        line-height: 1.7;
+        line-height:
+          1.65;
       }
 
 
       /* =====================================================
-         =====================================================
-         SERVICES / WHAT WE DO
-         =====================================================
+         SERVICES
       ===================================================== */
 
       .sh-services-hero {
+
         padding:
-          clamp(55px,7vw,90px)
-          6vw
-          30px;
+          70px 6vw 25px;
       }
 
       .sh-services-hero-inner {
+
         max-width:
-          850px;
+          780px;
       }
 
       .sh-services-title {
+
         margin:
-          14px 0
-          12px;
+          12px 0 11px;
 
         font-size:
-          clamp(48px,6vw,76px);
+          clamp(48px,5.7vw,68px);
 
         line-height:
-          .95;
+          .98;
 
         letter-spacing:
-          -.065em;
+          -.06em;
 
         font-weight:
-          850;
+          800;
       }
 
       .sh-services-intro {
+
         max-width:
-          720px;
+          680px;
 
         margin: 0;
 
         color:
           var(--ink-soft);
 
-        font-size:
-          clamp(16px,1.4vw,19px);
+        font-size: 15px;
 
         line-height:
-          1.6;
+          1.65;
+
+        font-weight:
+          500;
       }
 
       .sh-services-section {
+
         padding:
-          10px
-          6vw
-          100px;
+          10px 6vw 85px;
       }
 
       .sh-services-cards {
+
         display: grid;
 
-        gap: 12px;
+        gap: 11px;
       }
 
 
       /* =====================================================
          SERVICE CARD
-         
-         IMPORTANT:
-         Desktop/tablet:
-         text left + image right
-
-         Mobile:
-         STILL text left + image right
-
-         This is intentional to match the reference
-         screenshot and prevent the previous overlap.
       ===================================================== */
 
       .sh-service-card {
+
         display: grid;
 
         grid-template-columns:
           minmax(0,1fr)
-          360px;
+          350px;
 
         min-height:
-          220px;
+          205px;
 
         overflow: hidden;
 
         background:
-          rgba(255,255,255,.82);
+          rgba(255,255,255,.9);
 
         border:
           1px solid
-          rgba(148,163,184,.22);
+          rgba(148,163,184,.2);
 
         border-radius:
-          20px;
+          18px;
 
         box-shadow:
-          0 14px 35px -30px
-          rgba(15,23,42,.42);
+          0 12px 30px -28px
+          rgba(15,23,42,.45);
 
         transition:
-          transform .22s ease,
-          box-shadow .22s ease,
-          border-color .22s ease;
+          transform .2s ease,
+          box-shadow .2s ease;
       }
 
       .sh-service-card:hover {
+
         transform:
           translateY(-2px);
 
-        border-color:
-          rgba(29,78,216,.18);
-
         box-shadow:
-          0 22px 45px -32px
-          rgba(15,23,42,.5);
+          0 18px 40px -28px
+          rgba(15,23,42,.48);
       }
 
 
@@ -1851,166 +1898,136 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-service-content {
+
         display: grid;
 
         grid-template-columns:
-          58px
-          minmax(0,1fr);
-
-        gap: 16px;
-
-        padding:
-          22px
-          24px;
-      }
-
-
-      /* =====================================================
-         SERVICE NUMBER
-      ===================================================== */
-
-      .sh-service-number {
-        width: 44px;
-        height: 44px;
-
-        display: grid;
-        place-items: center;
-
-        border-radius:
-          12px;
-
-        background:
-          rgba(29,78,216,.07);
-
-        color:
-          var(--brand);
-
-        font-size: 13px;
-
-        font-weight: 850;
-      }
-
-
-      /* =====================================================
-         SERVICE MAIN
-      ===================================================== */
-
-      .sh-service-main {
-        display: grid;
-
-        grid-template-columns:
-          48px
+          50px
           minmax(0,1fr);
 
         gap: 13px;
 
-        min-width: 0;
+        padding:
+          21px;
       }
 
+      .sh-service-number {
 
-      /* =====================================================
-         SERVICE ICON
-      ===================================================== */
-
-      .sh-service-icon {
-        width: 44px;
-        height: 44px;
+        width: 38px;
+        height: 38px;
 
         display: grid;
         place-items: center;
 
         border-radius:
-          12px;
+          10px;
 
         background:
-          rgba(29,78,216,.07);
+          rgba(36,87,214,.065);
+
+        color:
+          var(--brand);
+
+        font-size: 11px;
+
+        font-weight: 800;
+      }
+
+      .sh-service-main {
+
+        display: grid;
+
+        grid-template-columns:
+          42px
+          minmax(0,1fr);
+
+        gap: 11px;
+
+        min-width: 0;
+      }
+
+      .sh-service-icon {
+
+        width: 39px;
+        height: 39px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius:
+          11px;
+
+        background:
+          rgba(36,87,214,.065);
 
         color:
           var(--brand);
       }
 
-
-      /* =====================================================
-         SERVICE COPY
-      ===================================================== */
-
       .sh-service-copy {
+
         min-width: 0;
       }
 
       .sh-service-copy h2 {
+
         margin:
           1px 0 0;
 
-        color:
-          var(--ink);
-
         font-size:
-          clamp(20px,2vw,27px);
+          clamp(19px,1.8vw,23px);
 
         line-height:
-          1.08;
+          1.12;
 
         letter-spacing:
           -.04em;
 
         font-weight:
-          850;
+          800;
       }
 
       .sh-service-copy p {
+
         max-width:
           520px;
 
         margin:
-          7px 0 0;
+          6px 0 0;
 
         color:
           var(--ink-soft);
 
-        font-size: 14px;
+        font-size: 12px;
 
         line-height:
-          1.45;
+          1.48;
+
+        font-weight:
+          550;
       }
 
-
-      /* =====================================================
-         LEARN MORE
-      ===================================================== */
-
       .sh-service-link {
+
         display: inline-flex;
         align-items: center;
 
-        gap: 7px;
+        gap: 5px;
 
-        margin-top: 7px;
+        margin-top: 6px;
 
         padding: 0;
 
         border: 0;
 
-        background:
-          transparent;
+        background: transparent;
 
         color:
           var(--brand);
 
-        font-size: 13px;
+        font-size: 11px;
 
-        font-weight: 850;
-
-        transition:
-          gap .2s ease,
-          color .2s ease;
-      }
-
-      .sh-service-link:hover {
-        gap: 10px;
-
-        color:
-          var(--brand-deep);
+        font-weight: 800;
       }
 
 
@@ -2019,44 +2036,47 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-service-image {
+
         position: relative;
 
         min-height:
-          196px;
+          187px;
 
         overflow: hidden;
 
         margin:
-          9px
-          9px
-          9px
+          8px
+          8px
+          8px
           0;
 
         border-radius:
-          16px;
+          14px;
       }
 
       .sh-service-image img {
+
         width: 100%;
         height: 100%;
 
         min-height:
-          196px;
+          187px;
 
-        object-fit:
-          cover;
+        object-fit: cover;
 
         transition:
-          transform .45s ease;
+          transform .4s ease;
       }
 
       .sh-service-card:hover
       .sh-service-image img {
+
         transform:
           scale(1.035);
       }
 
       .sh-service-image-overlay {
+
         position: absolute;
 
         inset: 0;
@@ -2064,12 +2084,9 @@ function GlobalStyles() {
         background:
           linear-gradient(
             180deg,
-            rgba(9,18,33,0),
-            rgba(9,18,33,.10)
+            transparent,
+            rgba(9,20,38,.08)
           );
-
-        pointer-events:
-          none;
       }
 
 
@@ -2078,53 +2095,53 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-services-bottom-cta {
+
         display: flex;
         align-items: center;
 
-        gap: 13px;
+        gap: 12px;
 
-        margin-top:
-          14px;
+        margin-top: 13px;
 
         padding:
-          14px
-          16px;
+          13px 15px;
 
         border:
           1px solid
-          rgba(29,78,216,.10);
+          rgba(36,87,214,.09);
 
         border-radius:
-          17px;
+          15px;
 
         background:
           linear-gradient(
             110deg,
-            rgba(29,78,216,.07),
-            rgba(15,118,110,.06)
+            rgba(36,87,214,.055),
+            rgba(8,127,120,.045)
           );
       }
 
       .sh-services-bottom-icon {
-        width: 42px;
-        height: 42px;
+
+        width: 38px;
+        height: 38px;
 
         display: grid;
         place-items: center;
 
-        flex: 0 0 auto;
+        flex-shrink: 0;
 
-        border-radius:
-          12px;
+        border-radius: 10px;
 
         background:
-          rgba(29,78,216,.09);
+          rgba(36,87,214,.075);
 
         color:
           var(--brand);
       }
 
       .sh-services-bottom-copy {
+
         display: flex;
         flex-direction: column;
 
@@ -2132,16 +2149,18 @@ function GlobalStyles() {
       }
 
       .sh-services-bottom-copy strong {
-        font-size: 14px;
+
+        font-size: 12px;
       }
 
       .sh-services-bottom-copy span {
+
         margin-top: 2px;
 
         color:
           var(--ink-muted);
 
-        font-size: 11px;
+        font-size: 10px;
       }
 
 
@@ -2150,208 +2169,211 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-contact-grid {
+
         display: grid;
 
         grid-template-columns:
           .9fr
           1.1fr;
 
-        gap: 80px;
-
-        align-items:
-          start;
+        gap: 70px;
       }
 
       .sh-contact-image {
+
         overflow: hidden;
 
-        margin-top:
-          50px;
+        margin-top: 32px;
 
         border-radius:
-          30px;
-
-        box-shadow:
-          var(--shadow);
+          24px;
       }
 
       .sh-contact-image img {
+
         width: 100%;
-        height: 430px;
+        height: 380px;
 
         object-fit: cover;
       }
 
       .sh-contact-details {
+
         display: grid;
 
-        gap: 16px;
+        gap: 12px;
 
-        margin-top:
-          38px;
+        margin-top: 30px;
       }
 
       .sh-contact-detail {
+
         display: flex;
         align-items: flex-start;
 
-        gap: 14px;
+        gap: 12px;
 
-        padding: 18px;
+        padding: 15px;
 
         border:
           1px solid var(--line);
 
         border-radius:
-          16px;
+          14px;
 
         background:
           rgba(255,255,255,.58);
       }
 
       .sh-contact-detail-icon {
-        width: 40px;
-        height: 40px;
+
+        width: 36px;
+        height: 36px;
 
         display: grid;
         place-items: center;
 
-        flex: 0 0 auto;
+        flex-shrink: 0;
 
-        border-radius:
-          11px;
+        border-radius: 10px;
 
         background:
-          rgba(29,78,216,.08);
+          rgba(36,87,214,.07);
 
         color:
           var(--brand);
       }
 
       .sh-contact-detail strong {
+
         display: block;
 
-        margin-bottom:
-          5px;
+        margin-bottom: 3px;
 
-        font-size: 14px;
+        font-size: 12px;
       }
 
       .sh-contact-detail span {
+
         color:
           var(--ink-muted);
 
-        font-size: 13px;
+        font-size: 11px;
 
         word-break:
           break-word;
       }
 
       .sh-form {
+
         padding:
-          32px;
+          27px;
 
         border:
           1px solid var(--line);
 
         border-radius:
-          24px;
+          20px;
 
         background:
-          rgba(255,255,255,.70);
+          rgba(255,255,255,.75);
 
         box-shadow:
-          var(--shadow);
+          0 25px 55px -42px
+          rgba(15,23,42,.55);
       }
 
       .sh-form-title {
-        margin:
-          0 0 8px;
 
-        font-size: 27px;
+        margin:
+          0 0 7px;
+
+        font-size: 23px;
 
         letter-spacing:
           -.035em;
       }
 
       .sh-form-subtitle {
+
         margin:
-          0 0 30px;
+          0 0 23px;
 
         color:
           var(--ink-muted);
 
-        font-size: 14px;
+        font-size: 12px;
 
         line-height: 1.6;
       }
 
       .sh-form-grid {
+
         display: grid;
 
         grid-template-columns:
           repeat(2,1fr);
 
-        gap: 16px;
+        gap: 13px;
       }
 
       .sh-field {
+
         display: grid;
 
-        gap: 7px;
+        gap: 6px;
       }
 
       .sh-field.full {
+
         grid-column:
           1 / -1;
       }
 
       .sh-field label {
+
         color:
           var(--ink-soft);
 
-        font-size: 12px;
+        font-size: 10px;
 
         font-weight: 750;
       }
 
       .sh-field input,
       .sh-field textarea {
+
         width: 100%;
 
         outline: none;
 
         border:
-          1px solid
-          var(--line-strong);
+          1px solid var(--line-strong);
 
         border-radius:
-          12px;
+          10px;
 
         background:
-          rgba(255,255,255,.85);
+          white;
 
         padding:
-          13px
-          14px;
+          11px 12px;
 
         color:
           var(--ink);
 
-        font-size: 14px;
-
-        transition:
-          border-color .2s ease,
-          box-shadow .2s ease;
+        font-size: 12px;
       }
 
       .sh-field input {
-        height: 48px;
+
+        height: 44px;
       }
 
       .sh-field textarea {
+
         min-height:
-          130px;
+          115px;
 
         resize:
           vertical;
@@ -2359,35 +2381,33 @@ function GlobalStyles() {
 
       .sh-field input:focus,
       .sh-field textarea:focus {
+
         border-color:
-          rgba(29,78,216,.6);
+          rgba(36,87,214,.55);
 
         box-shadow:
-          0 0 0 4px
-          rgba(29,78,216,.08);
+          0 0 0 3px
+          rgba(36,87,214,.07);
       }
 
       .sh-form-submit {
+
         width: 100%;
 
-        margin-top:
-          20px;
+        margin-top: 17px;
       }
 
       .sh-success {
+
         display: flex;
-        align-items: flex-start;
 
-        gap: 12px;
+        gap: 10px;
 
-        margin-top:
-          20px;
+        margin-top: 15px;
 
-        padding:
-          15px;
+        padding: 12px;
 
-        border-radius:
-          13px;
+        border-radius: 10px;
 
         background:
           var(--accent-soft);
@@ -2395,10 +2415,9 @@ function GlobalStyles() {
         color:
           var(--accent);
 
-        font-size: 13px;
+        font-size: 11px;
 
-        line-height:
-          1.55;
+        line-height: 1.5;
       }
 
 
@@ -2407,27 +2426,25 @@ function GlobalStyles() {
       ===================================================== */
 
       .sh-footer {
+
         margin-left:
-          245px;
+          238px;
 
         padding:
-          55px
-          6vw
-          35px;
+          48px 6vw 30px;
 
         background:
           var(--navy);
 
-        color:
-          white;
+        color: white;
       }
 
       .sh-footer-grid {
-        width:
-          min(1280px,100%);
 
-        margin:
-          0 auto;
+        width:
+          min(1240px,100%);
+
+        margin: 0 auto;
 
         display: grid;
 
@@ -2436,46 +2453,41 @@ function GlobalStyles() {
           .7fr
           .7fr;
 
-        gap: 60px;
+        gap: 50px;
       }
 
       .sh-footer-brand {
-        font-size: 20px;
 
-        font-weight:
-          850;
+        font-size: 18px;
 
-        letter-spacing:
-          -.03em;
+        font-weight: 800;
       }
 
       .sh-footer-description {
-        max-width:
-          430px;
 
-        margin-top:
-          14px;
+        max-width:
+          410px;
+
+        margin-top: 11px;
 
         color:
-          rgba(255,255,255,.56);
+          rgba(255,255,255,.52);
 
-        font-size: 13px;
+        font-size: 11px;
 
-        line-height:
-          1.7;
+        line-height: 1.7;
       }
 
       .sh-footer-heading {
-        margin-bottom:
-          16px;
+
+        margin-bottom: 13px;
 
         color:
-          rgba(255,255,255,.42);
+          rgba(255,255,255,.4);
 
-        font-size: 10px;
+        font-size: 9px;
 
-        font-weight:
-          800;
+        font-weight: 800;
 
         letter-spacing:
           .14em;
@@ -2485,55 +2497,47 @@ function GlobalStyles() {
       }
 
       .sh-footer-links {
+
         display: grid;
 
-        gap: 10px;
+        gap: 8px;
       }
 
       .sh-footer-links button,
       .sh-footer-links a {
-        width:
-          fit-content;
+
+        width: fit-content;
 
         padding: 0;
 
         border: 0;
 
-        background:
-          transparent;
+        background: transparent;
 
         color:
-          rgba(255,255,255,.72);
+          rgba(255,255,255,.68);
 
-        font-size: 13px;
-
-        cursor: pointer;
-      }
-
-      .sh-footer-links button:hover,
-      .sh-footer-links a:hover {
-        color:
-          white;
+        font-size: 11px;
       }
 
       .sh-footer-bottom {
+
         width:
-          min(1280px,100%);
+          min(1240px,100%);
 
         margin:
-          45px auto 0;
+          35px auto 0;
 
-        padding-top:
-          20px;
+        padding-top: 17px;
 
         border-top:
           1px solid
-          rgba(255,255,255,.1);
+          rgba(255,255,255,.09);
 
         color:
-          rgba(255,255,255,.38);
+          rgba(255,255,255,.34);
 
-        font-size: 11px;
+        font-size: 9px;
       }
 
 
@@ -2541,134 +2545,86 @@ function GlobalStyles() {
          TABLET
       ===================================================== */
 
-      @media (max-width: 1100px) {
+      @media (max-width: 1050px) {
 
         .sh-sidebar {
+
           width:
-            215px;
+            210px;
         }
 
         .sh-main {
+
           margin-left:
-            215px;
+            210px;
         }
 
         .sh-footer {
+
           margin-left:
-            215px;
+            210px;
         }
 
         .sh-hero-grid {
+
           grid-template-columns:
             1fr;
         }
 
         .sh-hero-copy {
+
           max-width:
-            900px;
-        }
-
-        .sh-hero-image {
-          min-height:
-            480px;
-        }
-
-        .sh-hero-image img {
-          height:
-            480px;
-        }
-
-        .sh-floating-stat {
-          left:
-            24px;
-        }
-
-        .sh-floating-badge {
-          right:
-            24px;
+            800px;
         }
 
         .sh-capability-grid {
+
           grid-template-columns:
             repeat(2,1fr);
         }
 
         .sh-capability:nth-child(2) {
-          border-right: 0;
+
+          border-right:
+            0;
         }
 
         .sh-capability:nth-child(-n+2) {
+
           border-bottom:
             1px solid var(--line);
         }
 
         .sh-product-grid,
         .sh-product-grid.reverse {
+
           grid-template-columns:
             1fr;
         }
 
-        .sh-outcomes-header {
-          display: block;
-        }
-
-        .sh-section-description {
-          margin-top:
-            24px;
-        }
-
         .sh-page-hero-grid {
+
           grid-template-columns:
             1fr;
         }
 
         .sh-mission-grid {
+
           grid-template-columns:
             1fr;
-
-          gap: 35px;
         }
 
         .sh-contact-grid {
+
           grid-template-columns:
             1fr;
         }
 
-
-        /* -----------------------------------------------
-           SERVICES AT TABLET
-        ----------------------------------------------- */
-
         .sh-service-card {
+
           grid-template-columns:
             minmax(0,1fr)
             300px;
-        }
-
-        .sh-service-content {
-          padding:
-            20px;
-        }
-
-        .sh-service-main {
-          grid-template-columns:
-            42px
-            minmax(0,1fr);
-        }
-
-        .sh-service-icon {
-          width: 40px;
-          height: 40px;
-        }
-
-        .sh-service-copy h2 {
-          font-size:
-            20px;
-        }
-
-        .sh-service-copy p {
-          font-size:
-            13px;
         }
       }
 
@@ -2679,413 +2635,533 @@ function GlobalStyles() {
 
       @media (max-width: 767px) {
 
-        /* -----------------------------------------------
-           TOP BAR
-        ----------------------------------------------- */
-
         .sh-topbar {
+
           height:
-            68px;
+            66px;
         }
 
         .sh-topbar-inner {
+
           padding:
-            0 17px;
+            0 16px;
         }
 
         .sh-brand-mark {
-          width:
-            38px;
 
-          height:
-            38px;
+          width: 38px;
+          height: 38px;
 
           border-radius:
             11px;
         }
 
         .sh-brand-name {
+
           font-size:
-            16px;
+            15px;
         }
 
         .sh-brand-subtitle {
+
           display:
             none;
         }
 
         .sh-mobile-menu-btn {
+
           display:
             flex;
         }
 
         .sh-sidebar {
+
           display:
             none;
         }
 
-
-        /* -----------------------------------------------
-           MAIN
-        ----------------------------------------------- */
-
         .sh-main {
+
           margin-left:
             0;
 
           padding-top:
-            68px;
+            66px;
         }
 
         .sh-section {
+
           padding:
-            76px
-            20px;
+            70px 20px;
         }
 
 
-        /* -----------------------------------------------
-           HERO
-        ----------------------------------------------- */
+        /* ================================================
+           MOBILE HERO
+        ================================================= */
 
         .sh-hero {
+
           min-height:
             auto;
 
           padding:
-            65px
-            20px
-            60px;
+            60px 20px 55px;
         }
 
         .sh-hero-grid {
+
           gap:
-            42px;
+            38px;
         }
 
         .sh-hero-title {
+
           margin:
-            18px 0 22px;
+            17px 0 20px;
 
           font-size:
-            clamp(43px,13vw,62px);
+            clamp(42px,12.5vw,51px);
 
           line-height:
-            .96;
+            .98;
         }
 
         .sh-hero-description {
+
           font-size:
-            16px;
+            14px;
 
           line-height:
             1.7;
         }
 
         .sh-hero-actions {
+
           display:
             grid;
 
           gap:
-            10px;
+            8px;
         }
 
         .sh-btn {
+
           width:
             100%;
 
           min-height:
-            52px;
+            48px;
+
+          font-size:
+            12px;
         }
 
         .sh-hero-note {
+
           align-items:
             flex-start;
+
+          font-size:
+            10px;
 
           line-height:
             1.5;
         }
 
         .sh-hero-image {
+
           min-height:
-            390px;
+            360px;
 
           border-radius:
-            24px;
+            22px;
         }
 
         .sh-hero-image img {
+
           height:
-            390px;
+            360px;
         }
 
         .sh-floating-stat {
+
           left:
-            14px;
+            12px;
 
           bottom:
-            14px;
+            12px;
 
           width:
-            175px;
+            165px;
 
           padding:
-            15px;
+            14px;
         }
 
         .sh-floating-stat-number {
+
           font-size:
-            26px;
+            21px;
+        }
+
+        .sh-floating-stat-label {
+
+          font-size:
+            9px;
         }
 
         .sh-floating-badge {
+
           right:
-            14px;
+            12px;
 
           top:
-            14px;
-
-          padding:
-            10px 12px;
+            12px;
 
           font-size:
-            10px;
+            9px;
         }
 
 
-        /* -----------------------------------------------
-           STATEMENT
-        ----------------------------------------------- */
+        /* ================================================
+           MOBILE STATEMENT
+        ================================================= */
 
         .sh-statement {
+
           padding-top:
-            60px;
+            55px;
 
           padding-bottom:
-            60px;
+            55px;
         }
 
         .sh-statement-grid {
+
           grid-template-columns:
             1fr;
 
           gap:
-            24px;
+            22px;
+        }
+
+        .sh-statement-title {
+
+          font-size:
+            35px;
+
+          line-height:
+            1.05;
         }
 
         .sh-statement-copy {
+
           font-size:
-            16px;
+            14px;
+
+          line-height:
+            1.72;
         }
 
 
-        /* -----------------------------------------------
-           CAPABILITIES
-        ----------------------------------------------- */
+        /* ================================================
+           MOBILE CAPABILITIES
+        ================================================= */
 
         .sh-capabilities {
+
           padding-top:
-            20px;
+            15px;
         }
 
         .sh-capability-grid {
+
           grid-template-columns:
             1fr;
 
           margin-top:
-            35px;
+            32px;
         }
 
         .sh-capability,
         .sh-capability:nth-child(2) {
+
+          min-height:
+            auto;
+
           border-right:
             0;
 
           border-bottom:
             1px solid var(--line);
+
+          padding:
+            25px 20px;
         }
 
         .sh-capability:last-child {
+
           border-bottom:
             0;
         }
 
-        .sh-capability {
-          min-height:
-            auto;
-
-          padding:
-            28px 22px;
-        }
-
         .sh-capability h3 {
+
           margin-top:
-            22px;
+            18px;
+
+          font-size:
+            17px;
+        }
+
+        .sh-capability p {
+
+          font-size:
+            12px;
         }
 
 
-        /* -----------------------------------------------
-           PRODUCTS
-        ----------------------------------------------- */
+        /* ================================================
+           MOBILE PRODUCTS
+        ================================================= */
 
         .sh-product-section {
+
           padding:
-            75px 20px;
+            70px 20px;
         }
 
         .sh-product-grid,
         .sh-product-grid.reverse {
+
           gap:
-            42px;
+            38px;
         }
 
         .sh-product-title {
+
           font-size:
-            clamp(37px,11vw,52px);
+            35px;
+
+          line-height:
+            1.04;
         }
 
         .sh-product-description {
+
           font-size:
-            16px;
+            13px;
+        }
+
+        .sh-product-list li {
+
+          font-size:
+            11px;
         }
 
         .sh-product-image {
+
           min-height:
-            360px;
+            340px;
 
           border-radius:
-            24px;
+            21px;
         }
 
         .sh-product-image img {
+
           height:
-            360px;
+            340px;
         }
 
         .sh-product-card {
+
           right:
-            14px;
+            12px;
 
           bottom:
-            14px;
+            12px;
 
           width:
-            calc(100% - 28px);
+            calc(100% - 24px);
         }
 
 
-        /* -----------------------------------------------
-           OUTCOMES
-        ----------------------------------------------- */
+        /* ================================================
+           MOBILE OUTCOMES
+        ================================================= */
 
         .sh-outcomes {
+
           padding-top:
-            75px;
+            70px;
 
           padding-bottom:
-            75px;
+            70px;
+        }
+
+        .sh-outcomes-header {
+
+          display:
+            block;
+        }
+
+        .sh-section-title {
+
+          font-size:
+            35px;
+        }
+
+        .sh-section-description {
+
+          margin-top:
+            20px;
+
+          font-size:
+            13px;
         }
 
         .sh-outcome-grid {
+
           grid-template-columns:
             1fr;
 
           margin-top:
-            35px;
+            30px;
         }
 
         .sh-outcome {
+
+          padding:
+            25px 0;
+
           border-right:
             0;
 
           border-bottom:
             1px solid var(--line);
-
-          padding:
-            28px 0;
         }
 
         .sh-outcome:last-child {
+
           border-bottom:
             0;
         }
 
+        .sh-outcome h3 {
 
-        /* -----------------------------------------------
-           CTA
-        ----------------------------------------------- */
+          font-size:
+            17px;
+        }
+
+        .sh-outcome p {
+
+          font-size:
+            12px;
+        }
+
+
+        /* ================================================
+           MOBILE CTA
+        ================================================= */
 
         .sh-cta {
+
           padding:
-            65px 20px;
+            60px 20px;
         }
 
         .sh-cta-box {
+
           padding:
-            40px 24px;
+            38px 23px;
 
           border-radius:
-            24px;
+            21px;
         }
 
         .sh-cta-title {
+
           font-size:
-            clamp(38px,11vw,55px);
+            36px;
         }
 
         .sh-cta-description {
+
           font-size:
-            15px;
+            13px;
         }
 
 
-        /* -----------------------------------------------
-           PAGE HERO
-        ----------------------------------------------- */
+        /* ================================================
+           MOBILE PAGE HERO
+        ================================================= */
 
         .sh-page-hero {
+
           padding:
-            70px
-            20px
-            50px;
+            60px 20px 45px;
         }
 
         .sh-page-hero-grid {
+
           gap:
-            38px;
+            35px;
         }
 
         .sh-page-title {
+
           font-size:
-            clamp(43px,12vw,60px);
+            42px;
+
+          line-height:
+            1;
         }
 
         .sh-page-description {
+
           font-size:
-            16px;
+            14px;
         }
 
         .sh-page-image img {
+
           height:
-            350px;
+            320px;
         }
 
 
-        /* -----------------------------------------------
-           ABOUT
-        ----------------------------------------------- */
+        /* ================================================
+           MOBILE ABOUT
+        ================================================= */
 
         .sh-mission {
+
           padding-top:
-            40px;
+            30px;
         }
 
         .sh-mission-grid {
-          grid-template-columns:
-            1fr;
+
+          gap:
+            25px;
+        }
+
+        .sh-mission-title {
+
+          font-size:
+            34px;
+        }
+
+        .sh-mission-copy {
+
+          font-size:
+            14px;
         }
 
         .sh-values-grid {
+
           grid-template-columns:
             1fr;
 
@@ -3094,67 +3170,68 @@ function GlobalStyles() {
         }
 
         .sh-value {
+
+          padding:
+            25px 0;
+
           border-right:
             0;
 
           border-bottom:
             1px solid var(--line);
-
-          padding:
-            28px 0;
         }
 
         .sh-value:last-child {
+
           border-bottom:
             0;
         }
 
 
-        /* =================================================
-           SERVICES — MOBILE
+        /* ================================================
+           MOBILE SERVICES
            
-           THIS IS THE IMPORTANT FIX.
-           
-           Cards remain horizontal:
-           
-           [NUMBER + CONTENT] [IMAGE]
-           
-           Exactly like the second screenshot.
+           IMPORTANT:
+           The service card remains horizontal.
         ================================================= */
 
         .sh-services-hero {
+
           padding:
-            48px
-            27px
-            22px;
+            48px 20px 20px;
         }
 
         .sh-services-title {
+
           margin-top:
-            12px;
+            11px;
 
           font-size:
-            clamp(45px,14vw,60px);
+            46px;
+
+          line-height:
+            .98;
         }
 
         .sh-services-intro {
+
           font-size:
-            15px;
+            13px;
 
           line-height:
-            1.55;
+            1.6;
         }
 
         .sh-services-section {
+
           padding:
-            8px
-            20px
-            65px;
+            8px 14px 60px;
         }
 
         .sh-services-cards {
+
           gap:
-            10px;
+            9px;
         }
 
 
@@ -3169,13 +3246,13 @@ function GlobalStyles() {
 
           grid-template-columns:
             minmax(0,1fr)
-            43%;
+            42%;
 
           min-height:
-            184px;
+            175px;
 
           border-radius:
-            17px;
+            15px;
         }
 
 
@@ -3185,21 +3262,15 @@ function GlobalStyles() {
 
         .sh-service-content {
 
-          display:
-            grid;
-
           grid-template-columns:
-            39px
+            35px
             minmax(0,1fr);
 
           gap:
-            9px;
+            7px;
 
           padding:
-            13px
-            10px
-            13px
-            11px;
+            11px 8px 11px 9px;
         }
 
 
@@ -3210,30 +3281,27 @@ function GlobalStyles() {
         .sh-service-number {
 
           width:
-            36px;
+            32px;
 
           height:
-            36px;
+            32px;
 
           border-radius:
-            10px;
+            9px;
 
           font-size:
-            11px;
+            9px;
         }
 
 
         /* -----------------------------------------------
-           MAIN SERVICE
+           SERVICE MAIN
         ----------------------------------------------- */
 
         .sh-service-main {
 
           display:
             block;
-
-          min-width:
-            0;
         }
 
 
@@ -3244,24 +3312,25 @@ function GlobalStyles() {
         .sh-service-icon {
 
           width:
-            37px;
+            34px;
 
           height:
-            37px;
+            34px;
 
           margin-bottom:
-            7px;
+            6px;
 
           border-radius:
-            10px;
+            9px;
         }
 
         .sh-service-icon svg {
+
           width:
-            19px;
+            18px;
 
           height:
-            19px;
+            18px;
         }
 
 
@@ -3271,14 +3340,11 @@ function GlobalStyles() {
 
         .sh-service-copy h2 {
 
-          margin:
-            0;
-
           font-size:
-            clamp(16px,4.7vw,20px);
+            clamp(15px,4.2vw,18px);
 
           line-height:
-            1.06;
+            1.08;
 
           letter-spacing:
             -.035em;
@@ -3295,10 +3361,10 @@ function GlobalStyles() {
             5px;
 
           font-size:
-            clamp(10.5px,3vw,13px);
+            clamp(9.5px,2.8vw,11.5px);
 
           line-height:
-            1.35;
+            1.32;
 
           display:
             -webkit-box;
@@ -3321,68 +3387,57 @@ function GlobalStyles() {
         .sh-service-link {
 
           margin-top:
-            5px;
-
-          gap:
-            5px;
+            4px;
 
           font-size:
-            11px;
+            9.5px;
         }
 
         .sh-service-link svg {
 
           width:
-            13px;
+            12px;
 
           height:
-            13px;
+            12px;
         }
 
 
         /* -----------------------------------------------
            SERVICE IMAGE
-           
-           IMAGE STAYS ON THE RIGHT
         ----------------------------------------------- */
 
         .sh-service-image {
 
           min-height:
-            166px;
+            159px;
 
           height:
-            calc(100% - 16px);
+            calc(100% - 14px);
 
           margin:
-            8px
-            8px
-            8px
+            7px
+            7px
+            7px
             0;
 
           border-radius:
-            13px;
+            11px;
         }
 
         .sh-service-image img {
 
-          width:
-            100%;
+          min-height:
+            159px;
 
           height:
             100%;
-
-          min-height:
-            166px;
-
-          object-fit:
-            cover;
         }
 
 
-        /* -----------------------------------------------
+        /* ================================================
            SERVICES CTA
-        ----------------------------------------------- */
+        ================================================= */
 
         .sh-services-bottom-cta {
 
@@ -3390,39 +3445,41 @@ function GlobalStyles() {
             grid;
 
           grid-template-columns:
-            38px
+            35px
             minmax(0,1fr);
 
           gap:
-            9px;
+            8px;
 
           padding:
-            12px;
+            11px;
 
           border-radius:
-            14px;
+            13px;
         }
 
         .sh-services-bottom-icon {
 
           width:
-            38px;
+            35px;
 
           height:
-            38px;
+            35px;
 
           border-radius:
-            10px;
+            9px;
         }
 
         .sh-services-bottom-copy strong {
+
           font-size:
-            12px;
+            11px;
         }
 
         .sh-services-bottom-copy span {
+
           font-size:
-            9.5px;
+            9px;
 
           line-height:
             1.35;
@@ -3438,190 +3495,166 @@ function GlobalStyles() {
             100%;
 
           min-height:
-            42px;
+            40px;
 
           font-size:
-            12px;
+            10px;
         }
 
 
-        /* -----------------------------------------------
-           CONTACT
-        ----------------------------------------------- */
+        /* ================================================
+           MOBILE CONTACT
+        ================================================= */
 
         .sh-contact-grid {
+
           gap:
-            45px;
+            38px;
         }
 
         .sh-contact-image {
+
           margin-top:
-            35px;
+            25px;
         }
 
         .sh-contact-image img {
+
           height:
-            320px;
+            300px;
         }
 
         .sh-form {
-          padding:
-            22px;
 
-          border-radius:
+          padding:
             20px;
         }
 
         .sh-form-grid {
+
           grid-template-columns:
             1fr;
         }
 
         .sh-field.full {
+
           grid-column:
             auto;
         }
 
 
-        /* -----------------------------------------------
-           FOOTER
-        ----------------------------------------------- */
+        /* ================================================
+           MOBILE FOOTER
+        ================================================= */
 
         .sh-footer {
+
           margin-left:
             0;
 
           padding:
-            50px
-            20px
-            28px;
+            45px 20px 27px;
         }
 
         .sh-footer-grid {
+
           grid-template-columns:
             1fr;
 
           gap:
-            35px;
-        }
-
-        .sh-footer-bottom {
-          margin-top:
-            35px;
+            30px;
         }
       }
 
 
       /* =====================================================
-         VERY SMALL PHONES
+         SMALL PHONES
       ===================================================== */
 
       @media (max-width: 375px) {
 
         .sh-brand-name {
+
           font-size:
-            15px;
+            14px;
         }
 
         .sh-hero-title {
-          font-size:
-            42px;
-        }
 
-        .sh-section-title {
           font-size:
-            37px;
-        }
-
-        .sh-product-title {
-          font-size:
-            36px;
+            40px;
         }
 
         .sh-services-title {
+
           font-size:
-            46px;
-        }
-
-
-        /* -----------------------------------------------
-           SERVICE CARDS
-        ----------------------------------------------- */
-
-        .sh-services-section {
-          padding-left:
-            14px;
-
-          padding-right:
-            14px;
+            43px;
         }
 
         .sh-service-card {
+
           grid-template-columns:
             minmax(0,1fr)
-            41%;
+            40%;
         }
 
         .sh-service-content {
+
           grid-template-columns:
-            34px
+            31px
             minmax(0,1fr);
 
           padding:
-            11px
-            8px
-            11px
-            9px;
+            10px 7px 10px 8px;
 
           gap:
-            7px;
+            6px;
         }
 
         .sh-service-number {
+
           width:
-            32px;
+            29px;
 
           height:
-            32px;
-
-          font-size:
-            10px;
+            29px;
         }
 
         .sh-service-icon {
+
           width:
-            34px;
+            32px;
 
           height:
-            34px;
+            32px;
         }
 
         .sh-service-copy h2 {
+
           font-size:
-            15px;
+            14px;
         }
 
         .sh-service-copy p {
-          font-size:
-            10px;
-        }
 
-        .sh-service-link {
           font-size:
-            10px;
+            9px;
         }
 
         .sh-service-image {
+
           min-height:
-            158px;
+            155px;
         }
 
         .sh-service-image img {
+
           min-height:
-            158px;
+            155px;
         }
 
         .sh-floating-badge {
+
           display:
             none;
         }
@@ -3642,6 +3675,7 @@ function GlobalStyles() {
         *,
         *::before,
         *::after {
+
           animation-duration:
             .01ms !important;
 
@@ -3659,23 +3693,26 @@ function GlobalStyles() {
 
 
 /* =========================================================
-   BRAND COMPONENT
+   BRAND
 ========================================================= */
 
 function Brand({ compact = false }) {
+
   return (
+
     <div className="sh-brand">
 
       <div className="sh-brand-mark">
 
         <HeartPulse
-          size={23}
+          size={22}
           strokeWidth={2.4}
         />
 
       </div>
 
       {!compact && (
+
         <div>
 
           <div className="sh-brand-name">
@@ -3687,6 +3724,7 @@ function Brand({ compact = false }) {
           </div>
 
         </div>
+
       )}
 
     </div>
@@ -3695,36 +3733,37 @@ function Brand({ compact = false }) {
 
 
 /* =========================================================
-   NAVIGATION ITEMS
+   NAVIGATION
 ========================================================= */
 
 const NAV_ITEMS = [
+
   {
     id: "home",
     label: "Home",
     icon: Home,
   },
+
   {
     id: "about",
     label: "About",
     icon: Users,
   },
+
   {
     id: "services",
     label: "Services",
     icon: Network,
   },
+
   {
     id: "contact",
     label: "Contact",
     icon: MessageSquare,
   },
+
 ];
 
-
-/* =========================================================
-   NAV BUTTON
-========================================================= */
 
 function NavButton({
   item,
@@ -3735,6 +3774,7 @@ function NavButton({
   const Icon = item.icon;
 
   return (
+
     <button
       className={
         `sh-nav-button ${
@@ -3745,11 +3785,6 @@ function NavButton({
       }
       onClick={() =>
         onNavigate(item.id)
-      }
-      aria-current={
-        activePage === item.id
-          ? "page"
-          : undefined
       }
     >
 
@@ -3769,7 +3804,9 @@ function NavButton({
 ========================================================= */
 
 function TopBar({ onOpenMenu }) {
+
   return (
+
     <header className="sh-topbar">
 
       <div className="sh-topbar-inner">
@@ -3781,7 +3818,9 @@ function TopBar({ onOpenMenu }) {
           onClick={onOpenMenu}
           aria-label="Open navigation menu"
         >
-          <Menu size={22} />
+
+          <Menu size={21} />
+
         </button>
 
       </div>
@@ -3799,28 +3838,30 @@ function Sidebar({
   activePage,
   onNavigate,
 }) {
+
   return (
+
     <aside className="sh-sidebar">
 
       <div className="sh-nav-label">
         Explore
       </div>
 
-      <nav
-        className="sh-nav"
-        aria-label="Primary navigation"
-      >
+      <nav className="sh-nav">
 
         {NAV_ITEMS.map((item) => (
+
           <NavButton
             key={item.id}
             item={item}
             activePage={activePage}
             onNavigate={onNavigate}
           />
+
         ))}
 
       </nav>
+
 
       <div className="sh-sidebar-bottom">
 
@@ -3856,23 +3897,18 @@ function MobileDrawer({
   onClose,
 }) {
 
-  if (!open) {
-    return null;
-  }
+  if (!open) return null;
 
   return (
+
     <>
 
       <div
         className="sh-mobile-overlay"
         onClick={onClose}
-        aria-hidden="true"
       />
 
-      <aside
-        className="sh-mobile-drawer"
-        aria-label="Mobile navigation"
-      >
+      <aside className="sh-mobile-drawer">
 
         <div className="sh-mobile-drawer-header">
 
@@ -3881,12 +3917,15 @@ function MobileDrawer({
           <button
             className="sh-close-btn"
             onClick={onClose}
-            aria-label="Close navigation menu"
+            aria-label="Close navigation"
           >
-            <X size={20} />
+
+            <X size={19} />
+
           </button>
 
         </div>
+
 
         <nav className="sh-mobile-nav">
 
@@ -3917,12 +3956,13 @@ function MobileDrawer({
 
 
 /* =========================================================
-   HOME — HERO
+   HERO
 ========================================================= */
 
 function Hero({ onNavigate }) {
 
   return (
+
     <section className="sh-hero">
 
       <div className="sh-hero-grid">
@@ -3937,6 +3977,7 @@ function Hero({ onNavigate }) {
 
           </div>
 
+
           <h1 className="sh-hero-title">
 
             Intelligence that moves{" "}
@@ -3946,6 +3987,7 @@ function Hero({ onNavigate }) {
             </span>
 
           </h1>
+
 
           <p className="sh-hero-description">
 
@@ -3958,6 +4000,7 @@ function Hero({ onNavigate }) {
 
           </p>
 
+
           <div className="sh-hero-actions">
 
             <button
@@ -3969,9 +4012,10 @@ function Hero({ onNavigate }) {
 
               Explore Our Solutions
 
-              <ArrowRight size={17} />
+              <ArrowRight size={16} />
 
             </button>
+
 
             <button
               className="sh-btn sh-btn-secondary"
@@ -3986,9 +4030,10 @@ function Hero({ onNavigate }) {
 
           </div>
 
+
           <div className="sh-hero-note">
 
-            <CheckCircle2 size={16} />
+            <CheckCircle2 size={14} />
 
             Built around healthcare workflows,
             outcomes and people.
@@ -4014,7 +4059,7 @@ function Hero({ onNavigate }) {
 
           <div className="sh-floating-badge">
 
-            <Sparkles size={15} />
+            <Sparkles size={13} />
 
             AI-powered healthcare
 
@@ -4030,8 +4075,7 @@ function Hero({ onNavigate }) {
             <div className="sh-floating-stat-label">
 
               Intelligent systems designed
-              to augment healthcare teams,
-              not replace them.
+              to augment healthcare teams.
 
             </div>
 
@@ -4047,12 +4091,13 @@ function Hero({ onNavigate }) {
 
 
 /* =========================================================
-   HOME — STATEMENT
+   STATEMENT
 ========================================================= */
 
 function StatementSection() {
 
   return (
+
     <section className="sh-section sh-statement">
 
       <div className="sh-container">
@@ -4087,6 +4132,7 @@ function StatementSection() {
 
             </h2>
 
+
             <p className="sh-statement-copy">
 
               StellarOne Health brings together
@@ -4110,7 +4156,7 @@ function StatementSection() {
 
 
 /* =========================================================
-   HOME — CAPABILITIES
+   CAPABILITIES
 ========================================================= */
 
 function CapabilitiesSection() {
@@ -4119,40 +4165,28 @@ function CapabilitiesSection() {
 
     {
       icon: BrainCircuit,
-
-      title:
-        "AI-Powered Workflows",
-
+      title: "AI-Powered Workflows",
       text:
         "Automate repetitive processes, surface meaningful insights, and help teams make faster, more informed decisions.",
     },
 
     {
       icon: Target,
-
-      title:
-        "Revenue Cycle Intelligence",
-
+      title: "Revenue Cycle Intelligence",
       text:
         "Improve visibility across eligibility, coding, denials, accounts receivable, and payer performance.",
     },
 
     {
       icon: HeartPulse,
-
-      title:
-        "Digital Patient Access",
-
+      title: "Digital Patient Access",
       text:
         "Create simpler, more intuitive healthcare experiences across digital and connected channels.",
     },
 
     {
       icon: Network,
-
-      title:
-        "Enterprise Integration",
-
+      title: "Enterprise Integration",
       text:
         "Connect systems, workflows and data so healthcare organizations can operate from a more complete picture.",
     },
@@ -4160,6 +4194,7 @@ function CapabilitiesSection() {
   ];
 
   return (
+
     <section className="sh-section sh-capabilities">
 
       <div className="sh-container">
@@ -4180,6 +4215,7 @@ function CapabilitiesSection() {
             const Icon = item.icon;
 
             return (
+
               <article
                 className="sh-capability"
                 key={item.title}
@@ -4187,13 +4223,15 @@ function CapabilitiesSection() {
 
                 <div className="sh-capability-icon">
 
-                  <Icon size={22} />
+                  <Icon size={20} />
 
                 </div>
+
 
                 <h3>
                   {item.title}
                 </h3>
+
 
                 <p>
                   {item.text}
@@ -4214,18 +4252,14 @@ function CapabilitiesSection() {
 
 
 /* =========================================================
-   HOME — STELLAR.AI
+   STELLAR.AI
 ========================================================= */
 
 function StellarAISection() {
 
   return (
-    <section
-      className="
-        sh-product-section
-        sh-product-dark
-      "
-    >
+
+    <section className="sh-product-section sh-product-dark">
 
       <div className="sh-container">
 
@@ -4235,7 +4269,7 @@ function StellarAISection() {
 
             <div className="sh-product-label">
 
-              <BrainCircuit size={16} />
+              <BrainCircuit size={14} />
 
               Stellar.AI
 
@@ -4266,37 +4300,37 @@ function StellarAISection() {
 
               <li>
 
-                <CircleCheck size={17} />
+                <CircleCheck size={15} />
 
                 Revenue-cycle visibility across
-                critical workflows
+                critical workflows.
 
               </li>
 
               <li>
 
-                <CircleCheck size={17} />
+                <CircleCheck size={15} />
 
                 Intelligent identification of
-                operational opportunities
+                operational opportunities.
 
               </li>
 
               <li>
 
-                <CircleCheck size={17} />
+                <CircleCheck size={15} />
 
                 Denial and accounts-receivable
-                insights
+                insights.
 
               </li>
 
               <li>
 
-                <CircleCheck size={17} />
+                <CircleCheck size={15} />
 
                 Executive-ready performance
-                intelligence
+                intelligence.
 
               </li>
 
@@ -4312,7 +4346,7 @@ function StellarAISection() {
 
                 Explore Stellar.AI
 
-                <ArrowUpRight size={17} />
+                <ArrowUpRight size={15} />
 
               </button>
 
@@ -4327,7 +4361,7 @@ function StellarAISection() {
 
               <img
                 src={IMAGES.operations}
-                alt="Healthcare operations team"
+                alt="Healthcare operations"
                 loading="lazy"
               />
 
@@ -4342,8 +4376,8 @@ function StellarAISection() {
 
               <div className="sh-product-card-title">
 
-                From operational data to
-                better decisions.
+                From operational data
+                to better decisions.
 
               </div>
 
@@ -4361,12 +4395,13 @@ function StellarAISection() {
 
 
 /* =========================================================
-   HOME — EASYMED
+   EASYMED
 ========================================================= */
 
 function EasyMedSection() {
 
   return (
+
     <section className="sh-product-section">
 
       <div className="sh-container">
@@ -4379,7 +4414,7 @@ function EasyMedSection() {
 
               <img
                 src={IMAGES.telehealth}
-                alt="Patient using digital healthcare services"
+                alt="Digital healthcare experience"
                 loading="lazy"
               />
 
@@ -4408,7 +4443,7 @@ function EasyMedSection() {
 
             <div className="sh-product-label">
 
-              <HeartPulse size={16} />
+              <HeartPulse size={14} />
 
               EasyMed
 
@@ -4438,34 +4473,34 @@ function EasyMedSection() {
 
               <li>
 
-                <CircleCheck size={17} />
+                <CircleCheck size={15} />
 
-                Convenient digital healthcare access
-
-              </li>
-
-              <li>
-
-                <CircleCheck size={17} />
-
-                Virtual consultation experiences
+                Convenient digital healthcare access.
 
               </li>
 
               <li>
 
-                <CircleCheck size={17} />
+                <CircleCheck size={15} />
 
-                Connected patient journeys
+                Virtual consultation experiences.
 
               </li>
 
               <li>
 
-                <CircleCheck size={17} />
+                <CircleCheck size={15} />
+
+                Connected patient journeys.
+
+              </li>
+
+              <li>
+
+                <CircleCheck size={15} />
 
                 Designed for scalable digital
-                healthcare delivery
+                healthcare delivery.
 
               </li>
 
@@ -4481,7 +4516,7 @@ function EasyMedSection() {
 
                 Explore EasyMed
 
-                <ArrowUpRight size={17} />
+                <ArrowUpRight size={15} />
 
               </button>
 
@@ -4499,7 +4534,7 @@ function EasyMedSection() {
 
 
 /* =========================================================
-   HOME — OUTCOMES
+   OUTCOMES
 ========================================================= */
 
 function OutcomesSection() {
@@ -4508,30 +4543,21 @@ function OutcomesSection() {
 
     {
       number: "01",
-
-      title:
-        "Greater operational clarity",
-
+      title: "Greater operational clarity",
       text:
         "Bring fragmented healthcare processes and information into a clearer operational picture.",
     },
 
     {
       number: "02",
-
-      title:
-        "Better financial performance",
-
+      title: "Better financial performance",
       text:
         "Use intelligence and automation to identify revenue opportunities and reduce avoidable friction.",
     },
 
     {
       number: "03",
-
-      title:
-        "More connected experiences",
-
+      title: "More connected experiences",
       text:
         "Create digital experiences that make healthcare easier for patients, providers and teams.",
     },
@@ -4539,6 +4565,7 @@ function OutcomesSection() {
   ];
 
   return (
+
     <section className="sh-section sh-outcomes">
 
       <div className="sh-container">
@@ -4614,12 +4641,13 @@ function OutcomesSection() {
 
 
 /* =========================================================
-   SHARED CTA
+   CTA
 ========================================================= */
 
 function CTASection({ onNavigate }) {
 
   return (
+
     <section className="sh-cta">
 
       <div className="sh-container">
@@ -4665,7 +4693,7 @@ function CTASection({ onNavigate }) {
 
               Talk to Our Team
 
-              <ArrowRight size={17} />
+              <ArrowRight size={15} />
 
             </button>
 
@@ -4681,12 +4709,13 @@ function CTASection({ onNavigate }) {
 
 
 /* =========================================================
-   HOME PAGE
+   HOME
 ========================================================= */
 
 function HomePage({ onNavigate }) {
 
   return (
+
     <>
 
       <Hero
@@ -4713,12 +4742,13 @@ function HomePage({ onNavigate }) {
 
 
 /* =========================================================
-   ABOUT PAGE
+   ABOUT
 ========================================================= */
 
 function AboutPage({ onNavigate }) {
 
   return (
+
     <>
 
       <section className="sh-page-hero">
@@ -4843,7 +4873,7 @@ function AboutPage({ onNavigate }) {
 
               <ShieldCheck
                 className="sh-value-icon"
-                size={24}
+                size={22}
               />
 
               <h3>
@@ -4851,11 +4881,9 @@ function AboutPage({ onNavigate }) {
               </h3>
 
               <p>
-
                 Healthcare technology must be built
                 with security, reliability and
                 responsible innovation at its core.
-
               </p>
 
             </article>
@@ -4865,7 +4893,7 @@ function AboutPage({ onNavigate }) {
 
               <Target
                 className="sh-value-icon"
-                size={24}
+                size={22}
               />
 
               <h3>
@@ -4873,11 +4901,9 @@ function AboutPage({ onNavigate }) {
               </h3>
 
               <p>
-
                 We focus on technology that solves
                 meaningful problems and produces
                 measurable value.
-
               </p>
 
             </article>
@@ -4887,7 +4913,7 @@ function AboutPage({ onNavigate }) {
 
               <Users
                 className="sh-value-icon"
-                size={24}
+                size={22}
               />
 
               <h3>
@@ -4895,11 +4921,9 @@ function AboutPage({ onNavigate }) {
               </h3>
 
               <p>
-
                 Better healthcare technology starts
                 by understanding the people who use
                 it every day.
-
               </p>
 
             </article>
@@ -4921,7 +4945,7 @@ function AboutPage({ onNavigate }) {
 
 
 /* =========================================================
-   SERVICES PAGE
+   SERVICES
 ========================================================= */
 
 function ServicesPage({ onNavigate }) {
@@ -4930,119 +4954,66 @@ function ServicesPage({ onNavigate }) {
 
     {
       number: "01",
-
-      name:
-        "AI-Powered Workflows",
-
+      name: "AI-Powered Workflows",
       description:
         "Automate repetitive processes, surface meaningful insights, and help teams make faster, more informed decisions.",
-
-      icon:
-        BrainCircuit,
-
-      image:
-        IMAGES.aiWorkflows,
-
+      icon: BrainCircuit,
+      image: IMAGES.aiWorkflows,
       imageAlt:
         "AI-powered healthcare workflow technology",
     },
 
-
     {
       number: "02",
-
-      name:
-        "Revenue Cycle Intelligence",
-
+      name: "Revenue Cycle Intelligence",
       description:
         "Improve visibility across eligibility, coding, denials, accounts receivable, and payer performance.",
-
-      icon:
-        Target,
-
-      image:
-        IMAGES.revenueCycle,
-
+      icon: Target,
+      image: IMAGES.revenueCycle,
       imageAlt:
         "Healthcare revenue cycle analytics",
     },
 
-
     {
       number: "03",
-
-      name:
-        "Digital Patient Access",
-
+      name: "Digital Patient Access",
       description:
         "Create simpler, more intuitive healthcare experiences across digital and connected channels.",
-
-      icon:
-        HeartPulse,
-
-      image:
-        IMAGES.patientAccess,
-
+      icon: HeartPulse,
+      image: IMAGES.patientAccess,
       imageAlt:
-        "Digital healthcare and telehealth patient access",
+        "Digital healthcare patient access",
     },
-
 
     {
       number: "04",
-
-      name:
-        "Healthcare Software Engineering",
-
+      name: "Healthcare Software Engineering",
       description:
         "Build scalable architecture, products, and integrations designed around real-world healthcare workflows.",
-
-      icon:
-        Code2,
-
-      image:
-        IMAGES.softwareEngineering,
-
+      icon: Code2,
+      image: IMAGES.softwareEngineering,
       imageAlt:
         "Healthcare software engineering",
     },
 
-
     {
       number: "05",
-
-      name:
-        "Enterprise Integration",
-
+      name: "Enterprise Integration",
       description:
         "Connect systems, data, and workflows to create a more unified healthcare technology environment.",
-
-      icon:
-        Network,
-
-      image:
-        IMAGES.enterpriseIntegration,
-
+      icon: Network,
+      image: IMAGES.enterpriseIntegration,
       imageAlt:
         "Connected healthcare enterprise systems",
     },
 
-
     {
       number: "06",
-
-      name:
-        "Healthcare Technology Consulting",
-
+      name: "Healthcare Technology Consulting",
       description:
         "Strategic guidance for organizations evaluating technology modernization, AI adoption, and digital transformation.",
-
-      icon:
-        Users,
-
-      image:
-        IMAGES.healthcareConsulting,
-
+      icon: Users,
+      image: IMAGES.healthcareConsulting,
       imageAlt:
         "Healthcare technology consulting",
     },
@@ -5051,11 +5022,12 @@ function ServicesPage({ onNavigate }) {
 
 
   return (
+
     <>
 
-      {/* ===================================================
-          SERVICES HERO
-      =================================================== */}
+      {/* ===============================================
+          SERVICES HEADER
+      =============================================== */}
 
       <section className="sh-services-hero">
 
@@ -5099,9 +5071,9 @@ function ServicesPage({ onNavigate }) {
       </section>
 
 
-      {/* ===================================================
-          SERVICES CARDS
-      =================================================== */}
+      {/* ===============================================
+          SERVICE CARDS
+      =============================================== */}
 
       <section className="sh-services-section">
 
@@ -5111,8 +5083,7 @@ function ServicesPage({ onNavigate }) {
 
             {services.map((service) => {
 
-              const Icon =
-                service.icon;
+              const Icon = service.icon;
 
               return (
 
@@ -5121,27 +5092,19 @@ function ServicesPage({ onNavigate }) {
                   key={service.number}
                 >
 
-                  {/* -----------------------------------------
-                      LEFT CONTENT
-                  ----------------------------------------- */}
-
                   <div className="sh-service-content">
-
-                    {/* Number */}
 
                     <div className="sh-service-number">
                       {service.number}
                     </div>
 
 
-                    {/* Main */}
-
                     <div className="sh-service-main">
 
                       <div className="sh-service-icon">
 
                         <Icon
-                          size={22}
+                          size={20}
                           strokeWidth={2}
                         />
 
@@ -5161,20 +5124,16 @@ function ServicesPage({ onNavigate }) {
 
 
                         <button
-                          type="button"
                           className="sh-service-link"
+                          type="button"
                           onClick={() =>
                             onNavigate("contact")
                           }
                         >
 
-                          <span>
-                            Learn more
-                          </span>
+                          Learn more
 
-                          <ArrowRight
-                            size={16}
-                          />
+                          <ArrowRight size={13} />
 
                         </button>
 
@@ -5185,10 +5144,6 @@ function ServicesPage({ onNavigate }) {
                   </div>
 
 
-                  {/* -----------------------------------------
-                      RIGHT IMAGE
-                  ----------------------------------------- */}
-
                   <div className="sh-service-image">
 
                     <img
@@ -5197,11 +5152,7 @@ function ServicesPage({ onNavigate }) {
                       loading="lazy"
                     />
 
-                    <div
-                      className="
-                        sh-service-image-overlay
-                      "
-                    />
+                    <div className="sh-service-image-overlay" />
 
                   </div>
 
@@ -5214,15 +5165,15 @@ function ServicesPage({ onNavigate }) {
           </div>
 
 
-          {/* =================================================
-              BOTTOM SERVICES CTA
-          ================================================= */}
+          {/* =============================================
+              BOTTOM CTA
+          ============================================= */}
 
           <div className="sh-services-bottom-cta">
 
             <div className="sh-services-bottom-icon">
 
-              <MessageSquare size={20} />
+              <MessageSquare size={18} />
 
             </div>
 
@@ -5242,8 +5193,8 @@ function ServicesPage({ onNavigate }) {
 
 
             <button
-              type="button"
               className="sh-btn sh-btn-primary"
+              type="button"
               onClick={() =>
                 onNavigate("contact")
               }
@@ -5251,7 +5202,7 @@ function ServicesPage({ onNavigate }) {
 
               Get in Touch
 
-              <ArrowRight size={16} />
+              <ArrowRight size={14} />
 
             </button>
 
@@ -5267,7 +5218,7 @@ function ServicesPage({ onNavigate }) {
 
 
 /* =========================================================
-   CONTACT PAGE
+   CONTACT
 ========================================================= */
 
 function ContactPage() {
@@ -5285,15 +5236,12 @@ function ContactPage() {
 
 
   return (
+
     <section className="sh-page-hero">
 
       <div className="sh-container">
 
         <div className="sh-contact-grid">
-
-          {/* =================================================
-              CONTACT INFORMATION
-          ================================================= */}
 
           <div>
 
@@ -5326,8 +5274,6 @@ function ContactPage() {
 
             <div className="sh-contact-details">
 
-              {/* Email */}
-
               <a
                 className="sh-contact-detail"
                 href={`mailto:${BRAND.email}`}
@@ -5335,7 +5281,7 @@ function ContactPage() {
 
                 <div className="sh-contact-detail-icon">
 
-                  <MessageSquare size={19} />
+                  <MessageSquare size={17} />
 
                 </div>
 
@@ -5355,8 +5301,6 @@ function ContactPage() {
               </a>
 
 
-              {/* Phone */}
-
               <a
                 className="sh-contact-detail"
                 href={`tel:${BRAND.phone.replace(
@@ -5367,7 +5311,7 @@ function ContactPage() {
 
                 <div className="sh-contact-detail-icon">
 
-                  <Phone size={19} />
+                  <Phone size={17} />
 
                 </div>
 
@@ -5387,8 +5331,6 @@ function ContactPage() {
               </a>
 
 
-              {/* Image */}
-
               <div className="sh-contact-image">
 
                 <img
@@ -5404,19 +5346,13 @@ function ContactPage() {
           </div>
 
 
-          {/* =================================================
-              CONTACT FORM
-          ================================================= */}
-
           <form
             className="sh-form"
             onSubmit={handleSubmit}
           >
 
             <h2 className="sh-form-title">
-
               Start a conversation
-
             </h2>
 
 
@@ -5429,8 +5365,6 @@ function ContactPage() {
 
 
             <div className="sh-form-grid">
-
-              {/* Name */}
 
               <div className="sh-field">
 
@@ -5449,8 +5383,6 @@ function ContactPage() {
               </div>
 
 
-              {/* Organization */}
-
               <div className="sh-field">
 
                 <label htmlFor="company">
@@ -5466,8 +5398,6 @@ function ContactPage() {
 
               </div>
 
-
-              {/* Email */}
 
               <div className="sh-field">
 
@@ -5487,8 +5417,6 @@ function ContactPage() {
               </div>
 
 
-              {/* Phone */}
-
               <div className="sh-field">
 
                 <label htmlFor="phone">
@@ -5504,8 +5432,6 @@ function ContactPage() {
 
               </div>
 
-
-              {/* Message */}
 
               <div className="sh-field full">
 
@@ -5527,16 +5453,12 @@ function ContactPage() {
 
             <button
               type="submit"
-              className="
-                sh-btn
-                sh-btn-primary
-                sh-form-submit
-              "
+              className="sh-btn sh-btn-primary sh-form-submit"
             >
 
               Send Message
 
-              <ArrowRight size={17} />
+              <ArrowRight size={15} />
 
             </button>
 
@@ -5545,7 +5467,7 @@ function ContactPage() {
 
               <div className="sh-success">
 
-                <CheckCircle2 size={18} />
+                <CheckCircle2 size={16} />
 
                 <div>
 
@@ -5555,8 +5477,8 @@ function ContactPage() {
 
                   <br />
 
-                  Your message has been
-                  captured. We'll be in touch.
+                  Your message has been captured.
+                  We'll be in touch.
 
                 </div>
 
@@ -5582,11 +5504,10 @@ function ContactPage() {
 function Footer({ onNavigate }) {
 
   return (
+
     <footer className="sh-footer">
 
       <div className="sh-footer-grid">
-
-        {/* Brand */}
 
         <div>
 
@@ -5608,8 +5529,6 @@ function Footer({ onNavigate }) {
 
         </div>
 
-
-        {/* Company */}
 
         <div>
 
@@ -5649,8 +5568,6 @@ function Footer({ onNavigate }) {
         </div>
 
 
-        {/* Solutions */}
-
         <div>
 
           <div className="sh-footer-heading">
@@ -5676,9 +5593,7 @@ function Footer({ onNavigate }) {
               EasyMed
             </button>
 
-            <a
-              href={`mailto:${BRAND.email}`}
-            >
+            <a href={`mailto:${BRAND.email}`}>
               Email us
             </a>
 
@@ -5705,7 +5620,7 @@ function Footer({ onNavigate }) {
 
 
 /* =========================================================
-   MAIN APPLICATION
+   APPLICATION
 ========================================================= */
 
 export default function StellarOneSite() {
@@ -5719,10 +5634,6 @@ export default function StellarOneSite() {
   ] = useState(false);
 
 
-  /* =======================================================
-     NAVIGATION
-  ======================================================= */
-
   function navigate(nextPage) {
 
     setPage(nextPage);
@@ -5735,10 +5646,6 @@ export default function StellarOneSite() {
     });
   }
 
-
-  /* =======================================================
-     PAGE TITLE
-  ======================================================= */
 
   useEffect(() => {
 
@@ -5758,17 +5665,12 @@ export default function StellarOneSite() {
 
     };
 
-
     document.title =
       titles[page] ||
       "StellarOne Health";
 
   }, [page]);
 
-
-  /* =======================================================
-     PAGE ROUTING
-  ======================================================= */
 
   let content;
 
@@ -5806,8 +5708,6 @@ export default function StellarOneSite() {
       break;
 
 
-    case "home":
-
     default:
 
       content = (
@@ -5820,18 +5720,13 @@ export default function StellarOneSite() {
   }
 
 
-  /* =======================================================
-     APP
-  ======================================================= */
-
   return (
+
     <>
 
       <GlobalStyles />
 
       <div className="sh-app">
-
-        {/* Header */}
 
         <TopBar
           onOpenMenu={() =>
@@ -5840,15 +5735,11 @@ export default function StellarOneSite() {
         />
 
 
-        {/* Desktop Sidebar */}
-
         <Sidebar
           activePage={page}
           onNavigate={navigate}
         />
 
-
-        {/* Mobile Navigation */}
 
         <MobileDrawer
           open={mobileMenuOpen}
@@ -5860,16 +5751,12 @@ export default function StellarOneSite() {
         />
 
 
-        {/* Main Content */}
-
         <main className="sh-main">
 
           {content}
 
         </main>
 
-
-        {/* Footer */}
 
         <Footer
           onNavigate={navigate}
