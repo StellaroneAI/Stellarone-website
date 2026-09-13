@@ -1,0 +1,14 @@
+{
+  "name": "stellarone-website-functions",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "22" },
+  "main": "index.js",
+  "scripts": { "lint": "echo 'No lint configured'" },
+  "dependencies": {
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0",
+    "resend": "^6.1.0",
+    "openai": "^5.0.0"
+  }
+}
