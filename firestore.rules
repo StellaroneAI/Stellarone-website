@@ -1,0 +1,40 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /contactSubmissions/{submissionId} {
+      allow create: if isValidSubmission(request.resource.data);
+      allow read, update, delete: if request.auth != null;
+    }
+
+    function isValidSubmission(data) {
+      return data.keys().hasOnly([
+        'name',
+        'organization',
+        'email',
+        'phone',
+        'message',
+        'status',
+        'source',
+        'createdAt'
+      ])
+      && data.name is string
+      && data.name.size() >= 2
+      && data.name.size() <= 100
+      && data.organization is string
+      && data.organization.size() <= 150
+      && data.email is string
+      && data.email.size() >= 5
+      && data.email.size() <= 200
+      && data.phone is string
+      && data.phone.size() <= 40
+      && data.message is string
+      && data.message.size() >= 5
+      && data.message.size() <= 5000
+      && data.status == 'new'
+      && data.source == 'stellarone-website'
+      && data.createdAt == request.time;
+    }
+  }
+}
